@@ -4,6 +4,8 @@
  */
 package Pantallas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Diego
@@ -28,12 +30,13 @@ public class LoginEstudiante extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btn_Ingresar = new javax.swing.JButton();
+        btn_Volver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tf_correo = new javax.swing.JTextField();
         JPsswF_passwEstudiante = new javax.swing.JPasswordField();
+        btn_Ingresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,7 +44,12 @@ public class LoginEstudiante extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_Ingresar.setText("Ingresar");
+        btn_Volver.setText("Atras");
+        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VolverActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -55,7 +63,14 @@ public class LoginEstudiante extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Contraseña");
 
-        JPsswF_passwEstudiante.setText("jPasswordField1");
+        tf_correo.setText("Usuario@ulacit.ed.cr");
+
+        btn_Ingresar.setText("Siguiente");
+        btn_Ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_IngresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -67,9 +82,6 @@ public class LoginEstudiante extends javax.swing.JFrame {
                         .addGap(250, 250, 250)
                         .addComponent(jLabel1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(313, 313, 313)
-                        .addComponent(btn_Ingresar))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(87, 87, 87)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -77,8 +89,16 @@ public class LoginEstudiante extends javax.swing.JFrame {
                         .addGap(75, 75, 75)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tf_correo)
-                            .addComponent(JPsswF_passwEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))))
-                .addContainerGap(177, Short.MAX_VALUE))
+                            .addComponent(JPsswF_passwEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(312, 312, 312)
+                        .addComponent(btn_Volver)))
+                .addContainerGap(184, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(479, Short.MAX_VALUE)
+                    .addComponent(btn_Ingresar)
+                    .addGap(167, 167, 167)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,9 +113,14 @@ public class LoginEstudiante extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(JPsswF_passwEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(btn_Ingresar)
-                .addGap(52, 52, 52))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(btn_Volver)
+                .addGap(34, 34, 34))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(318, Short.MAX_VALUE)
+                    .addComponent(btn_Ingresar)
+                    .addGap(33, 33, 33)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -105,7 +130,7 @@ public class LoginEstudiante extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,6 +153,46 @@ public class LoginEstudiante extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
+        // TODO add your handling code here:
+        String correo = tf_correo.getText();
+        String passw = JPsswF_passwEstudiante.getPassword().toString();
+        
+        if (!correo.isEmpty()) {
+            if (correo.toLowerCase().contains("@Ulacit.ed.cr")) {
+                if (!passw.equals("")) {
+                    //if (/*aca se debe verificar so existe el usuario*/) {
+                        //aca se redirige a la pagina principal
+                    //}else{
+                        //JOptionPane.showMessageDialog(null, "credenciales incorrectas");
+                        //this.tf_correo.setText("");
+                        //this.JPsswF_passwEstudiante.setText("");
+                    //}
+                }else{
+                    JOptionPane.showMessageDialog(null, "Ingrese una contraseña");
+                    //this.tf_correo.setText("");
+                    //this.JPsswF_passwEstudiante.setText("");
+                }  
+            }else{
+                JOptionPane.showMessageDialog(null, "Ingrese un correo valido (debe terminar en @ulacit.ed.cr) ");
+                //this.tf_correo.setText("");
+                //this.JPsswF_passwEstudiante.setText("");  
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese un correo");
+            //this.tf_correo.setText("");
+            //this.JPsswF_passwEstudiante.setText("");
+        }
+    }//GEN-LAST:event_btn_IngresarActionPerformed
+
+    private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
+        // TODO add your handling code here:
+        LogIn login = new LogIn();
+        login.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btn_VolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,6 +232,7 @@ public class LoginEstudiante extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField JPsswF_passwEstudiante;
     private javax.swing.JButton btn_Ingresar;
+    private javax.swing.JButton btn_Volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
