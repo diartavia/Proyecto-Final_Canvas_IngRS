@@ -4,6 +4,8 @@
  */
 package Pantallas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Diego
@@ -34,6 +36,7 @@ public class LoginProfesor extends javax.swing.JFrame {
         JLabel_Passwd_Profe = new javax.swing.JLabel();
         tf_correo_profe = new javax.swing.JTextField();
         JPsswF_passwProfe = new javax.swing.JPasswordField();
+        btn_atras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,7 +44,12 @@ public class LoginProfesor extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_Ingresar_Profe.setText("Ingresar");
+        btn_Ingresar_Profe.setText("Siguiente");
+        btn_Ingresar_Profe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Ingresar_ProfeActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -55,7 +63,16 @@ public class LoginProfesor extends javax.swing.JFrame {
         JLabel_Passwd_Profe.setForeground(new java.awt.Color(0, 0, 0));
         JLabel_Passwd_Profe.setText("Contraseña");
 
+        tf_correo_profe.setText("Usuario@ulacit.ed.cr");
+
         JPsswF_passwProfe.setText("jPasswordField1");
+
+        btn_atras.setText("Atras");
+        btn_atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_atrasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -67,17 +84,20 @@ public class LoginProfesor extends javax.swing.JFrame {
                         .addGap(250, 250, 250)
                         .addComponent(jLabel1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(313, 313, 313)
-                        .addComponent(btn_Ingresar_Profe))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(87, 87, 87)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JLabel_Correo_Profe)
-                            .addComponent(JLabel_Passwd_Profe))
-                        .addGap(75, 75, 75)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_correo_profe)
-                            .addComponent(JPsswF_passwProfe, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btn_atras)
+                                .addGap(56, 56, 56)
+                                .addComponent(btn_Ingresar_Profe))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JLabel_Correo_Profe)
+                                    .addComponent(JLabel_Passwd_Profe))
+                                .addGap(75, 75, 75)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tf_correo_profe, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                                    .addComponent(JPsswF_passwProfe))))))
                 .addContainerGap(177, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -93,9 +113,11 @@ public class LoginProfesor extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLabel_Passwd_Profe)
                     .addComponent(JPsswF_passwProfe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addComponent(btn_Ingresar_Profe)
-                .addGap(52, 52, 52))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Ingresar_Profe)
+                    .addComponent(btn_atras))
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -128,6 +150,46 @@ public class LoginProfesor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atrasActionPerformed
+        // TODO add your handling code here:
+        LogIn login = new LogIn();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_atrasActionPerformed
+
+    private void btn_Ingresar_ProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ingresar_ProfeActionPerformed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+        String correo = this.tf_correo_profe.getText();
+        String passw = this.JPsswF_passwProfe.getPassword().toString();
+        
+        if (!correo.isEmpty()) {
+            if (correo.toLowerCase().contains("@Ulacit.ed.cr")) {
+                if (!passw.equals("")) {
+                    //if (/*aca se debe verificar so existe el usuario*/) {
+                        //aca se redirige a la pagina principal
+                    //}else{
+                        //JOptionPane.showMessageDialog(null, "credenciales incorrectas");
+                        //this.tf_correo.setText("");
+                        //this.JPsswF_passwEstudiante.setText("");
+                    //}
+                }else{
+                    JOptionPane.showMessageDialog(null, "Ingrese una contraseña");
+                    //this.tf_correo.setText("");
+                    //this.JPsswF_passwEstudiante.setText("");
+                }  
+            }else{
+                JOptionPane.showMessageDialog(null, "Ingrese un correo valido (debe terminar en @ulacit.ed.cr) ");
+                //this.tf_correo.setText("");
+                //this.JPsswF_passwEstudiante.setText("");  
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese un correo");
+            //this.tf_correo.setText("");
+            //this.JPsswF_passwEstudiante.setText("");
+        }
+    }//GEN-LAST:event_btn_Ingresar_ProfeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,6 +231,7 @@ public class LoginProfesor extends javax.swing.JFrame {
     private javax.swing.JLabel JLabel_Passwd_Profe;
     private javax.swing.JPasswordField JPsswF_passwProfe;
     private javax.swing.JButton btn_Ingresar_Profe;
+    private javax.swing.JButton btn_atras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

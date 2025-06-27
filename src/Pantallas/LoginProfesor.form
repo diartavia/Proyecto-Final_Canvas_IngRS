@@ -78,19 +78,24 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
-                              <Component id="btn_Ingresar_Profe" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="JLabel_Correo_Profe" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="JLabel_Passwd_Profe" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tf_correo_profe" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="JPsswF_passwProfe" alignment="0" pref="313" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="btn_atras" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                      <Component id="btn_Ingresar_Profe" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="JLabel_Correo_Profe" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="JLabel_Passwd_Profe" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="tf_correo_profe" pref="311" max="32767" attributes="0"/>
+                                          <Component id="JPsswF_passwProfe" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -113,9 +118,12 @@
                           <Component id="JLabel_Passwd_Profe" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="JPsswF_passwProfe" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="77" max="32767" attributes="0"/>
-                      <Component id="btn_Ingresar_Profe" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <EmptySpace pref="79" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_Ingresar_Profe" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_atras" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -123,8 +131,11 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btn_Ingresar_Profe">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ingresar"/>
+                <Property name="text" type="java.lang.String" value="Siguiente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Ingresar_ProfeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
@@ -160,11 +171,22 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tf_correo_profe">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Usuario@ulacit.ed.cr"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="JPsswF_passwProfe">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jPasswordField1"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btn_atras">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Atras"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_atrasActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

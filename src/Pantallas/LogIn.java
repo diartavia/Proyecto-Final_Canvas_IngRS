@@ -15,6 +15,7 @@ public class LogIn extends javax.swing.JFrame {
      */
     public LogIn() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,16 +33,19 @@ public class LogIn extends javax.swing.JFrame {
         btn_Profesor = new javax.swing.JButton();
         btn_Estudiante = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btn_estudiante2 = new javax.swing.JButton();
+        btn_Profesor2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
 
-        LabelLogoULACIT.setText("LabelLogoULACIT");
+        LabelLogoULACIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit.png"))); // NOI18N
 
-        Label_Bienvenido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Label_Bienvenido.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Label_Bienvenido.setText("Bienvenido a ");
 
+        btn_Profesor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imagenProfesor.jpg"))); // NOI18N
         btn_Profesor.setText("Profesor");
         btn_Profesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +53,7 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
 
+        btn_Estudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imagenEstudiante.jpg"))); // NOI18N
         btn_Estudiante.setText("Estudiante");
         btn_Estudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,63 +61,86 @@ public class LogIn extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("canvas");
+
+        btn_estudiante2.setBackground(new java.awt.Color(102, 102, 255));
+        btn_estudiante2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_estudiante2.setForeground(new java.awt.Color(0, 0, 0));
+        btn_estudiante2.setText("Estudiante");
+        btn_estudiante2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_estudiante2ActionPerformed(evt);
+            }
+        });
+
+        btn_Profesor2.setBackground(new java.awt.Color(102, 102, 255));
+        btn_Profesor2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Profesor2.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Profesor2.setText("Profesor");
+        btn_Profesor2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Profesor2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(LabelLogoULACIT))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 331, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(LabelLogoULACIT)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(Label_Bienvenido)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btn_Profesor, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(Label_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(328, 328, 328))))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(102, 102, 102)
-                    .addComponent(btn_Estudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(428, Short.MAX_VALUE)))
+                        .addGap(90, 90, 90)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_Estudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_estudiante2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_Profesor, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_Profesor2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(104, 104, 104))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(LabelLogoULACIT)
-                .addGap(39, 39, 39)
-                .addComponent(Label_Bienvenido)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addComponent(btn_Profesor, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(153, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(LabelLogoULACIT)
+                        .addGap(0, 42, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Label_Bienvenido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)))
+                .addGap(51, 51, 51)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Estudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(78, 78, 78)))
+                    .addComponent(btn_Profesor, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_estudiante2)
+                    .addComponent(btn_Profesor2))
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,6 +163,20 @@ public class LogIn extends javax.swing.JFrame {
         loginprofe.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_ProfesorActionPerformed
+
+    private void btn_estudiante2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estudiante2ActionPerformed
+        // TODO add your handling code here:
+        LoginEstudiante loginest = new LoginEstudiante();
+        loginest.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_estudiante2ActionPerformed
+
+    private void btn_Profesor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Profesor2ActionPerformed
+        // TODO add your handling code here:
+        LoginProfesor loginprofe = new LoginProfesor();
+        loginprofe.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_Profesor2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,9 +218,9 @@ public class LogIn extends javax.swing.JFrame {
     private javax.swing.JLabel Label_Bienvenido;
     private javax.swing.JButton btn_Estudiante;
     private javax.swing.JButton btn_Profesor;
+    private javax.swing.JButton btn_Profesor2;
+    private javax.swing.JButton btn_estudiante2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
