@@ -65,8 +65,6 @@ public class LoginProfesor extends javax.swing.JFrame {
 
         tf_correo_profe.setText("Usuario@ulacit.ed.cr");
 
-        JPsswF_passwProfe.setText("jPasswordField1");
-
         btn_atras.setText("Atras");
         btn_atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
