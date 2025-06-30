@@ -38,7 +38,7 @@ public class LogIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel3.setBackground(new java.awt.Color(63, 42, 85));
 
         LabelLogoULACIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit.png"))); // NOI18N
 
