@@ -1,4 +1,4 @@
-package proyecto.pkgfinal.canvas.ingrs;
+package General;
 
 public class ProyectoFinalCanvasIngRS {
 

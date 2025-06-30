@@ -40,7 +40,7 @@ public class LoginProfesor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 51, 255));
+        jPanel1.setBackground(new java.awt.Color(63, 42, 85));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
