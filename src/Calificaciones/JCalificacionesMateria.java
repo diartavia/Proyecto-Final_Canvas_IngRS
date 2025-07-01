@@ -1,24 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Calificaciones;
 
-/**
- *
- * @author Diego
- */
+import General.Estudiante;
+
+
 public class JCalificacionesMateria extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JCalificacionesMateria.class.getName());
 
-    /**
-     * Creates new form JCalificacionesMateria
-     */
+    Calificaciones calificacion;
+    Estudiante estudiante;
+    
+    //constructores
     public JCalificacionesMateria() {
         initComponents();
     }
-
+    public JCalificacionesMateria(Calificaciones calificaciones) {
+        initComponents();
+        calificacion = calificaciones;
+    }
+    public JCalificacionesMateria(Calificaciones calificaciones, Estudiante estudiante) {
+        initComponents();
+        calificacion = calificaciones;
+    }
+    
+    
+    
+    //Metodo para mostrar notas
+    public void MostrarNotas(){
+        calificacion.getNotas(estudiante.getNombre());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
