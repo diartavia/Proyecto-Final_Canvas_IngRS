@@ -1,5 +1,7 @@
 package Calificaciones;
 
+import General.Materia;
+import Grupos.Grupo;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,8 +12,10 @@ public class Asignacion implements Serializable{
     boolean EnGrupo;
     double calificacion;
     int id_categoria; //Esto porque aveces las notas se agrupan en diferentes categorias omo lo puede ser proyecto final, etc...
+    Grupo grupoactual;
+    Materia materiaactual;
 
-    public Asignacion(String Nombre, String Descripcion, Date fechaInicio, Date fechaFinal, boolean EnGrupo, int calificacion, int id_categoria) {
+    public Asignacion(String Nombre, String Descripcion, Date fechaInicio, Date fechaFinal, boolean EnGrupo, double calificacion, int id_categoria, Grupo grupoactual, Materia materiaactual) {
         this.Nombre = Nombre;
         this.Descripcion = Descripcion;
         this.fechaInicio = fechaInicio;
@@ -19,6 +23,8 @@ public class Asignacion implements Serializable{
         this.EnGrupo = EnGrupo;
         this.calificacion = calificacion;
         this.id_categoria = id_categoria;
+        this.grupoactual = grupoactual;
+        this.materiaactual = materiaactual;
     }
 
     public Asignacion() {
