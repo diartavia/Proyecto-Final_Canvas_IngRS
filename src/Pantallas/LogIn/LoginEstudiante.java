@@ -4,6 +4,7 @@
  */
 package Pantallas.LogIn;
 
+import General.VentanaPrincipalEstudiante;
 import javax.swing.JOptionPane;
 
 /**
@@ -160,29 +161,32 @@ public class LoginEstudiante extends javax.swing.JFrame {
         String passw = JPsswF_passwEstudiante.getPassword().toString();
         
         if (!correo.isEmpty()) {
-            if (correo.toLowerCase().contains("@Ulacit.ed.cr")) {
+            if (correo.toLowerCase().contains("@ulacit.ed.cr")) {
                 if (!passw.equals("")) {
-                    //if (/*aca se debe verificar so existe el usuario*/) {
+                    if (correo.toLowerCase().equals("dartaviav584@ulacit.ed.cr") && passw.contains("1234")) {
                         //aca se redirige a la pagina principal
-                    //}else{
-                        //JOptionPane.showMessageDialog(null, "credenciales incorrectas");
-                        //this.tf_correo.setText("");
-                        //this.JPsswF_passwEstudiante.setText("");
-                    //}
+                        VentanaPrincipalEstudiante ventana = new VentanaPrincipalEstudiante();
+                        ventana.setVisible(true);
+                        this.dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "credenciales incorrectas");
+                        this.tf_correo.setText("");
+                        this.JPsswF_passwEstudiante.setText("");
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Ingrese una contraseña");
-                    //this.tf_correo.setText("");
-                    //this.JPsswF_passwEstudiante.setText("");
+                    this.tf_correo.setText("");
+                    this.JPsswF_passwEstudiante.setText("");
                 }  
             }else{
                 JOptionPane.showMessageDialog(null, "Ingrese un correo valido (debe terminar en @ulacit.ed.cr) ");
-                //this.tf_correo.setText("");
-                //this.JPsswF_passwEstudiante.setText("");  
+                this.tf_correo.setText("");
+                this.JPsswF_passwEstudiante.setText("");  
             }
         }else{
             JOptionPane.showMessageDialog(null, "Ingrese un correo");
-            //this.tf_correo.setText("");
-            //this.JPsswF_passwEstudiante.setText("");
+            this.tf_correo.setText("");
+            this.JPsswF_passwEstudiante.setText("");
         }
     }//GEN-LAST:event_btn_IngresarActionPerformed
 
