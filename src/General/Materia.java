@@ -1,33 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package General;
 
-/**
- *
- * @author jadia
- */
 import General.Estudiante;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Materia implements Serializable {
-    private String id;
-    private String nombre;
-    private List<Estudiante> estudiantes;
+    private String id, nombre, carreras, horario, grupo, id_profesor;
+    private ArrayList<Estudiante> estudiantes;
 
-    public Materia(String id, String nombre) {
+    public Materia(String id, String nombre, String carreras, String horario, String grupo, String id_profesor) {
         this.id = id;
         this.nombre = nombre;
+        this.carreras = carreras;
+        this.horario = horario;
+        this.grupo = grupo;
+        this.id_profesor = id_profesor;
         this.estudiantes = new ArrayList<>();
     }
+
+
 
     public String getId() { return id; }
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
-    public List<Estudiante> getEstudiantes() { return estudiantes; }
+    public ArrayList<Estudiante> getEstudiantes() { return estudiantes; }
 
     public void agregarEstudiante(Estudiante e) {
         if (!estudiantes.contains(e)) {
