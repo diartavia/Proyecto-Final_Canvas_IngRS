@@ -66,8 +66,17 @@ public class VentanaPrincipal extends JFrame {
             if (id == null || id.trim().isEmpty()) return;
             String nombre = JOptionPane.showInputDialog(this, "Nombre de la materia:");
             if (nombre == null || nombre.trim().isEmpty()) return;
-
-            Materia nueva = new Materia(id.trim(), nombre.trim());
+            String carrera = JOptionPane.showInputDialog(this, "Carrera de la materia:");
+            if (carrera == null || carrera.trim().isEmpty()) return;
+            String horario = JOptionPane.showInputDialog(this, "Horario de la materia:");
+            if (horario == null || horario.trim().isEmpty()) return;
+            String grupo = JOptionPane.showInputDialog(this, "grupo de la materia:");
+            if (grupo == null || grupo.trim().isEmpty()) return;
+            String id_profesor = JOptionPane.showInputDialog(this, "Id del profesor asignado a la materia:");
+            if (id_profesor == null || id_profesor.trim().isEmpty()) return;
+            
+            
+            Materia nueva = new Materia(id.trim(), nombre.trim(), carrera, horario, grupo, id_profesor);
             sistema.agregarMateria(nueva);
             modeloMaterias.addElement(nueva);
             guardarDatos();
