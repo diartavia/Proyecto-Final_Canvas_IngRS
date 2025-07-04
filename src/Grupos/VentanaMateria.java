@@ -8,7 +8,7 @@ package Grupos;
  *
  * @author jadia
  */
-import Calificaciones.Asistencia.VentanaAsitenciaMateria;
+import CursoProfesor.VentanaAsitenciaMateria;
 import General.Materia;
 import General.Estudiante;
 import javax.swing.*;

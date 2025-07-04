@@ -2,41 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Calificaciones.Asistencia;
+package CursoProfesor;
 
 /**
  *
  * @author jadia
  */
-import Calificaciones.Asistencia.Asistencia;
+import CursoProfesor.Asistencia;
 import General.Materia;
-import Grupos.Grupo;
 import General.Estudiante;
 import Grupos.Sistema;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.time.LocalDate;
 import java.io.IOException;
 
-public class VentanaAsistencia extends JFrame {
+public class VentanaAsitenciaMateria extends JFrame {
 
     private Materia materia;
-    private Grupo grupo;
     private Sistema sistema;
 
-    private DefaultListModel<Estudiante> modeloEstudiantes;
-    private JList<Estudiante> listaEstudiantes;
     private JCheckBox[] checkBoxes;
 
     private JButton btnGuardar;
 
-    public VentanaAsistencia(Materia materia, Grupo grupo) {
+    public VentanaAsitenciaMateria(Materia materia) {
         this.materia = materia;
-        this.grupo = grupo;
         this.sistema = Sistema.getInstancia();
 
-        setTitle("Asistencia - " + materia.getNombre() + " / Grupo: " + grupo.getNombre());
+        setTitle("Asistencia materia: " + materia.getNombre());
         setSize(400, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -47,7 +41,7 @@ public class VentanaAsistencia extends JFrame {
     private void initComponentes() {
         setLayout(new BorderLayout());
 
-        java.util.List<Estudiante> estudiantes = grupo.getEstudiantes();
+        java.util.List<Estudiante> estudiantes = materia.getEstudiantes();
 
         JPanel panelLista = new JPanel();
         panelLista.setLayout(new BoxLayout(panelLista, BoxLayout.Y_AXIS));
@@ -70,10 +64,10 @@ public class VentanaAsistencia extends JFrame {
     }
 
     private void guardarAsistencia() {
-        Asistencia asistencia = new Asistencia(materia.getId(), grupo.getId(), LocalDate.now());
+        Asistencia asistencia = new Asistencia(materia.getId(), "NO_GRUPO", LocalDate.now());
 
-        for (int i = 0; i < grupo.getEstudiantes().size(); i++) {
-            Estudiante e = grupo.getEstudiantes().get(i);
+        for (int i = 0; i < materia.getEstudiantes().size(); i++) {
+            Estudiante e = materia.getEstudiantes().get(i);
             boolean presente = checkBoxes[i].isSelected();
             asistencia.marcarAsistencia(e.getId(), presente);
         }
@@ -81,7 +75,7 @@ public class VentanaAsistencia extends JFrame {
         sistema.agregarAsistencia(asistencia);
         try {
             sistema.guardarDatos();
-            JOptionPane.showMessageDialog(this, "Asistencia guardada.");
+            JOptionPane.showMessageDialog(this, "Asistencia guardada para la materia.");
             dispose();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error guardando asistencia: " + ex.getMessage());
