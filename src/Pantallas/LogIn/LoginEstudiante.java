@@ -158,7 +158,7 @@ public class LoginEstudiante extends javax.swing.JFrame {
     private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
         // TODO add your handling code here:
         String correo = tf_correo.getText();
-        String passw = JPsswF_passwEstudiante.getPassword().toString();
+        String passw = new String(JPsswF_passwEstudiante.getPassword());
         
         if (!correo.isEmpty()) {
             if (correo.toLowerCase().contains("@ulacit.ed.cr")) {
