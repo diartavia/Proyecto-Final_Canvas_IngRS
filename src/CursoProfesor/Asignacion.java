@@ -1,4 +1,4 @@
-package Calificaciones;
+package CursoProfesor;
 
 import General.Materia;
 import Grupos.Grupo;

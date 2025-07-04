@@ -8,8 +8,8 @@ package Grupos;
  *
  * @author jadia
  */
-import Calificaciones.Asistencia.ArchivoUtil;
-import Calificaciones.Asistencia.Asistencia;
+import CursoProfesor.ArchivoUtil;
+import CursoProfesor.Asistencia;
 import General.Materia;
 import General.Estudiante;
 import java.io.IOException;
