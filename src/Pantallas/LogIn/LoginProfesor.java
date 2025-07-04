@@ -146,7 +146,7 @@ public class LoginProfesor extends javax.swing.JFrame {
         // TODO add your handling code here:
                 // TODO add your handling code here:
         String correo = this.tf_correo_profe.getText();
-        String passw = this.JPsswF_passwProfe.getPassword().toString();
+        String passw = new String(this.JPsswF_passwProfe.getPassword());
         
         if (!correo.isEmpty()) {
             if (correo.toLowerCase().contains("@ulacit.ed.cr")) {

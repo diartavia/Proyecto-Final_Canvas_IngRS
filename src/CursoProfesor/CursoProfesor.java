@@ -4,6 +4,7 @@
  */
 package CursoProfesor;
 
+import General.VentanaPrincipalProfesor;
 import java.awt.Color;
 
 /**
@@ -60,21 +61,26 @@ public class CursoProfesor extends javax.swing.JFrame {
         btn_tablero.setForeground(new java.awt.Color(255, 255, 255));
         btn_tablero.setText("Tablero");
         btn_tablero.setBorder(null);
-        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_tablero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tableroActionPerformed(evt);
+            }
+        });
 
         btn_Cursos.setBackground(new java.awt.Color(63, 42, 85));
         btn_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btn_Cursos.setForeground(new java.awt.Color(255, 255, 255));
         btn_Cursos.setText("Cursos");
         btn_Cursos.setBorder(null);
-        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btn_Grupos.setBackground(new java.awt.Color(63, 42, 85));
         btn_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btn_Grupos.setForeground(new java.awt.Color(255, 255, 255));
         btn_Grupos.setText("Grupos");
         btn_Grupos.setBorder(null);
-        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
 
@@ -112,7 +118,6 @@ public class CursoProfesor extends javax.swing.JFrame {
         jPanel2.setMinimumSize(new java.awt.Dimension(1586, 1885));
         jPanel2.setName(""); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -127,7 +132,7 @@ public class CursoProfesor extends javax.swing.JFrame {
         jLabel_Calificaciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Calificaciones.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Calificaciones.setText("Calificaciones");
-        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Calificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_CalificacionesMouseClicked(evt);
@@ -137,7 +142,7 @@ public class CursoProfesor extends javax.swing.JFrame {
         jLabel_Tareas.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Tareas.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Tareas.setText("Tareas");
-        jLabel_Tareas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Tareas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Tareas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_TareasMouseClicked(evt);
@@ -147,7 +152,7 @@ public class CursoProfesor extends javax.swing.JFrame {
         jLabel_Modulos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Modulos.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Modulos.setText("Modulos");
-        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Modulos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_ModulosMouseClicked(evt);
@@ -157,7 +162,7 @@ public class CursoProfesor extends javax.swing.JFrame {
         jLabel_Anuncios.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Anuncios.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Anuncios.setText("Anuncios");
-        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Anuncios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_AnunciosMouseClicked(evt);
@@ -167,7 +172,7 @@ public class CursoProfesor extends javax.swing.JFrame {
         jLabel_PagInicio.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel_PagInicio.setForeground(new java.awt.Color(63, 42, 85));
         jLabel_PagInicio.setText("Pagina inicio");
-        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_PagInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_PagInicioMouseClicked(evt);
@@ -211,18 +216,14 @@ public class CursoProfesor extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Editar");
         jButton2.setBorder(null);
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Pagina de inicio");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("No se ha escrito una descripción");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -243,7 +244,6 @@ public class CursoProfesor extends javax.swing.JFrame {
         );
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Descripcion del grupo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -345,6 +345,13 @@ public class CursoProfesor extends javax.swing.JFrame {
             this.Menupop.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_tableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tableroActionPerformed
+       VentanaPrincipalProfesor ventanaT = new VentanaPrincipalProfesor();
+       ventanaT.setVisible(true);
+       this.dispose();
+        
+    }//GEN-LAST:event_btn_tableroActionPerformed
 
     /**
      * @param args the command line arguments

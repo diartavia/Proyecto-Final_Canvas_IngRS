@@ -76,21 +76,26 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         btn_tablero.setForeground(new java.awt.Color(255, 255, 255));
         btn_tablero.setText("Tablero");
         btn_tablero.setBorder(null);
-        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_tablero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tableroActionPerformed(evt);
+            }
+        });
 
         btn_Cursos.setBackground(new java.awt.Color(63, 42, 85));
         btn_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btn_Cursos.setForeground(new java.awt.Color(255, 255, 255));
         btn_Cursos.setText("Cursos");
         btn_Cursos.setBorder(null);
-        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btn_Grupos.setBackground(new java.awt.Color(63, 42, 85));
         btn_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btn_Grupos.setForeground(new java.awt.Color(255, 255, 255));
         btn_Grupos.setText("Grupos");
         btn_Grupos.setBorder(null);
-        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
 
@@ -135,7 +140,6 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jLabel_NombreEst.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel_NombreEst.setText("Nombre");
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -150,7 +154,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jLabel_Calificaciones.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel_Calificaciones.setForeground(new java.awt.Color(63, 42, 85));
         jLabel_Calificaciones.setText("Calificaciones");
-        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Calificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_CalificacionesMouseClicked(evt);
@@ -160,7 +164,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jLabel_Tareas.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Tareas.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Tareas.setText("Tareas");
-        jLabel_Tareas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Tareas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Tareas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_TareasMouseClicked(evt);
@@ -170,7 +174,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jLabel_Modulos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Modulos.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Modulos.setText("Modulos");
-        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Modulos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_ModulosMouseClicked(evt);
@@ -180,7 +184,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jLabel_Anuncios.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Anuncios.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Anuncios.setText("Anuncios");
-        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Anuncios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_AnunciosMouseClicked(evt);
@@ -190,7 +194,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jLabel_PagInicio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_PagInicio.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_PagInicio.setText("Pagina inicio");
-        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_PagInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_PagInicioMouseClicked(evt);
@@ -392,6 +396,10 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_tableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tableroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_tableroActionPerformed
 
     /**
      * @param args the command line arguments
