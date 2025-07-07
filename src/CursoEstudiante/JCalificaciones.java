@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package CursoProfesor;
+package CursoEstudiante;
 
 import javax.swing.JOptionPane;
 
@@ -58,21 +58,21 @@ public class JCalificaciones extends javax.swing.JFrame {
         btn_tablero.setForeground(new java.awt.Color(255, 255, 255));
         btn_tablero.setText("Tablero");
         btn_tablero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(63, 42, 85), 2));
-        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btn_Cursos.setBackground(new java.awt.Color(63, 42, 85));
         btn_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btn_Cursos.setForeground(new java.awt.Color(255, 255, 255));
         btn_Cursos.setText("Cursos");
         btn_Cursos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(63, 42, 85), 2));
-        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btn_Grupos.setBackground(new java.awt.Color(63, 42, 85));
         btn_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btn_Grupos.setForeground(new java.awt.Color(255, 255, 255));
         btn_Grupos.setText("Grupos");
         btn_Grupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(63, 42, 85), 2));
-        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
 
@@ -121,7 +121,7 @@ public class JCalificaciones extends javax.swing.JFrame {
         jLabel_Curso.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Curso.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Curso.setText("Curso");
-        jLabel_Curso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Curso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Curso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_CursoMouseClicked(evt);
@@ -145,7 +145,7 @@ public class JCalificaciones extends javax.swing.JFrame {
         jLabel_Curso2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Curso2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Curso2.setText("Curso");
-        jLabel_Curso2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Curso2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Curso2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_Curso2MouseClicked(evt);

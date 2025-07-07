@@ -1,12 +1,16 @@
 package General;
 
+import CursoProfesor.Asignacion;
 import General.Estudiante;
+import Grupos.Grupo;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Materia implements Serializable {
     private String id, nombre, carreras, horario, grupo, id_profesor;
     private ArrayList<Estudiante> estudiantes;
+    private ArrayList<Asignacion> Asignaciones;
 
     public Materia(String id, String nombre, String carreras, String horario, String grupo, String id_profesor) {
         this.id = id;
@@ -16,9 +20,23 @@ public class Materia implements Serializable {
         this.grupo = grupo;
         this.id_profesor = id_profesor;
         this.estudiantes = new ArrayList<>();
+        
+        agregarEst();
     }
 
+    public ArrayList<Asignacion> getAsignaciones() {
+        return Asignaciones;
+    }
 
+    public void agregarAsignaciones(Asignacion asigna) {
+        Date fecha = new Date();
+        Grupo grupo = new Grupo("1", "Grupo 1", "");
+        Asignacion a = new Asignacion("Tarea 1","Descripcion de prueba",fecha,fecha,false,1.3,1, grupo, this);
+        Asignaciones.add(a);
+        if (!Asignaciones.contains(asigna)) {
+            Asignaciones.add(asigna);
+        }
+    }
 
     public String getId() { return id; }
     public String getNombre() { return nombre; }
@@ -31,6 +49,10 @@ public class Materia implements Serializable {
         }
     }
 
+    public void agregarEst(){
+        Estudiante est = new Estudiante("119260584", "Diego Artavia Valverde");
+        estudiantes.add(est);
+    }
     public void eliminarEstudiante(Estudiante e) {
         estudiantes.remove(e);
     }
