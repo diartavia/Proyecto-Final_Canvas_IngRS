@@ -1,5 +1,6 @@
 package CursoProfesor;
 
+import CursoEstudiante.JCalificacionesMateria;
 import Grupos.Grupo;
 import General.*;
 import java.util.ArrayList;

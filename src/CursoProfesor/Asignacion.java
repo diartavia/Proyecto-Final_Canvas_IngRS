@@ -7,13 +7,13 @@ import java.util.Date;
 
 public class Asignacion implements Serializable{
     //----------- Atributos ----------------------//
-    String Nombre,Descripcion;
-    Date fechaInicio, fechaFinal;
-    boolean EnGrupo;
-    double calificacion;
-    int id_categoria; //Esto porque aveces las notas se agrupan en diferentes categorias omo lo puede ser proyecto final, etc...
-    Grupo grupoactual;
-    Materia materiaactual;
+    private String Nombre,Descripcion;
+    private Date fechaInicio, fechaFinal;
+    private boolean EnGrupo;
+    private double calificacion;
+    private int id_categoria; //Esto porque aveces las notas se agrupan en diferentes categorias omo lo puede ser proyecto final, etc...
+    private Grupo grupoactual;
+    private Materia materiaactual;
 
     public Asignacion(String Nombre, String Descripcion, Date fechaInicio, Date fechaFinal, boolean EnGrupo, double calificacion, int id_categoria, Grupo grupoactual, Materia materiaactual) {
         this.Nombre = Nombre;
