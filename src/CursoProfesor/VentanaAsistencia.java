@@ -8,7 +8,6 @@ package CursoProfesor;
  *
  * @author jadia
  */
-import CursoProfesor.Asistencia;
 import General.Materia;
 import Grupos.Grupo;
 import General.Estudiante;
