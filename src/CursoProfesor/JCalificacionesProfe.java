@@ -169,7 +169,7 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
         jLabel_Asignaciones1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Asignaciones1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Asignaciones1.setText("Asignaciones");
-        jLabel_Asignaciones1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Asignaciones1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Asignaciones1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_Asignaciones1MouseClicked(evt);
@@ -281,7 +281,7 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
         jLabel_Asignaciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Asignaciones.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Asignaciones.setText("Asignaciones");
-        jLabel_Asignaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Asignaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
