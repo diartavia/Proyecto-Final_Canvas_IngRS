@@ -45,12 +45,13 @@ public class CursoProfesor extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         Menupop = new javax.swing.JPanel();
-        jLabel_Calificaciones = new javax.swing.JLabel();
         jLabel_Tareas = new javax.swing.JLabel();
         jLabel_Modulos = new javax.swing.JLabel();
         jLabel_Anuncios = new javax.swing.JLabel();
         jLabel_PagInicio = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel_Asignaciones = new javax.swing.JLabel();
+        jLabel_Calificaciones = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -152,7 +153,6 @@ public class CursoProfesor extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -164,20 +164,10 @@ public class CursoProfesor extends javax.swing.JFrame {
 
         Menupop.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel_Calificaciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel_Calificaciones.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel_Calificaciones.setText("Calificaciones");
-        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel_Calificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_CalificacionesMouseClicked(evt);
-            }
-        });
-
         jLabel_Tareas.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Tareas.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Tareas.setText("Tareas");
-        jLabel_Tareas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Tareas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Tareas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_TareasMouseClicked(evt);
@@ -187,7 +177,7 @@ public class CursoProfesor extends javax.swing.JFrame {
         jLabel_Modulos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Modulos.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Modulos.setText("Modulos");
-        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Modulos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_ModulosMouseClicked(evt);
@@ -197,7 +187,7 @@ public class CursoProfesor extends javax.swing.JFrame {
         jLabel_Anuncios.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Anuncios.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Anuncios.setText("Anuncios");
-        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Anuncios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_AnunciosMouseClicked(evt);
@@ -216,6 +206,21 @@ public class CursoProfesor extends javax.swing.JFrame {
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jLabel_Asignaciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel_Asignaciones.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Asignaciones.setText("Asignaciones");
+        jLabel_Asignaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel_Calificaciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel_Calificaciones.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Calificaciones.setText("Calificaciones");
+        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Calificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_CalificacionesMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout MenupopLayout = new javax.swing.GroupLayout(Menupop);
         Menupop.setLayout(MenupopLayout);
         MenupopLayout.setHorizontalGroup(
@@ -230,6 +235,7 @@ public class CursoProfesor extends javax.swing.JFrame {
                     .addComponent(jLabel_Anuncios)
                     .addComponent(jLabel_Modulos)
                     .addComponent(jLabel_Tareas)
+                    .addComponent(jLabel_Asignaciones)
                     .addComponent(jLabel_Calificaciones))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -247,8 +253,10 @@ public class CursoProfesor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_Tareas)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel_Asignaciones)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel_Calificaciones)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -274,7 +282,7 @@ public class CursoProfesor extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Menupop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(185, Short.MAX_VALUE))
         );
@@ -357,7 +365,9 @@ public class CursoProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
     private void jLabel_TareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TareasMouseClicked
-        // TODO add your handling code here:
+         Tareas VentanaTareas = new Tareas();
+        VentanaTareas.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_TareasMouseClicked
 
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
@@ -421,6 +431,7 @@ public class CursoProfesor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel_Anuncios;
+    private javax.swing.JLabel jLabel_Asignaciones;
     private javax.swing.JLabel jLabel_Calificaciones;
     private javax.swing.JLabel jLabel_Modulos;
     private javax.swing.JLabel jLabel_PagInicio;
