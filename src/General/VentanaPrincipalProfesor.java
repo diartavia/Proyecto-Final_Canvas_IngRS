@@ -30,10 +30,10 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btn_tablero = new javax.swing.JButton();
-        btn_Cursos = new javax.swing.JButton();
-        btn_Grupos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel_Grupos = new javax.swing.JLabel();
+        jLabel_Cursos = new javax.swing.JLabel();
+        jLabel_Tablero = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -47,43 +47,52 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(63, 42, 85));
         jPanel2.setForeground(new java.awt.Color(153, 153, 255));
 
-        btn_tablero.setBackground(new java.awt.Color(63, 42, 85));
-        btn_tablero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_tablero.setForeground(new java.awt.Color(255, 255, 255));
-        btn_tablero.setText("Tablero");
-        btn_tablero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(63, 42, 85), 2));
-        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        btn_Cursos.setBackground(new java.awt.Color(63, 42, 85));
-        btn_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_Cursos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Cursos.setText("Cursos");
-        btn_Cursos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(63, 42, 85), 2));
-        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        btn_Grupos.setBackground(new java.awt.Color(63, 42, 85));
-        btn_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_Grupos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Grupos.setText("Grupos");
-        btn_Grupos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(63, 42, 85), 2));
-        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
+
+        jLabel_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Grupos.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Grupos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Grupos.setText("Grupos");
+        jLabel_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Grupos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_GruposMouseClicked(evt);
+            }
+        });
+
+        jLabel_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Cursos.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Cursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Cursos.setText("Cursos");
+        jLabel_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Cursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_CursosMouseClicked(evt);
+            }
+        });
+
+        jLabel_Tablero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Tablero.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Tablero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Tablero.setText("Tablero");
+        jLabel_Tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Tablero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_TableroMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -91,13 +100,13 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel2)
-                .addGap(31, 31, 31)
-                .addComponent(btn_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(368, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jLabel_Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setBackground(new java.awt.Color(255, 171, 9));
@@ -149,7 +158,7 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,6 +189,22 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_GruposMouseClicked
+
+    private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
+        // TODO add your handling code here:
+        
+
+    }//GEN-LAST:event_jLabel_CursosMouseClicked
+
+    private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_jLabel_TableroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -218,15 +243,15 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Cursos;
-    private javax.swing.JButton btn_Grupos;
-    private javax.swing.JButton btn_tablero;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel_Cursos;
+    private javax.swing.JLabel jLabel_Grupos;
+    private javax.swing.JLabel jLabel_Tablero;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

@@ -10,6 +10,7 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
     
     public JCalificacionEspecifica() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public JCalificacionEspecifica(String nombre, String id) {

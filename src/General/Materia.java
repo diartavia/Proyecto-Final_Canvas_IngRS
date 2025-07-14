@@ -2,7 +2,6 @@ package General;
 
 import CursoProfesor.Asignacion;
 import General.Estudiante;
-import Grupos.Grupo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,8 +30,8 @@ public class Materia implements Serializable {
     public void agregarAsignaciones(Asignacion asigna) {
         Date fecha = new Date();
         Grupo grupo = new Grupo("1", "Grupo 1", "");
-        Asignacion a = new Asignacion("Tarea 1","Descripcion de prueba",fecha,fecha,false,1.3,1, grupo, this);
-        Asignaciones.add(a);
+        //Asignacion a = new Asignacion("Tarea 1","Descripcion de prueba",fecha,fecha,false,1.3,1, grupo, this);
+        //Asignaciones.add(a);
         if (!Asignaciones.contains(asigna)) {
             Asignaciones.add(asigna);
         }

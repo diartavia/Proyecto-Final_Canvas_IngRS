@@ -27,15 +27,16 @@ public class JAsignaciones extends javax.swing.JFrame {
     public JAsignaciones() {
         initComponents();
         cargarTablaAsignaciones();
+        this.setLocationRelativeTo(null);
     }
     
 public void cargarTablaAsignaciones() {
-    List<TareasDatos> listaTareas = TareasDatos.cargarTareas();  // Asumiendo que tienes este método que carga desde archivo.
+    List<Asignacion> listaTareas = Asignacion.cargarTareas();  // Asumiendo que tienes este método que carga desde archivo.
 
     DefaultTableModel model = (DefaultTableModel) AsignacionesCreadasTable.getModel();
     model.setRowCount(0); // Limpiar filas anteriores
 
-    for (TareasDatos tarea : listaTareas) {
+    for (Asignacion tarea : listaTareas) {
         Object[] fila = {
             tarea.getNombre(),
             tarea.getFechaFinal(),
@@ -47,13 +48,13 @@ public void cargarTablaAsignaciones() {
 
 private class EditarTareaDialog extends javax.swing.JDialog {
     private boolean confirmado = false;
-    private TareasDatos tareaEditada;
+    private Asignacion tareaEditada;
 
     private javax.swing.JTextField campoNombre, campoInicio, campoFinal, campoPuntos;
     private javax.swing.JTextArea campoDescripcion;
     private javax.swing.JButton btnConfirmar;
 
-    public EditarTareaDialog(java.awt.Frame parent, TareasDatos tarea, int index) {
+    public EditarTareaDialog(java.awt.Frame parent, Asignacion tarea, int index) {
         super(parent, "Editar Tarea", true);
         setSize(450, 400);
         setLocationRelativeTo(parent);
@@ -144,7 +145,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         btnConfirmar.addActionListener(e -> {
             try {
                 int puntos = Integer.parseInt(campoPuntos.getText());
-                tareaEditada = new TareasDatos(
+                tareaEditada = new Asignacion(
                     campoNombre.getText(),
                     campoInicio.getText(),
                     campoFinal.getText(),
@@ -163,7 +164,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         return confirmado;
     }
 
-    public TareasDatos getTareaEditada() {
+    public Asignacion getTareaEditada() {
         return tareaEditada;
     }
 }
@@ -183,26 +184,25 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         btn_editar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         Menupop = new javax.swing.JPanel();
-        jLabel_Tareas = new javax.swing.JLabel();
         jLabel_Modulos = new javax.swing.JLabel();
         jLabel_Anuncios = new javax.swing.JLabel();
         jLabel_PagInicio = new javax.swing.JLabel();
-        jLabel_Calificaciones1 = new javax.swing.JLabel();
+        jLabel_Asignaciones = new javax.swing.JLabel();
         jLabel_Calificaciones = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         AsignacionesCreadasTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        btn_tablero = new javax.swing.JButton();
-        btn_Cursos = new javax.swing.JButton();
-        btn_Grupos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel_Tablero = new javax.swing.JLabel();
+        jLabel_Cursos = new javax.swing.JLabel();
+        jLabel_Grupos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -230,45 +230,26 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(576, Short.MAX_VALUE))
+                .addContainerGap(562, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(365, Short.MAX_VALUE)
+                .addContainerGap(358, Short.MAX_VALUE)
                 .addComponent(btn_editar)
-                .addGap(223, 223, 223))
+                .addGap(230, 230, 230))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         Menupop.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel_Tareas.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel_Tareas.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel_Tareas.setText("Tareas");
-        jLabel_Tareas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel_Tareas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_TareasMouseClicked(evt);
-            }
-        });
 
         jLabel_Modulos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Modulos.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Modulos.setText("Modulos");
-        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Modulos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_ModulosMouseClicked(evt);
@@ -278,7 +259,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_Anuncios.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Anuncios.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Anuncios.setText("Anuncios");
-        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Anuncios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_AnunciosMouseClicked(evt);
@@ -288,27 +269,27 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_PagInicio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_PagInicio.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_PagInicio.setText("Pagina inicio");
-        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_PagInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_PagInicioMouseClicked(evt);
             }
         });
 
-        jLabel_Calificaciones1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel_Calificaciones1.setForeground(new java.awt.Color(63, 42, 85));
-        jLabel_Calificaciones1.setText("Asignaciones");
-        jLabel_Calificaciones1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel_Calificaciones1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel_Asignaciones.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Asignaciones.setForeground(new java.awt.Color(63, 42, 85));
+        jLabel_Asignaciones.setText("Asignaciones");
+        jLabel_Asignaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Asignaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_Calificaciones1MouseClicked(evt);
+                jLabel_AsignacionesMouseClicked(evt);
             }
         });
 
         jLabel_Calificaciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Calificaciones.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Calificaciones.setText("Calificaciones");
-        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Calificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_CalificacionesMouseClicked(evt);
@@ -328,8 +309,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
                 .addGroup(MenupopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_Anuncios)
                     .addComponent(jLabel_Modulos)
-                    .addComponent(jLabel_Tareas)
-                    .addComponent(jLabel_Calificaciones1)
+                    .addComponent(jLabel_Asignaciones)
                     .addComponent(jLabel_Calificaciones)
                     .addComponent(jLabel_PagInicio))
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -343,20 +323,26 @@ private class EditarTareaDialog extends javax.swing.JDialog {
                 .addComponent(jLabel_Anuncios)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_Modulos)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel_Tareas)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(MenupopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Calificaciones1))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel_Asignaciones))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_Calificaciones)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("jLabel5");
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -365,19 +351,19 @@ private class EditarTareaDialog extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Menupop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addGap(2, 2, 2)
                 .addComponent(Menupop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -455,7 +441,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -465,48 +451,52 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(63, 42, 85));
         jPanel1.setForeground(new java.awt.Color(153, 153, 255));
 
-        btn_tablero.setBackground(new java.awt.Color(63, 42, 85));
-        btn_tablero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_tablero.setForeground(new java.awt.Color(255, 255, 255));
-        btn_tablero.setText("Tablero");
-        btn_tablero.setBorder(null);
-        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_tablero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tableroActionPerformed(evt);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
+
+        jLabel_Tablero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Tablero.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Tablero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Tablero.setText("Tablero");
+        jLabel_Tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Tablero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_TableroMouseClicked(evt);
             }
         });
 
-        btn_Cursos.setBackground(new java.awt.Color(63, 42, 85));
-        btn_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_Cursos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Cursos.setText("Cursos");
-        btn_Cursos.setBorder(null);
-        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Cursos.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Cursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Cursos.setText("Cursos");
+        jLabel_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Cursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_CursosMouseClicked(evt);
+            }
+        });
 
-        btn_Grupos.setBackground(new java.awt.Color(63, 42, 85));
-        btn_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_Grupos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Grupos.setText("Grupos");
-        btn_Grupos.setBorder(null);
-        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
+        jLabel_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Grupos.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Grupos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Grupos.setText("Grupos");
+        jLabel_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Grupos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_GruposMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -514,12 +504,12 @@ private class EditarTareaDialog extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel2)
-                .addGap(31, 31, 31)
-                .addComponent(btn_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btn_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -541,30 +531,25 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_tableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tableroActionPerformed
-        VentanaPrincipalProfesor ventanaT = new VentanaPrincipalProfesor();
-        ventanaT.setVisible(true);
-        this.dispose();
-
-    }//GEN-LAST:event_btn_tableroActionPerformed
-
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
         JCalificacionesProfe califica = new JCalificacionesProfe();
         califica.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
-    private void jLabel_Calificaciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Calificaciones1MouseClicked
+    private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel_Calificaciones1MouseClicked
+        JCreaAsignaciones CA = new JCreaAsignaciones();
+        CA.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
         // TODO add your handling code here:
+        CursoProfesor CursoP = new CursoProfesor();
+        CursoP.setVisible(true);
         this.dispose();
-        this.setVisible(true);
-
         //Redirigir a otra pantalla
-        //JOptionPane.showMessageDialog(null, "Si sirve");
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
@@ -575,21 +560,6 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
-    private void jLabel_TareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TareasMouseClicked
-        Tareas VentanaTareas = new Tareas();
-        VentanaTareas.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel_TareasMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if (!Menupop.isVisible()) {
-            this.Menupop.setVisible(true);
-        }else{
-            this.Menupop.setVisible(false);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
         int filaSeleccionada = AsignacionesCreadasTable.getSelectedRow();
     if (filaSeleccionada == -1) {
@@ -598,8 +568,8 @@ private class EditarTareaDialog extends javax.swing.JDialog {
     }
 
     // Cargar la lista de tareas
-    List<TareasDatos> listaTareas = TareasDatos.cargarTareas();
-    TareasDatos tareaSeleccionada = listaTareas.get(filaSeleccionada);
+    List<Asignacion> listaTareas = Asignacion.cargarTareas();
+    Asignacion tareaSeleccionada = listaTareas.get(filaSeleccionada);
 
     // Mostrar diálogo para editar
     EditarTareaDialog dialogo = new EditarTareaDialog(this, tareaSeleccionada, filaSeleccionada);
@@ -608,10 +578,34 @@ private class EditarTareaDialog extends javax.swing.JDialog {
     // Si se confirmó la edición, recargar archivo y tabla
     if (dialogo.fueConfirmado()) {
         listaTareas.set(filaSeleccionada, dialogo.getTareaEditada());
-        TareasDatos.guardarTareas(listaTareas);
+        Asignacion.guardarTareas(listaTareas);
         cargarTablaAsignaciones();
     }
     }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
+        // TODO add your handling code here:
+        VentanaPrincipalProfesor VPE = new VentanaPrincipalProfesor();
+        VPE.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_TableroMouseClicked
+
+    private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_CursosMouseClicked
+
+    private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_GruposMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        if (!Menupop.isVisible()) {
+            this.Menupop.setVisible(true);
+        }else{
+            this.Menupop.setVisible(false);
+        }
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -651,23 +645,22 @@ private class EditarTareaDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable AsignacionesCreadasTable;
     private javax.swing.JPanel Menupop;
-    private javax.swing.JButton btn_Cursos;
-    private javax.swing.JButton btn_Grupos;
     private javax.swing.JButton btn_editar;
-    private javax.swing.JButton btn_tablero;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_Anuncios;
+    private javax.swing.JLabel jLabel_Asignaciones;
     private javax.swing.JLabel jLabel_Calificaciones;
-    private javax.swing.JLabel jLabel_Calificaciones1;
+    private javax.swing.JLabel jLabel_Cursos;
+    private javax.swing.JLabel jLabel_Grupos;
     private javax.swing.JLabel jLabel_Modulos;
     private javax.swing.JLabel jLabel_PagInicio;
-    private javax.swing.JLabel jLabel_Tareas;
+    private javax.swing.JLabel jLabel_Tablero;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

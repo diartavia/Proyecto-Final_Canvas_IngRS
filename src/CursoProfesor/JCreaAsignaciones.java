@@ -4,6 +4,7 @@
  */
 package CursoProfesor;
 
+import General.VentanaPrincipalProfesor;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,14 +19,15 @@ import javax.swing.JOptionPane;
  *
  * @author jadia
  */
-public class Tareas extends javax.swing.JFrame {
+public class JCreaAsignaciones extends javax.swing.JFrame {
 
     /**
      * Creates new form Tareas
      */
-    public Tareas() {
+    public JCreaAsignaciones() {
           initComponents();
           cargarTareasDesdeArchivo();
+          this.setLocationRelativeTo(null);
     }
 
     /**
@@ -45,9 +47,7 @@ public class Tareas extends javax.swing.JFrame {
         btn_Ver = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         Menupop = new javax.swing.JPanel();
-        jLabel_Asignaciones = new javax.swing.JLabel();
         jLabel_Tareas = new javax.swing.JLabel();
         jLabel_Modulos = new javax.swing.JLabel();
         jLabel_Anuncios = new javax.swing.JLabel();
@@ -55,6 +55,7 @@ public class Tareas extends javax.swing.JFrame {
         jLabel_PagInicio = new javax.swing.JLabel();
         jLabel_Calificaciones1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         LabelT = new javax.swing.JLabel();
         LabelFe = new javax.swing.JLabel();
         LabelFi = new javax.swing.JLabel();
@@ -68,10 +69,10 @@ public class Tareas extends javax.swing.JFrame {
         Descripcion = new javax.swing.JTextArea();
         jScrollBar1 = new javax.swing.JScrollBar();
         jPanel1 = new javax.swing.JPanel();
-        btn_tablero = new javax.swing.JButton();
-        btn_Cursos = new javax.swing.JButton();
-        btn_Grupos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel_Tablero = new javax.swing.JLabel();
+        jLabel_Cursos = new javax.swing.JLabel();
+        jLabel_Grupos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,31 +132,12 @@ public class Tareas extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         Menupop.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel_Asignaciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel_Asignaciones.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel_Asignaciones.setText("Asignaciones");
-        jLabel_Asignaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel_Asignaciones.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_AsignacionesMouseClicked(evt);
-            }
-        });
 
         jLabel_Tareas.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel_Tareas.setForeground(new java.awt.Color(63, 42, 85));
-        jLabel_Tareas.setText("Tareas");
-        jLabel_Tareas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Tareas.setText("Asignaciones");
+        jLabel_Tareas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Tareas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_TareasMouseClicked(evt);
@@ -165,7 +147,7 @@ public class Tareas extends javax.swing.JFrame {
         jLabel_Modulos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Modulos.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Modulos.setText("Modulos");
-        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Modulos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_ModulosMouseClicked(evt);
@@ -175,7 +157,7 @@ public class Tareas extends javax.swing.JFrame {
         jLabel_Anuncios.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Anuncios.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Anuncios.setText("Anuncios");
-        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Anuncios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_AnunciosMouseClicked(evt);
@@ -187,7 +169,7 @@ public class Tareas extends javax.swing.JFrame {
         jLabel_PagInicio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_PagInicio.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_PagInicio.setText("Pagina inicio");
-        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_PagInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_PagInicioMouseClicked(evt);
@@ -197,7 +179,7 @@ public class Tareas extends javax.swing.JFrame {
         jLabel_Calificaciones1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Calificaciones1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Calificaciones1.setText("Calificaciones");
-        jLabel_Calificaciones1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Calificaciones1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Calificaciones1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_Calificaciones1MouseClicked(evt);
@@ -210,40 +192,49 @@ public class Tareas extends javax.swing.JFrame {
             MenupopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenupopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MenupopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_Calificaciones1)
-                    .addComponent(jLabel_Asignaciones)
-                    .addComponent(jLabel_PagInicio)
-                    .addComponent(jLabel_Anuncios)
-                    .addComponent(jLabel_Modulos)
-                    .addComponent(jLabel_Tareas))
+                    .addGroup(MenupopLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel_Calificaciones1))
+                    .addGroup(MenupopLayout.createSequentialGroup()
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(MenupopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_PagInicio)
+                            .addComponent(jLabel_Anuncios)
+                            .addComponent(jLabel_Modulos)
+                            .addComponent(jLabel_Tareas))))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         MenupopLayout.setVerticalGroup(
             MenupopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenupopLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap()
                 .addComponent(jLabel_PagInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel_Anuncios)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_Modulos)
                 .addGap(18, 18, 18)
-                .addGroup(MenupopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel_Tareas)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel_Asignaciones)
-                .addGap(18, 18, 18)
+                .addGroup(MenupopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_Tareas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_Calificaciones1)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("jLabel5");
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -252,16 +243,16 @@ public class Tareas extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Menupop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Menupop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -396,48 +387,52 @@ public class Tareas extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(63, 42, 85));
         jPanel1.setForeground(new java.awt.Color(153, 153, 255));
 
-        btn_tablero.setBackground(new java.awt.Color(63, 42, 85));
-        btn_tablero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_tablero.setForeground(new java.awt.Color(255, 255, 255));
-        btn_tablero.setText("Tablero");
-        btn_tablero.setBorder(null);
-        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_tablero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tableroActionPerformed(evt);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
+
+        jLabel_Tablero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Tablero.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Tablero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Tablero.setText("Tablero");
+        jLabel_Tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Tablero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_TableroMouseClicked(evt);
             }
         });
 
-        btn_Cursos.setBackground(new java.awt.Color(63, 42, 85));
-        btn_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_Cursos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Cursos.setText("Cursos");
-        btn_Cursos.setBorder(null);
-        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Cursos.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Cursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Cursos.setText("Cursos");
+        jLabel_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Cursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_CursosMouseClicked(evt);
+            }
+        });
 
-        btn_Grupos.setBackground(new java.awt.Color(63, 42, 85));
-        btn_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_Grupos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Grupos.setText("Grupos");
-        btn_Grupos.setBorder(null);
-        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
+        jLabel_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Grupos.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Grupos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Grupos.setText("Grupos");
+        jLabel_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Grupos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_GruposMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -445,12 +440,12 @@ public class Tareas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel2)
-                .addGap(31, 31, 31)
-                .addComponent(btn_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel_Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -466,7 +461,9 @@ public class Tareas extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -474,7 +471,7 @@ public class Tareas extends javax.swing.JFrame {
 
     //datos
     
-    private List<TareasDatos> listaTareas = new ArrayList<>();
+    private List<Asignacion> listaTareas = new ArrayList<>();
     private final String archivoTareas = "tareas.txt";
     
   
@@ -486,7 +483,7 @@ public class Tareas extends javax.swing.JFrame {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                TareasDatos tarea = TareasDatos.fromFileString(linea);
+                Asignacion tarea = Asignacion.fromFileString(linea);
                 if (tarea != null) listaTareas.add(tarea);
             }
         } catch (Exception e) {
@@ -494,7 +491,7 @@ public class Tareas extends javax.swing.JFrame {
         }
     }
       
-      private void guardarTareaEnArchivo(TareasDatos tarea) {
+      private void guardarTareaEnArchivo(Asignacion tarea) {
         try (FileWriter fw = new FileWriter(archivoTareas, true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
@@ -504,21 +501,8 @@ public class Tareas extends javax.swing.JFrame {
         }
     }
 
-   
 
     
-    
-    
-    
-    
-    
-    private void btn_tableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tableroActionPerformed
-        Tareas ventanaTablero = new Tareas();
-        ventanaTablero.setVisible(true);
-        this.dispose();
-
-    }//GEN-LAST:event_btn_tableroActionPerformed
-
     private void NombreTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreTareaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NombreTareaActionPerformed
@@ -531,8 +515,9 @@ public class Tareas extends javax.swing.JFrame {
 
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
         // TODO add your handling code here:
+        CursoProfesor CursoP = new CursoProfesor();
+        CursoP.setVisible(true);
         this.dispose();
-        this.setVisible(true);
 
         //Redirigir a otra pantalla
         //JOptionPane.showMessageDialog(null, "Si sirve");
@@ -547,26 +532,10 @@ public class Tareas extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
     private void jLabel_TareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TareasMouseClicked
-        Tareas VentanaTareas = new Tareas();
+        JCreaAsignaciones VentanaTareas = new JCreaAsignaciones();
         VentanaTareas.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_TareasMouseClicked
-
-    private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
-        // TODO add your handling code here:
-        JAsignaciones califica = new JAsignaciones();
-        califica.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if (!Menupop.isVisible()) {
-            this.Menupop.setVisible(true);
-        }else{
-            this.Menupop.setVisible(false);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VerActionPerformed
     JAsignaciones ventanaAsignaciones = new JAsignaciones();
@@ -587,7 +556,7 @@ public class Tareas extends javax.swing.JFrame {
                 return;
             }
 
-            TareasDatos nuevaTarea = new TareasDatos(nombre, fechaInicio, fechaFinal, puntos, descripcion);
+            Asignacion nuevaTarea = new Asignacion(nombre, fechaInicio, fechaFinal, puntos, descripcion);
             listaTareas.add(nuevaTarea);
             guardarTareaEnArchivo(nuevaTarea);
 
@@ -619,6 +588,30 @@ public class Tareas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PuntosActionPerformed
 
+    private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
+        // TODO add your handling code here:
+        VentanaPrincipalProfesor VPE = new VentanaPrincipalProfesor();
+        VPE.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_TableroMouseClicked
+
+    private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_CursosMouseClicked
+
+    private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_GruposMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        if (!Menupop.isVisible()) {
+            this.Menupop.setVisible(true);
+        }else{
+            this.Menupop.setVisible(false);
+        }
+    }//GEN-LAST:event_jLabel8MouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -637,20 +630,21 @@ public class Tareas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tareas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JCreaAsignaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tareas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JCreaAsignaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tareas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JCreaAsignaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tareas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JCreaAsignaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tareas().setVisible(true);
+                new JCreaAsignaciones().setVisible(true);
             }
         });
     }
@@ -667,22 +661,21 @@ public class Tareas extends javax.swing.JFrame {
     private javax.swing.JPanel Menupop;
     private javax.swing.JTextField NombreTarea;
     private javax.swing.JTextField Puntos;
-    private javax.swing.JButton btn_Cursos;
-    private javax.swing.JButton btn_Grupos;
     private javax.swing.JButton btn_Subir;
     private javax.swing.JButton btn_Ver;
-    private javax.swing.JButton btn_tablero;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_Anuncios;
-    private javax.swing.JLabel jLabel_Asignaciones;
     private javax.swing.JLabel jLabel_Calificaciones1;
+    private javax.swing.JLabel jLabel_Cursos;
+    private javax.swing.JLabel jLabel_Grupos;
     private javax.swing.JLabel jLabel_Modulos;
     private javax.swing.JLabel jLabel_PagInicio;
+    private javax.swing.JLabel jLabel_Tablero;
     private javax.swing.JLabel jLabel_Tareas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

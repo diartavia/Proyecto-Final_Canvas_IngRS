@@ -2,6 +2,7 @@ package CursoEstudiante;
 
 import CursoProfesor.Calificaciones;
 import General.Estudiante;
+import General.VentanaPrincipalEstudiante;
 
 
 public class JCalificacionesMateria extends javax.swing.JFrame {
@@ -14,6 +15,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
     //constructores
     public JCalificacionesMateria() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     public JCalificacionesMateria(Calificaciones calificaciones) {
         initComponents();
@@ -40,10 +42,10 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btn_tablero = new javax.swing.JButton();
-        btn_Cursos = new javax.swing.JButton();
-        btn_Grupos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel_Tablero = new javax.swing.JLabel();
+        jLabel_Cursos = new javax.swing.JLabel();
+        jLabel_Grupos = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel_NombreEst = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -62,55 +64,59 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(63, 42, 85));
         jPanel1.setForeground(new java.awt.Color(153, 153, 255));
 
-        btn_tablero.setBackground(new java.awt.Color(63, 42, 85));
-        btn_tablero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_tablero.setForeground(new java.awt.Color(255, 255, 255));
-        btn_tablero.setText("Tablero");
-        btn_tablero.setBorder(null);
-        btn_tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_tablero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tableroActionPerformed(evt);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
+
+        jLabel_Tablero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Tablero.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Tablero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Tablero.setText("Tablero");
+        jLabel_Tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Tablero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_TableroMouseClicked(evt);
             }
         });
 
-        btn_Cursos.setBackground(new java.awt.Color(63, 42, 85));
-        btn_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_Cursos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Cursos.setText("Cursos");
-        btn_Cursos.setBorder(null);
-        btn_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Cursos.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Cursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Cursos.setText("Cursos");
+        jLabel_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Cursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_CursosMouseClicked(evt);
+            }
+        });
 
-        btn_Grupos.setBackground(new java.awt.Color(63, 42, 85));
-        btn_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_Grupos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Grupos.setText("Grupos");
-        btn_Grupos.setBorder(null);
-        btn_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
+        jLabel_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Grupos.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Grupos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Grupos.setText("Grupos");
+        jLabel_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Grupos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_GruposMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,13 +124,13 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel2)
-                .addGap(31, 31, 31)
-                .addComponent(btn_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(435, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jLabel_Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -165,7 +171,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
 
         jLabel_Tareas2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Tareas2.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel_Tareas2.setText("Tareas");
+        jLabel_Tareas2.setText("Asignaciones");
         jLabel_Tareas2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_Tareas2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -196,7 +202,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jLabel_PagInicio2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_PagInicio2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_PagInicio2.setText("Pagina inicio");
-        jLabel_PagInicio2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_PagInicio2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel_PagInicio2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_PagInicio2MouseClicked(evt);
@@ -210,28 +216,23 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         Menupop2Layout.setHorizontalGroup(
             Menupop2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Menupop2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(Menupop2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Menupop2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel_PagInicio2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel_Anuncios2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel_Modulos2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel_Tareas2, javax.swing.GroupLayout.Alignment.LEADING))
                     .addGroup(Menupop2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(Menupop2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_PagInicio2)
-                            .addComponent(jLabel_Anuncios2)
-                            .addComponent(jLabel_Modulos2)
-                            .addComponent(jLabel_Tareas2)))
-                    .addGroup(Menupop2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel_Calificaciones2)))
-                .addContainerGap(72, Short.MAX_VALUE))
-            .addGroup(Menupop2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(Menupop2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(129, Short.MAX_VALUE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         Menupop2Layout.setVerticalGroup(
             Menupop2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Menupop2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel_PagInicio2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_Anuncios2)
@@ -240,13 +241,12 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_Tareas2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel_Calificaciones2)
-                .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(Menupop2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(Menupop2Layout.createSequentialGroup()
-                    .addGap(179, 179, 179)
+                .addGroup(Menupop2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(Menupop2Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel_Calificaciones2)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -266,7 +266,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(Menupop2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,13 +279,11 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
 
         jLabel3.setText("Nombre");
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
-        jButton3.setBorder(null);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
             }
         });
 
@@ -299,8 +297,8 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel8)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
@@ -340,9 +338,9 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel3)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addContainerGap()
+                        .addComponent(jLabel8)
+                        .addGap(2, 2, 2)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -365,22 +363,9 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_tableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tableroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_tableroActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        if (!Menupop2.isVisible()) {
-            this.Menupop2.setVisible(true);
-        }else{
-            this.Menupop2.setVisible(false);
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jLabel_Calificaciones2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Calificaciones2MouseClicked
         this.dispose();
-        setVisible(true);
+        this.setVisible(true);
     }//GEN-LAST:event_jLabel_Calificaciones2MouseClicked
 
     private void jLabel_Tareas2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Tareas2MouseClicked
@@ -397,12 +382,35 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
 
     private void jLabel_PagInicio2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicio2MouseClicked
         // TODO add your handling code here:
+        CursoEstudiante CE = new CursoEstudiante();
+        CE.setVisible(true);
         this.dispose();
-        this.setVisible(true);
-
         //Redirigir a otra pantalla
-        //JOptionPane.showMessageDialog(null, "Si sirve");
     }//GEN-LAST:event_jLabel_PagInicio2MouseClicked
+
+    private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
+        // TODO add your handling code here:
+        VentanaPrincipalEstudiante VPE = new VentanaPrincipalEstudiante();
+        VPE.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_TableroMouseClicked
+
+    private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_CursosMouseClicked
+
+    private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_GruposMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        if (!Menupop2.isVisible()) {
+            this.Menupop2.setVisible(true);
+        }else{
+            this.Menupop2.setVisible(false);
+        }
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -432,10 +440,6 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabel_Nota;
     private javax.swing.JPanel Menupop2;
-    private javax.swing.JButton btn_Cursos;
-    private javax.swing.JButton btn_Grupos;
-    private javax.swing.JButton btn_tablero;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -443,12 +447,16 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Anuncios2;
     private javax.swing.JLabel jLabel_Calificaciones2;
+    private javax.swing.JLabel jLabel_Cursos;
+    private javax.swing.JLabel jLabel_Grupos;
     private javax.swing.JLabel jLabel_Modulos2;
     private javax.swing.JLabel jLabel_NombreEst;
     private javax.swing.JLabel jLabel_PagInicio2;
+    private javax.swing.JLabel jLabel_Tablero;
     private javax.swing.JLabel jLabel_Tareas2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
