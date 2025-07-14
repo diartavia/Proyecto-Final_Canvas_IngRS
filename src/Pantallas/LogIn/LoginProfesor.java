@@ -7,6 +7,7 @@ public class LoginProfesor extends javax.swing.JFrame {
 
     public LoginProfesor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     

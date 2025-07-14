@@ -18,6 +18,7 @@ public class LoginEstudiante extends javax.swing.JFrame {
      */
     public LoginEstudiante() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
