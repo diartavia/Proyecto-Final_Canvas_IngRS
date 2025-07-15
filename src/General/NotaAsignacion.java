@@ -3,22 +3,26 @@ package General;
 import CursoProfesor.Asignacion;
 import java.io.Serializable;
 
+/**
+ * Representa la nota obtenida por un estudiante en una asignación específica.
+ */
 public class NotaAsignacion implements Serializable {
     
     private Asignacion asignacion;
     private double nota;
-    // constructor, getters y setters
+
+    // ----------------- Constructores ----------------- //
 
     public NotaAsignacion(Asignacion asignacion, double nota) {
         this.asignacion = asignacion;
         this.nota = nota;
     }
-    
+
     public NotaAsignacion() {
     }
 
-    
-    //-------------- Get y sets ------------------------//
+    // ----------------- Getters y Setters ----------------- //
+
     public Asignacion getAsignacion() {
         return asignacion;
     }
@@ -34,6 +38,12 @@ public class NotaAsignacion implements Serializable {
     public void setNota(double nota) {
         this.nota = nota;
     }
-    
-    
+
+    // ----------------- Utilidades ----------------- //
+
+    @Override
+    public String toString() {
+        return "Asignación: " + (asignacion != null ? asignacion.getNombre() : "N/A") +
+               " | Nota: " + nota;
+    }
 }

@@ -12,27 +12,46 @@ import java.util.List;
 import java.util.Map;
 
 public class Estudiante implements Serializable {
-    private String id, nombre, Correo, Contra;
-    private Map<Materia, List<NotaAsignacion>> notasPorMateria;
-    private ArrayList<Materia> Materias;
+    private String id;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String contra;
 
-    public Estudiante(String id, String nombre, String Correo, String Contra) {
+    // Relación: Materia → Lista de notas por asignación
+    private Map<Materia, List<NotaAsignacion>> notasPorMateria;
+
+    // Lista de materias en las que está inscrito
+    private ArrayList<Materia> materias;
+
+    /**
+     * Constructor completo
+     */
+    public Estudiante(String id, String nombre, String apellido, String correo, String contra) {
         this.id = id;
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.contra = contra;
         this.notasPorMateria = new HashMap<>();
-        this.Materias = new ArrayList<>();
-        this.Correo = Correo;
-        this.Contra = Contra;
+        this.materias = new ArrayList<>();
     }
 
+    /**
+     * Constructor básico (ej: para pruebas rápidas)
+     */
     public Estudiante(String id, String nombre) {
         this.id = id;
         this.nombre = nombre;
         this.notasPorMateria = new HashMap<>();
-        this.Materias = new ArrayList<>();
+        this.materias = new ArrayList<>();
     }
-    //metodos
-    
+
+    // ------------------------ Gestión de notas ------------------------ //
+
+    /**
+     * Devuelve el promedio general del estudiante en todas sus materias.
+     */
     public double getNotaGeneral() {
         double total = 0;
         int cantidadNotas = 0;
@@ -44,17 +63,16 @@ public class Estudiante implements Serializable {
             }
         }
 
-        if (cantidadNotas == 0) return 0.0;
-
-        return total / cantidadNotas;
+        return cantidadNotas == 0 ? 0.0 : total / cantidadNotas;
     }
 
-    
+    /**
+     * Asigna o actualiza una nota para una asignación en una materia.
+     */
     public void asignarNota(Materia materia, Asignacion asignacion, double nota) {
         notasPorMateria.putIfAbsent(materia, new ArrayList<>());
         List<NotaAsignacion> lista = notasPorMateria.get(materia);
 
-        // Si ya existe una nota para esa asignación, actualizar
         for (NotaAsignacion n : lista) {
             if (n.getAsignacion().equals(asignacion)) {
                 n.setNota(nota);
@@ -62,36 +80,28 @@ public class Estudiante implements Serializable {
             }
         }
 
-        // Si no existe, la agregamos
         lista.add(new NotaAsignacion(asignacion, nota));
     }
-    
-    public void agregarMateria(Materia mate){
-        for (Materia Materia : Materias) {
-            if (!Materia.equals(mate)) {
-                Materias.add(mate);
-            }
+
+    // ------------------------ Gestión de materias ------------------------ //
+
+    /**
+     * Inscribe al estudiante en una materia si no está inscrito ya.
+     */
+    public void agregarMateria(Materia mate) {
+        if (!materias.contains(mate)) {
+            materias.add(mate);
         }
     }
-    public String getCorreo() {    
-        return Correo;
-    }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
-    }
-
-    public String getContra() {
-        return Contra;
-    }
-
-    //gets y sets
-    public void setContra(String Contra) {
-        this.Contra = Contra;
-    }
+    // ------------------------ Getters y Setters ------------------------ //
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -102,8 +112,32 @@ public class Estudiante implements Serializable {
         this.nombre = nombre;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getContra() {
+        return contra;
+    }
+
+    public void setContra(String contra) {
+        this.contra = contra;
+    }
+
+    public Map<Materia, List<NotaAsignacion>> getNotasPorMateria() {
+        return notasPorMateria;
     }
 
     public void setNotasPorMateria(Map<Materia, List<NotaAsignacion>> notasPorMateria) {
@@ -111,20 +145,27 @@ public class Estudiante implements Serializable {
     }
 
     public ArrayList<Materia> getMaterias() {
-        return Materias;
+        return materias;
     }
 
-    public Map<Materia, List<NotaAsignacion>> getNotasPorMateria() {
-        return notasPorMateria;
+    public void setMaterias(ArrayList<Materia> materias) {
+        this.materias = materias;
     }
 
-    public void setMaterias(ArrayList<Materia> Materias) {
-        this.Materias = Materias;
-    }
-
-    
     @Override
     public String toString() {
-        return nombre + " (" + id + ")";
+        return nombre + " " + apellido + " (" + id + ")";
+    }
+    @Override
+    public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    Estudiante other = (Estudiante) obj;
+    return id != null && id.equals(other.id);
+}
+
+    @Override
+    public int hashCode() {
+    return id != null ? id.hashCode() : 0;
     }
 }
