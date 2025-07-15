@@ -14,9 +14,15 @@ import javax.swing.JOptionPane;
 public class LoginEstudiante extends javax.swing.JFrame {
     private ArrayList<Estudiante> listaEstudiantes; 
 
+    public LoginEstudiante(ArrayList<Estudiante> Estudiantes) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        listaEstudiantes= Estudiantes;
+    }
     public LoginEstudiante() {
         initComponents();
         this.setLocationRelativeTo(null);
+        listaEstudiantes= null;
     }
 
     /**
