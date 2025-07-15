@@ -205,14 +205,14 @@ public class LogIn extends javax.swing.JFrame {
 
     private void btn_EstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EstudianteActionPerformed
         // TODO add your handling code here:
-        LoginEstudiante loginest = new LoginEstudiante();
+        LoginEstudiante loginest = new LoginEstudiante(listaEstudiantes);
         loginest.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_EstudianteActionPerformed
 
     private void btn_ProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ProfesorActionPerformed
         // TODO add your handling code here:
-        LoginProfesor loginprofe = new LoginProfesor();
+        LoginProfesor loginprofe = new LoginProfesor(listaProfesores);
         loginprofe.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_ProfesorActionPerformed

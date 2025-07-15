@@ -13,10 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Diego
- */
+
 public class JCalificacionesProfe extends javax.swing.JFrame {
     
     Materia mate;
@@ -25,7 +22,6 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
     public JCalificacionesProfe(Materia materia) {
         initComponents();
         mate = materia;
-        this.listaEstudiantes = mate.getEstudiantes();
         cargarTablaEstudiantes();
 
     }
@@ -39,14 +35,15 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
     }
     
     private void cargarTablaEstudiantes() {
+        this.listaEstudiantes = mate.getEstudiantes();
         DefaultTableModel model = (DefaultTableModel) Tablasestudiantes.getModel();
         model.setRowCount(0);
         for (Estudiante e : listaEstudiantes) {
             Object[] fila = {
-                e.getNombre(),
-                e.getId(),
-                String.format("%.2f", e.getNotaGeneral())
-            };
+               e.getNombre(),
+               e.getId(),
+               String.format("%.2f", e.getNotaGeneral())
+           };
             model.addRow(fila);
         }
     }

@@ -10,9 +10,15 @@ public class LoginProfesor extends javax.swing.JFrame {
 
     private ArrayList<Profesor> listaProfesores;
     
+    public LoginProfesor(ArrayList<Profesor> listaProfesor) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        listaProfesores =listaProfesor;
+    }
     public LoginProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
+        listaProfesores =null;
     }
 
     
@@ -164,8 +170,8 @@ public class LoginProfesor extends javax.swing.JFrame {
 
         for (Profesor profe : listaProfesores) {
             if (profe.getCorreo().equalsIgnoreCase(correo) && profe.getContra().equals(passw)) {
-                VentanaPrincipalProfesor ventana = new VentanaPrincipalProfesor();
                 Sistema.setProfesorActual(profe);
+                VentanaPrincipalProfesor ventana = new VentanaPrincipalProfesor();
                 ventana.setVisible(true);
                 this.dispose();
                 return;
