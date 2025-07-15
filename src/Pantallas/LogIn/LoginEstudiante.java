@@ -22,7 +22,6 @@ public class LoginEstudiante extends javax.swing.JFrame {
     public LoginEstudiante() {
         initComponents();
         this.setLocationRelativeTo(null);
-        listaEstudiantes= null;
     }
 
     /**
@@ -176,8 +175,8 @@ public class LoginEstudiante extends javax.swing.JFrame {
 
         for (Estudiante est : listaEstudiantes) {
             if (est.getCorreo().equalsIgnoreCase(correo) && est.getContra().equals(passw)) {
-                VentanaPrincipalEstudiante ventana = new VentanaPrincipalEstudiante();
                 Sistema.setEstudianteActual(est);
+                VentanaPrincipalEstudiante ventana = new VentanaPrincipalEstudiante(est);
                 ventana.setVisible(true);
                 this.dispose();
                 return;

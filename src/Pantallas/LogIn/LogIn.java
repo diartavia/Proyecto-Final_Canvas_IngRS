@@ -7,11 +7,14 @@ public class LogIn extends javax.swing.JFrame {
 
     private ArrayList<Estudiante> listaEstudiantes = new ArrayList<>();
     private ArrayList<Profesor> listaProfesores = new ArrayList<>();
+    private ArrayList<Materia> Materia = new ArrayList<>();
 
     public LogIn() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        this.Materia = new ArrayList<>(); // <- Agrega esto al constructor de Materia
+        this.listaEstudiantes = new ArrayList<>();
+        this.listaProfesores = new ArrayList<>();
         inicializarDatos();
     }
 

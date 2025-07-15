@@ -66,7 +66,13 @@ public class Estudiante implements Serializable {
         lista.add(new NotaAsignacion(asignacion, nota));
     }
     
-    
+    public void agregarMateria(Materia mate){
+        for (Materia Materia : Materias) {
+            if (!Materia.equals(mate)) {
+                Materias.add(mate);
+            }
+        }
+    }
     public String getCorreo() {    
         return Correo;
     }

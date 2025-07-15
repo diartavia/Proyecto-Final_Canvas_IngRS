@@ -20,6 +20,33 @@ import javax.swing.JPanel;
 public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
 
     
+    public VentanaPrincipalEstudiante(Estudiante est) {
+        initComponents();
+        
+        JPanel jpanelCursos = this.JPanel_botones;
+        
+        Estudiante estudiante = Sistema.getEstudianteActual();
+        List<Materia> cursos = estudiante.getMaterias();
+
+        jpanelCursos.setLayout(new GridLayout(0, 2, 20, 20));
+
+        for (Materia curso : cursos) {
+            JButton botonCurso = new JButton(curso.getNombre());
+
+            botonCurso.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    new CursoEstudiante(curso).setVisible(true);
+                    dispose();
+                }
+            });
+
+            jpanelCursos.add(botonCurso);
+        }
+
+        jpanelCursos.revalidate();
+        jpanelCursos.repaint();
+
+    }
     public VentanaPrincipalEstudiante() {
         initComponents();
         
@@ -47,7 +74,6 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
         jpanelCursos.repaint();
 
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

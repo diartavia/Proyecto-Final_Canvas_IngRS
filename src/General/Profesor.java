@@ -23,7 +23,13 @@ public class Profesor {
     }
     
     
-    
+    public void agregarMateria(Materia mate){
+        for (Materia Materia : Materias) {
+            if (!Materia.equals(mate)) {
+                Materias.add(mate);
+            }
+        }
+    }
     //gets y sets
 
     public String getId() {
