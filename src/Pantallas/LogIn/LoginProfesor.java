@@ -8,17 +8,9 @@ import javax.swing.JOptionPane;
 
 public class LoginProfesor extends javax.swing.JFrame {
 
-    private ArrayList<Profesor> listaProfesores;
-    
-    public LoginProfesor(ArrayList<Profesor> listaProfesor) {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        listaProfesores =listaProfesor;
-    }
     public LoginProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
-        listaProfesores =null;
     }
 
     
@@ -168,7 +160,7 @@ public class LoginProfesor extends javax.swing.JFrame {
             return;
         }
 
-        for (Profesor profe : listaProfesores) {
+        for (Profesor profe : Sistema.getProfesores()) {
             if (profe.getCorreo().equalsIgnoreCase(correo) && profe.getContra().equals(passw)) {
                 Sistema.setProfesorActual(profe);
                 VentanaPrincipalProfesor ventana = new VentanaPrincipalProfesor();
@@ -178,7 +170,7 @@ public class LoginProfesor extends javax.swing.JFrame {
             }
         }
 
-        JOptionPane.showMessageDialog(null, "Credenciales incorrectas.");
+        JOptionPane.showMessageDialog(null, "Credenciales incorrectas.");   
     }//GEN-LAST:event_btn_Ingresar_ProfeActionPerformed
 
     /**

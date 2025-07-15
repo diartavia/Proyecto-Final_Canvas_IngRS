@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package CursoProfesor;
 
 import General.Materia;
@@ -16,20 +12,21 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-/**
- *
- * @author jadia
- */
 public class JAsignaciones extends javax.swing.JFrame {
     Materia mate;
-    /**
-     * Creates new form JAsignaciones
-     */
+
     public JAsignaciones(Materia mate) {
         initComponents();
-        cargarTablaAsignaciones();
         this.setLocationRelativeTo(null);
-        mate=mate;
+
+        if (mate == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error: No se asignó una materia.");
+            dispose();
+            return;
+        }
+
+            this.mate = mate;
+            cargarTablaAsignaciones(); // solo si la materia es válida
     }
     
     public JAsignaciones() {
@@ -40,10 +37,12 @@ public class JAsignaciones extends javax.swing.JFrame {
     }
     
 public void cargarTablaAsignaciones() {
-    List<Asignacion> listaTareas = Asignacion.cargarTareas();  // Asumiendo que tienes este método que carga desde archivo.
+    if (mate == null) return; // Seguridad por si no está asignada
+
+    List<Asignacion> listaTareas = mate.getAsignaciones(); // ✅ Usa las tareas de la materia actual
 
     DefaultTableModel model = (DefaultTableModel) AsignacionesCreadasTable.getModel();
-    model.setRowCount(0); // Limpiar filas anteriores
+    model.setRowCount(0); // Limpiar tabla
 
     for (Asignacion tarea : listaTareas) {
         Object[] fila = {
@@ -200,6 +199,8 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_Asignaciones = new javax.swing.JLabel();
         jLabel_Calificaciones = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        jLabel_Grupos1 = new javax.swing.JLabel();
+        jLabel_Asistencias = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -211,7 +212,6 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel_Tablero = new javax.swing.JLabel();
         jLabel_Cursos = new javax.swing.JLabel();
-        jLabel_Grupos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -258,7 +258,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_Modulos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Modulos.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Modulos.setText("Modulos");
-        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Modulos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Modulos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_ModulosMouseClicked(evt);
@@ -268,7 +268,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_Anuncios.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Anuncios.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Anuncios.setText("Anuncios");
-        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Anuncios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Anuncios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_AnunciosMouseClicked(evt);
@@ -278,7 +278,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_PagInicio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_PagInicio.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_PagInicio.setText("Pagina inicio");
-        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_PagInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_PagInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_PagInicioMouseClicked(evt);
@@ -288,7 +288,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_Asignaciones.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel_Asignaciones.setForeground(new java.awt.Color(63, 42, 85));
         jLabel_Asignaciones.setText("Asignaciones");
-        jLabel_Asignaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Asignaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Asignaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_AsignacionesMouseClicked(evt);
@@ -298,7 +298,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_Calificaciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Calificaciones.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Calificaciones.setText("Calificaciones");
-        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Calificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Calificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_CalificacionesMouseClicked(evt);
@@ -306,6 +306,26 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         });
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel_Grupos1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel_Grupos1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Grupos1.setText("Grupos");
+        jLabel_Grupos1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Grupos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_Grupos1MouseClicked(evt);
+            }
+        });
+
+        jLabel_Asistencias.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel_Asistencias.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Asistencias.setText("Asistencias");
+        jLabel_Asistencias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Asistencias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_AsistenciasMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout MenupopLayout = new javax.swing.GroupLayout(Menupop);
         Menupop.setLayout(MenupopLayout);
@@ -316,6 +336,8 @@ private class EditarTareaDialog extends javax.swing.JDialog {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MenupopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_Grupos1)
+                    .addComponent(jLabel_Asistencias)
                     .addComponent(jLabel_Anuncios)
                     .addComponent(jLabel_Modulos)
                     .addComponent(jLabel_Asignaciones)
@@ -338,7 +360,11 @@ private class EditarTareaDialog extends javax.swing.JDialog {
                     .addComponent(jLabel_Asignaciones))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel_Calificaciones)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jLabel_Grupos1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel_Asistencias)
+                .addContainerGap())
         );
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -346,7 +372,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel5.setText("jLabel5");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Hmenu.png"))); // NOI18N
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -466,7 +492,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_Tablero.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Tablero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Tablero.setText("Tablero");
-        jLabel_Tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Tablero.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_TableroMouseClicked(evt);
@@ -477,21 +503,10 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         jLabel_Cursos.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Cursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Cursos.setText("Cursos");
-        jLabel_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Cursos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_CursosMouseClicked(evt);
-            }
-        });
-
-        jLabel_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel_Grupos.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Grupos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_Grupos.setText("Grupos");
-        jLabel_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel_Grupos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_GruposMouseClicked(evt);
             }
         });
 
@@ -504,8 +519,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel_Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -517,8 +531,6 @@ private class EditarTareaDialog extends javax.swing.JDialog {
                 .addComponent(jLabel_Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -571,25 +583,25 @@ private class EditarTareaDialog extends javax.swing.JDialog {
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
         int filaSeleccionada = AsignacionesCreadasTable.getSelectedRow();
-    if (filaSeleccionada == -1) {
-        javax.swing.JOptionPane.showMessageDialog(null, "Selecciona una asignación para editar.");
-        return;
-    }
+        if (filaSeleccionada == -1) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Selecciona una asignación para editar.");
+            return;
+        }
 
-    // Cargar la lista de tareas
-    List<Asignacion> listaTareas = Asignacion.cargarTareas();
-    Asignacion tareaSeleccionada = listaTareas.get(filaSeleccionada);
+        // Cargar la lista de tareas
+        List<Asignacion> listaTareas = mate.getAsignaciones();
+        Asignacion tareaSeleccionada = listaTareas.get(filaSeleccionada);
 
-    // Mostrar diálogo para editar
-    EditarTareaDialog dialogo = new EditarTareaDialog(this, tareaSeleccionada, filaSeleccionada);
-    dialogo.setVisible(true);
+        // Mostrar diálogo para editar
+        EditarTareaDialog dialogo = new EditarTareaDialog(this, tareaSeleccionada, filaSeleccionada);
+        dialogo.setVisible(true);
 
-    // Si se confirmó la edición, recargar archivo y tabla
-    if (dialogo.fueConfirmado()) {
-        listaTareas.set(filaSeleccionada, dialogo.getTareaEditada());
-        Asignacion.guardarTareas(listaTareas);
-        cargarTablaAsignaciones();
-    }
+        // Si se confirmó la edición, recargar archivo y tabla
+        if (dialogo.fueConfirmado()) {
+            listaTareas.set(filaSeleccionada, dialogo.getTareaEditada());
+            Asignacion.guardarTareas(listaTareas);
+            cargarTablaAsignaciones();
+        }
     }//GEN-LAST:event_btn_editarActionPerformed
 
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
@@ -603,10 +615,6 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
-    private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel_GruposMouseClicked
-
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
         if (!Menupop.isVisible()) {
@@ -615,6 +623,18 @@ private class EditarTareaDialog extends javax.swing.JDialog {
             this.Menupop.setVisible(false);
         }
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel_Grupos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Grupos1MouseClicked
+        JGrupo grupo = new JGrupo(mate);
+        grupo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_Grupos1MouseClicked
+
+    private void jLabel_AsistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsistenciasMouseClicked
+        JAsistencia asistencias = new JAsistencia(mate);
+        asistencias.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_AsistenciasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -664,9 +684,10 @@ private class EditarTareaDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_Anuncios;
     private javax.swing.JLabel jLabel_Asignaciones;
+    private javax.swing.JLabel jLabel_Asistencias;
     private javax.swing.JLabel jLabel_Calificaciones;
     private javax.swing.JLabel jLabel_Cursos;
-    private javax.swing.JLabel jLabel_Grupos;
+    private javax.swing.JLabel jLabel_Grupos1;
     private javax.swing.JLabel jLabel_Modulos;
     private javax.swing.JLabel jLabel_PagInicio;
     private javax.swing.JLabel jLabel_Tablero;

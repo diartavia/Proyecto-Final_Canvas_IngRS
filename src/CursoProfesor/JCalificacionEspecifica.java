@@ -2,12 +2,10 @@ package CursoProfesor;
 
 import General.Estudiante;
 import General.Materia;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class JCalificacionEspecifica extends javax.swing.JFrame {
-    
-    private String nombre,id,calificacion;
+
     private Estudiante estudiante;
     private Materia materia;
     
@@ -165,7 +163,6 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtn_calificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_calificarActionPerformed
-        // TODO add your handling code here:
         try {
             String nombreAsignacion = JCbx_Asignaciones.getSelectedItem().toString();
             String notaTexto = JNota.getText().trim();

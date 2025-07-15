@@ -47,7 +47,7 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
         jpanelCursos.repaint();
 
     }
-    public VentanaPrincipalEstudiante() {
+        public VentanaPrincipalEstudiante() {
         initComponents();
         
         JPanel jpanelCursos = this.JPanel_botones;
@@ -118,7 +118,7 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
         jLabel_Cursos.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Cursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Cursos.setText("Cursos");
-        jLabel_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Cursos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_CursosMouseClicked(evt);
@@ -129,7 +129,7 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
         jLabel_Grupos.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Grupos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Grupos.setText("Grupos");
-        jLabel_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Grupos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_GruposMouseClicked(evt);
@@ -140,7 +140,7 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
         jLabel_Tablero.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Tablero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_Tablero.setText("Tablero");
-        jLabel_Tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Tablero.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel_Tablero.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_TableroMouseClicked(evt);
@@ -177,7 +177,8 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
         jLabel1.setText("TABLERO");
 
-        JPanel_botones.setLayout(new java.awt.GridLayout());
+        JPanel_botones.setBackground(new java.awt.Color(255, 255, 255));
+        JPanel_botones.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

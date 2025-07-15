@@ -1,36 +1,50 @@
 package General;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-public class Profesor {
-    private String id, nombre, Correo, Contra;
-    private ArrayList<Materia> Materias;
 
-    public Profesor(String id, String nombre, String Correo, String Contra) {
+public class Profesor implements Serializable {
+
+    private String id;
+    private String nombre;
+    private String correo;
+    private String contra;
+    private ArrayList<Materia> materias;
+
+    // ----------------- Constructores ----------------- //
+
+    /**
+     * Constructor completo para inicializar todos los campos.
+     */
+    public Profesor(String id, String nombre, String correo, String contra) {
         this.id = id;
         this.nombre = nombre;
-        this.Correo = Correo;
-        this.Contra = Contra;
-        this.Materias = new ArrayList<>();
+        this.correo = correo;
+        this.contra = contra;
+        this.materias = new ArrayList<>();
     }
 
+    /**
+     * Constructor básico (solo ID y nombre).
+     */
     public Profesor(String id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
-        this.Materias = new ArrayList<>();
+        this(id, nombre, "", ""); // delega al constructor principal
     }
-    
-    
-    public void agregarMateria(Materia mate){
-        for (Materia Materia : Materias) {
-            if (!Materia.equals(mate)) {
-                Materias.add(mate);
-            }
+
+    // ----------------- Métodos funcionales ----------------- //
+
+    /**
+     * Agrega una materia al profesor si no está previamente asignada.
+     * @param materia Objeto de tipo Materia
+     */
+    public void agregarMateria(Materia materia) {
+        if (materia != null && !materias.contains(materia)) {
+            materias.add(materia);
         }
     }
-    //gets y sets
+
+    // ----------------- Getters y Setters ----------------- //
 
     public String getId() {
         return id;
@@ -49,27 +63,31 @@ public class Profesor {
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getContra() {
-        return Contra;
+        return contra;
     }
 
-    public void setContra(String Contra) {
-        this.Contra = Contra;
+    public void setContra(String contra) {
+        this.contra = contra;
     }
 
     public ArrayList<Materia> getMaterias() {
-        return Materias;
+        return materias;
     }
 
-    public void setMaterias(ArrayList<Materia> Materias) {
-        this.Materias = Materias;
+    public void setMaterias(ArrayList<Materia> materias) {
+        this.materias = materias;
     }
-    
+
+    @Override
+    public String toString() {
+        return nombre + " (" + id + ")";
+    }
 }
