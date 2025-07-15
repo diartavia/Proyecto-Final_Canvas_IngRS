@@ -10,6 +10,7 @@ public class Materia implements Serializable {
     private String id, nombre, carreras, horario, grupo, id_profesor;
     private ArrayList<Estudiante> estudiantes;
     private ArrayList<Asignacion> Asignaciones;
+    
 
     public Materia(String id, String nombre, String carreras, String horario, String grupo, String id_profesor) {
         this.id = id;
@@ -20,7 +21,6 @@ public class Materia implements Serializable {
         this.id_profesor = id_profesor;
         this.estudiantes = new ArrayList<>();
         
-        agregarEst();
     }
 
     public ArrayList<Asignacion> getAsignaciones() {
@@ -48,10 +48,6 @@ public class Materia implements Serializable {
         }
     }
 
-    public void agregarEst(){
-        Estudiante est = new Estudiante("119260584", "Diego Artavia Valverde");
-        estudiantes.add(est);
-    }
     public void eliminarEstudiante(Estudiante e) {
         estudiantes.remove(e);
     }

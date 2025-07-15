@@ -4,6 +4,7 @@
  */
 package CursoProfesor;
 
+import General.Materia;
 import General.VentanaPrincipalProfesor;
 import java.awt.Color;
 
@@ -14,7 +15,7 @@ import java.awt.Color;
 public class CursoProfesor extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CursoProfesor.class.getName());
-
+    Materia mate;
     /**
      * Creates new form CursoProfesor
      */
@@ -23,6 +24,11 @@ public class CursoProfesor extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    public CursoProfesor(Materia mate) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        mate = mate;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -361,14 +367,14 @@ public class CursoProfesor extends javax.swing.JFrame {
 
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
         // TODO add your handling code here:
-        JCalificacionesProfe califica = new JCalificacionesProfe();
+        JCalificacionesProfe califica = new JCalificacionesProfe(mate);
         califica.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
         // TODO add your handling code here:
-        JCreaAsignaciones CA = new JCreaAsignaciones();
+        JCreaAsignaciones CA = new JCreaAsignaciones(mate);
         CA.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked

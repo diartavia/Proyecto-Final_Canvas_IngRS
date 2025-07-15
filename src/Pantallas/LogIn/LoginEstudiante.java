@@ -4,18 +4,16 @@
  */
 package Pantallas.LogIn;
 
+import General.Estudiante;
+import General.Sistema;
 import General.VentanaPrincipalEstudiante;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Diego
- */
-public class LoginEstudiante extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginEstudiante
-     */
+public class LoginEstudiante extends javax.swing.JFrame {
+    private ArrayList<Estudiante> listaEstudiantes; 
+
     public LoginEstudiante() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -157,38 +155,30 @@ public class LoginEstudiante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
-        // TODO add your handling code here:
-        String correo = tf_correo.getText();
-        String passw = new String(JPsswF_passwEstudiante.getPassword());
-        
-        if (!correo.isEmpty()) {
-            if (correo.toLowerCase().contains("@ulacit.ed.cr")) {
-                if (!passw.equals("")) {
-                    if (correo.toLowerCase().equals("dartaviav584@ulacit.ed.cr") && passw.contains("1234")) {
-                        //aca se redirige a la pagina principal
-                        VentanaPrincipalEstudiante ventana = new VentanaPrincipalEstudiante();
-                        ventana.setVisible(true);
-                        this.dispose();
-                    }else{
-                        JOptionPane.showMessageDialog(null, "credenciales incorrectas");
-                        this.tf_correo.setText("");
-                        this.JPsswF_passwEstudiante.setText("");
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Ingrese una contraseña");
-                    this.tf_correo.setText("");
-                    this.JPsswF_passwEstudiante.setText("");
-                }  
-            }else{
-                JOptionPane.showMessageDialog(null, "Ingrese un correo valido (debe terminar en @ulacit.ed.cr) ");
-                this.tf_correo.setText("");
-                this.JPsswF_passwEstudiante.setText("");  
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Ingrese un correo");
-            this.tf_correo.setText("");
-            this.JPsswF_passwEstudiante.setText("");
+        String correo = tf_correo.getText().trim().toLowerCase();
+        String passw = new String(JPsswF_passwEstudiante.getPassword()).trim();
+
+        if (correo.isEmpty() || passw.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe llenar ambos campos.");
+            return;
         }
+
+        if (!correo.endsWith("@ulacit.ed.cr")) {
+            JOptionPane.showMessageDialog(null, "El correo debe terminar en @ulacit.ed.cr");
+            return;
+        }
+
+        for (Estudiante est : listaEstudiantes) {
+            if (est.getCorreo().equalsIgnoreCase(correo) && est.getContra().equals(passw)) {
+                VentanaPrincipalEstudiante ventana = new VentanaPrincipalEstudiante();
+                Sistema.setEstudianteActual(est);
+                ventana.setVisible(true);
+                this.dispose();
+                return;
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "Credenciales incorrectas.");
     }//GEN-LAST:event_btn_IngresarActionPerformed
 
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed

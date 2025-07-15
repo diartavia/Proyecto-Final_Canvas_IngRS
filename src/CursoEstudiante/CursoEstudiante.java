@@ -4,6 +4,7 @@
  */
 package CursoEstudiante;
 
+import General.Materia;
 import General.VentanaPrincipalEstudiante;
 
 /**
@@ -13,15 +14,20 @@ import General.VentanaPrincipalEstudiante;
 public class CursoEstudiante extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CursoEstudiante.class.getName());
-
+    Materia mate;
     /**
      * Creates new form CursoEstudiante
      */
+    public CursoEstudiante(Materia materia) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        mate= materia;
+    }
+
     public CursoEstudiante() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

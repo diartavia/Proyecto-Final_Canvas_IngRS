@@ -4,6 +4,7 @@
  */
 package CursoProfesor;
 
+import General.Materia;
 import General.VentanaPrincipalProfesor;
 import java.io.*;
 import java.util.ArrayList;
@@ -20,14 +21,22 @@ import javax.swing.JTextField;
  * @author jadia
  */
 public class JAsignaciones extends javax.swing.JFrame {
-
+    Materia mate;
     /**
      * Creates new form JAsignaciones
      */
+    public JAsignaciones(Materia mate) {
+        initComponents();
+        cargarTablaAsignaciones();
+        this.setLocationRelativeTo(null);
+        mate=mate;
+    }
+    
     public JAsignaciones() {
         initComponents();
         cargarTablaAsignaciones();
         this.setLocationRelativeTo(null);
+        mate=null;
     }
     
 public void cargarTablaAsignaciones() {
@@ -532,21 +541,21 @@ private class EditarTareaDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
-        JCalificacionesProfe califica = new JCalificacionesProfe();
+        JCalificacionesProfe califica = new JCalificacionesProfe(mate);
         califica.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
         // TODO add your handling code here:
-        JCreaAsignaciones CA = new JCreaAsignaciones();
+        JCreaAsignaciones CA = new JCreaAsignaciones(mate);
         CA.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
         // TODO add your handling code here:
-        CursoProfesor CursoP = new CursoProfesor();
+        CursoProfesor CursoP = new CursoProfesor(mate);
         CursoP.setVisible(true);
         this.dispose();
         //Redirigir a otra pantalla
