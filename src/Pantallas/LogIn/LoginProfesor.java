@@ -1,10 +1,15 @@
 package Pantallas.LogIn;
 
+import General.Profesor;
+import General.Sistema;
 import General.VentanaPrincipalProfesor;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class LoginProfesor extends javax.swing.JFrame {
 
+    private ArrayList<Profesor> listaProfesores;
+    
     public LoginProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -144,39 +149,30 @@ public class LoginProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_atrasActionPerformed
     
     private void btn_Ingresar_ProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ingresar_ProfeActionPerformed
-        // TODO add your handling code here:
-                // TODO add your handling code here:
-        String correo = this.tf_correo_profe.getText();
-        String passw = new String(this.JPsswF_passwProfe.getPassword());
-        
-        if (!correo.isEmpty()) {
-            if (correo.toLowerCase().contains("@ulacit.ed.cr")) {
-                if (!passw.equals("")) {
-                    if (correo.toLowerCase().equals("profe@ulacit.ed.cr") && passw.contains("1234")) {
-                        //aca se redirige a la pagina principal
-                        VentanaPrincipalProfesor ventana = new VentanaPrincipalProfesor();
-                        ventana.setVisible(true);
-                        this.dispose();
-                    }else{
-                        JOptionPane.showMessageDialog(null, "credenciales incorrectas");
-                        this.tf_correo_profe.setText("");
-                        this.JPsswF_passwProfe.setText("");
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Ingrese una contraseña");
-                    this.tf_correo_profe.setText("");
-                    this.JPsswF_passwProfe.setText("");
-                }  
-            }else{
-                JOptionPane.showMessageDialog(null, "Ingrese un correo valido (debe terminar en @ulacit.ed.cr) ");
-                this.tf_correo_profe.setText("");
-                this.JPsswF_passwProfe.setText("");
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Ingrese un correo");
-            this.tf_correo_profe.setText("");
-            this.JPsswF_passwProfe.setText("");
+        String correo = tf_correo_profe.getText().trim().toLowerCase();
+        String passw = new String(JPsswF_passwProfe.getPassword()).trim();
+
+        if (correo.isEmpty() || passw.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe llenar ambos campos.");
+            return;
         }
+
+        if (!correo.endsWith("@ulacit.ed.cr")) {
+            JOptionPane.showMessageDialog(null, "El correo debe terminar en @ulacit.ed.cr");
+            return;
+        }
+
+        for (Profesor profe : listaProfesores) {
+            if (profe.getCorreo().equalsIgnoreCase(correo) && profe.getContra().equals(passw)) {
+                VentanaPrincipalProfesor ventana = new VentanaPrincipalProfesor();
+                Sistema.setProfesorActual(profe);
+                ventana.setVisible(true);
+                this.dispose();
+                return;
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "Credenciales incorrectas.");
     }//GEN-LAST:event_btn_Ingresar_ProfeActionPerformed
 
     /**

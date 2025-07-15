@@ -3,38 +3,32 @@ package CursoProfesor;
 import General.Estudiante;
 import General.Materia;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class JCalificacionEspecifica extends javax.swing.JFrame {
     
     private String nombre,id,calificacion;
+    private Estudiante estudiante;
+    private Materia materia;
     
     public JCalificacionEspecifica() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
-    public JCalificacionEspecifica(String nombre, String id) {
+    public JCalificacionEspecifica(Estudiante estudiante, Materia materia) {
         initComponents();
-        this.nombre = nombre;
-        this.id = id;
-        obtenerestu();
-        
-        this.JLEstu.setText(nombre);
-        this.JLNota.setText(String.valueOf(obtenerestu().getNota()));
-    }
+        this.estudiante = estudiante;
+        this.materia = materia;
 
-    public Estudiante obtenerestu(){
-        Materia mat = new Materia("c","d","d","d","d","d");
-        ArrayList<Estudiante> estudiantes = mat.getEstudiantes(); // Suponiendo que devuelve un ArrayList<Estudiante>
-    
-        // Recorremos la lista de estudiantes con un for-each
-        for (Estudiante estudiante : estudiantes) {
-            // Verificamos si el nombre del estudiante coincide con this.nombre
-            if (estudiante.getNombre().equals(this.nombre)) {
-                return estudiante; // Retorna el estudiante si lo encuentra
-            }
+        this.JLEstu.setText(estudiante.getNombre());
+        this.JLNota.setText(String.valueOf(estudiante.getNotaGeneral()));
+        
+        JCbx_Asignaciones.removeAllItems();
+
+        for (Asignacion a : materia.getAsignaciones()) {
+            JCbx_Asignaciones.addItem(a.getNombre()); 
         }
-        return null;
     }
     // Metodos para asignacion
     
@@ -46,7 +40,7 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jBtn_calificar = new javax.swing.JButton();
         JCbx_Asignaciones = new javax.swing.JComboBox<>();
         JNota = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -63,7 +57,12 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setText("Calificar");
+        jBtn_calificar.setText("Calificar");
+        jBtn_calificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_calificarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nota de");
 
@@ -102,7 +101,7 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
                         .addComponent(JLNota))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(375, 375, 375)
-                        .addComponent(jButton1))
+                        .addComponent(jBtn_calificar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +146,7 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jButton1)
+                .addComponent(jBtn_calificar)
                 .addGap(46, 46, 46))
         );
 
@@ -164,6 +163,55 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBtn_calificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_calificarActionPerformed
+        // TODO add your handling code here:
+        try {
+            String nombreAsignacion = JCbx_Asignaciones.getSelectedItem().toString();
+            String notaTexto = JNota.getText().trim();
+
+            if (notaTexto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, escriba una nota.");
+                return;
+            }
+
+            double nota;
+            try {
+                nota = Double.parseDouble(notaTexto);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "La nota debe ser un número válido.");
+                return;
+            }
+
+            if (nota < 0 || nota > 100) {
+                JOptionPane.showMessageDialog(this, "La nota debe estar entre 0 y 100.");
+                return;
+            }
+
+
+            Asignacion asignacionSeleccionada = null;
+            for (Asignacion a : materia.getAsignaciones()) {
+                if (a.getNombre().equals(nombreAsignacion)) {
+                    asignacionSeleccionada = a;
+                    break;
+                }
+            }
+
+            if (asignacionSeleccionada == null) {
+                JOptionPane.showMessageDialog(this, "Asignación no válida");
+                return;
+            }
+
+            estudiante.asignarNota(materia, asignacionSeleccionada, nota); // 👈 Aquí usás tu método
+
+            JOptionPane.showMessageDialog(this, "Nota asignada correctamente.");
+            this.dispose();
+            new JCalificacionesProfe(materia).setVisible(true);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "La nota debe ser un número válido.");
+        }
+    }//GEN-LAST:event_jBtn_calificarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -202,7 +250,7 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
     private javax.swing.JLabel JLEstu;
     private javax.swing.JLabel JLNota;
     private javax.swing.JTextField JNota;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBtn_calificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

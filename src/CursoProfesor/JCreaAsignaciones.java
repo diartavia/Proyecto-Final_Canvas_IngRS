@@ -4,6 +4,7 @@
  */
 package CursoProfesor;
 
+import General.Materia;
 import General.VentanaPrincipalProfesor;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,15 +22,19 @@ import javax.swing.JOptionPane;
  */
 public class JCreaAsignaciones extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Tareas
-     */
+    Materia mate;
+    public JCreaAsignaciones(Materia mate) {
+          initComponents();
+          cargarTareasDesdeArchivo();
+          this.setLocationRelativeTo(null);
+          this.mate=mate;
+    }
     public JCreaAsignaciones() {
           initComponents();
           cargarTareasDesdeArchivo();
           this.setLocationRelativeTo(null);
+          this.mate=null;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -446,7 +451,7 @@ public class JCreaAsignaciones extends javax.swing.JFrame {
                 .addComponent(jLabel_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(343, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -461,9 +466,7 @@ public class JCreaAsignaciones extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         pack();
@@ -508,7 +511,7 @@ public class JCreaAsignaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_NombreTareaActionPerformed
 
     private void jLabel_Calificaciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Calificaciones1MouseClicked
-       JCalificacionesProfe califica = new JCalificacionesProfe();
+       JCalificacionesProfe califica = new JCalificacionesProfe(mate);
         califica.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_Calificaciones1MouseClicked
@@ -532,13 +535,13 @@ public class JCreaAsignaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
     private void jLabel_TareasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TareasMouseClicked
-        JCreaAsignaciones VentanaTareas = new JCreaAsignaciones();
+        JCreaAsignaciones VentanaTareas = new JCreaAsignaciones(mate);
         VentanaTareas.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_TareasMouseClicked
 
     private void btn_VerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VerActionPerformed
-    JAsignaciones ventanaAsignaciones = new JAsignaciones();
+    JAsignaciones ventanaAsignaciones = new JAsignaciones(mate);
     ventanaAsignaciones.setVisible(true);
     this.dispose(); // si quieres cerrar la ventana actual
     }//GEN-LAST:event_btn_VerActionPerformed

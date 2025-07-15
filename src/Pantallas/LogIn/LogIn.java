@@ -1,23 +1,76 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Pantallas.LogIn;
 
-/**
- *
- * @author Diego
- */
+import General.*;
+import java.util.ArrayList;
+
 public class LogIn extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LogIn
-     */
+    private ArrayList<Estudiante> listaEstudiantes = new ArrayList<>();
+    private ArrayList<Profesor> listaProfesores = new ArrayList<>();
+
     public LogIn() {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        inicializarDatos();
     }
 
+    private void inicializarDatos() {
+        // Materias compartidas
+        Materia m1 = new Materia("MAT101", "Matemática 1", "Ingeniería", "8:00-10:00", "01", "P1");
+        Materia m2 = new Materia("PRO102", "Programación", "Ingeniería", "10:00-12:00", "01", "P2");
+        Materia m3 = new Materia("ING103", "Inglés", "Idiomas", "12:00-2:00", "01", "P3");
+
+        // Profesores 1 a 3 con materias compartidas
+        Profesor prof1 = new Profesor("P1", "María Jiménez", "mjimenez@ulacit.ed.cr", "1234");
+        prof1.getMaterias().add(m1);
+
+        Profesor prof2 = new Profesor("P2", "Carlos Mora", "cmora@ulacit.ed.cr", "1234");
+        prof2.getMaterias().add(m2);
+
+        Profesor prof3 = new Profesor("P3", "Laura Quesada", "lquesada@ulacit.ed.cr", "1234");
+        prof3.getMaterias().add(m3);
+
+        listaProfesores.add(prof1);
+        listaProfesores.add(prof2);
+        listaProfesores.add(prof3);
+
+        // Profesores 4 a 10 con materias diferentes
+        for (int i = 4; i <= 10; i++) {
+            String id = "P" + i;
+            String nombre = "Profesor " + i;
+            String correo = "prof" + i + "@ulacit.ed.cr";
+            String contra = "1234";
+
+            Profesor p = new Profesor(id, nombre, correo, contra);
+            Materia nuevaMateria = new Materia("MAT" + i + "00", "Curso " + i, "Carrera X", "1:00-3:00", "0" + i, id);
+            p.getMaterias().add(nuevaMateria);
+
+            listaProfesores.add(p);
+        }
+
+        // Estudiantes 1 a 20 con las 3 materias compartidas
+        for (int i = 1; i <= 20; i++) {
+            String id = "E" + i;
+            String nombre = "Estudiante " + i;
+            String correo = "est" + i + "@ulacit.ed.cr";
+            String contra = "1234";
+
+            Estudiante e = new Estudiante(id, nombre, correo, contra);
+
+            // Agregar materias
+            e.getMaterias().add(m1);
+            e.getMaterias().add(m2);
+            e.getMaterias().add(m3);
+
+            // Agregar estudiante a las materias
+            m1.agregarEstudiante(e);
+            m2.agregarEstudiante(e);
+            m3.agregarEstudiante(e);
+
+            listaEstudiantes.add(e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

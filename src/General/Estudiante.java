@@ -1,26 +1,87 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package General;
 
 /**
  *
  * @author jadia
  */
+import CursoProfesor.Asignacion;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Estudiante implements Serializable {
-    private String id;
-    private String nombre;
-    private double nota;
+    private String id, nombre, Correo, Contra;
+    private Map<Materia, List<NotaAsignacion>> notasPorMateria;
     private ArrayList<Materia> Materias;
+
+    public Estudiante(String id, String nombre, String Correo, String Contra) {
+        this.id = id;
+        this.nombre = nombre;
+        this.notasPorMateria = new HashMap<>();
+        this.Materias = new ArrayList<>();
+        this.Correo = Correo;
+        this.Contra = Contra;
+    }
 
     public Estudiante(String id, String nombre) {
         this.id = id;
         this.nombre = nombre;
-        this.nota=0;
+        this.notasPorMateria = new HashMap<>();
+        this.Materias = new ArrayList<>();
+    }
+    //metodos
+    
+    public double getNotaGeneral() {
+        double total = 0;
+        int cantidadNotas = 0;
+
+        for (List<NotaAsignacion> lista : notasPorMateria.values()) {
+            for (NotaAsignacion notaAsignacion : lista) {
+                total += notaAsignacion.getNota();
+                cantidadNotas++;
+            }
+        }
+
+        if (cantidadNotas == 0) return 0.0;
+
+        return total / cantidadNotas;
+    }
+
+    
+    public void asignarNota(Materia materia, Asignacion asignacion, double nota) {
+        notasPorMateria.putIfAbsent(materia, new ArrayList<>());
+        List<NotaAsignacion> lista = notasPorMateria.get(materia);
+
+        // Si ya existe una nota para esa asignación, actualizar
+        for (NotaAsignacion n : lista) {
+            if (n.getAsignacion().equals(asignacion)) {
+                n.setNota(nota);
+                return;
+            }
+        }
+
+        // Si no existe, la agregamos
+        lista.add(new NotaAsignacion(asignacion, nota));
+    }
+    
+    
+    public String getCorreo() {    
+        return Correo;
+    }
+
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
+    }
+
+    public String getContra() {
+        return Contra;
+    }
+
+    //gets y sets
+    public void setContra(String Contra) {
+        this.Contra = Contra;
     }
 
     public String getId() {
@@ -35,16 +96,20 @@ public class Estudiante implements Serializable {
         this.nombre = nombre;
     }
 
-    public double getNota() {
-        return nota;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setNotasPorMateria(Map<Materia, List<NotaAsignacion>> notasPorMateria) {
+        this.notasPorMateria = notasPorMateria;
     }
 
     public ArrayList<Materia> getMaterias() {
         return Materias;
     }
 
-    public void setNota(double nota) {
-        this.nota = nota;
+    public Map<Materia, List<NotaAsignacion>> getNotasPorMateria() {
+        return notasPorMateria;
     }
 
     public void setMaterias(ArrayList<Materia> Materias) {
