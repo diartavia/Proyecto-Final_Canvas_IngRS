@@ -7,17 +7,18 @@ import javax.swing.JOptionPane;
 public class JCalificacionEspecifica extends javax.swing.JFrame {
 
     private Estudiante estudiante;
-    private Materia materia;
+    private Materia mate;
     
     public JCalificacionEspecifica() {
         initComponents();
+        this.mate = mate;
         this.setLocationRelativeTo(null);
     }
 
     public JCalificacionEspecifica(Estudiante estudiante, Materia materia) {
         initComponents();
         this.estudiante = estudiante;
-        this.materia = materia;
+        this.mate = materia;
 
         this.JLEstu.setText(estudiante.getNombre());
         this.JLNota.setText(String.valueOf(estudiante.getNotaGeneral()));
@@ -187,7 +188,7 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
 
 
             Asignacion asignacionSeleccionada = null;
-            for (Asignacion a : materia.getAsignaciones()) {
+            for (Asignacion a : mate.getAsignaciones()) {
                 if (a.getNombre().equals(nombreAsignacion)) {
                     asignacionSeleccionada = a;
                     break;
@@ -199,11 +200,11 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
                 return;
             }
 
-            estudiante.asignarNota(materia, asignacionSeleccionada, nota); // 👈 Aquí usás tu método
+            estudiante.asignarNota(mate, asignacionSeleccionada, nota); // 👈 Aquí usás tu método
 
             JOptionPane.showMessageDialog(this, "Nota asignada correctamente.");
             this.dispose();
-            new JCalificacionesProfe(materia).setVisible(true);
+            new JCalificacionesProfe(mate).setVisible(true);
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "La nota debe ser un número válido.");

@@ -375,7 +375,7 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
 
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
         // TODO add your handling code here:
-        CursoProfesor CursoP = new CursoProfesor();
+        CursoProfesor CursoP = new CursoProfesor(mate);
         CursoP.setVisible(true);
         this.dispose();
         //Redirigir a otra pantalla
