@@ -60,6 +60,7 @@ public class JAsistencia extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         BtnGuardar = new javax.swing.JButton();
+        BtnVerAsistencias = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         Menupop = new javax.swing.JPanel();
         jLabel_Modulos = new javax.swing.JLabel();
@@ -149,20 +150,31 @@ public class JAsistencia extends javax.swing.JFrame {
             }
         });
 
+        BtnVerAsistencias.setText("Ver Asistencias");
+        BtnVerAsistencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVerAsistenciasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addComponent(BtnGuardar)
-                .addContainerGap(617, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(BtnVerAsistencias)
+                .addContainerGap(532, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(351, Short.MAX_VALUE)
-                .addComponent(BtnGuardar)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnGuardar)
+                    .addComponent(BtnVerAsistencias))
                 .addGap(237, 237, 237))
         );
 
@@ -617,6 +629,33 @@ public class JAsistencia extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Asistencia guardada exitosamente");
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
+    private void BtnVerAsistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerAsistenciasActionPerformed
+         ArrayList<Asistencia> lista = ArchivoAsistencias.cargar(); // Carga todas las asistencias
+
+    if (lista == null || lista.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No hay asistencias registradas.");
+        return;
+    }
+
+    StringBuilder resumen = new StringBuilder("Asistencias registradas para la materia " + mate.getNombre() + ":\n\n");
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+
+    for (Asistencia a : lista) {
+        if (mate.contieneEstudiante(a.getIdEstudiante())) {
+            resumen.append("Estudiante ID: ").append(a.getIdEstudiante())
+                   .append(" | Fecha: ").append(sdf.format(a.getFecha()))
+                   .append(" | Estado: ").append(a.getEstado()).append("\n");
+        }
+    }
+
+    if (resumen.toString().endsWith(":\n\n")) {
+        resumen.append("No hay asistencias para esta materia.");
+    }
+
+    JOptionPane.showMessageDialog(this, resumen.toString(), "Asistencias Guardadas", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_BtnVerAsistenciasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -660,6 +699,7 @@ public class JAsistencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnGuardar;
+    private javax.swing.JButton BtnVerAsistencias;
     private javax.swing.JPanel Menupop;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

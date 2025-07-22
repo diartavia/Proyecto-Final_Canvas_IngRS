@@ -25,23 +25,28 @@ public class JGrupo extends javax.swing.JFrame {
    public JGrupo(Materia materia) {
     this.mate = materia;
     initComponents();
-   jComboBox1.removeAllItems();
-    cargarGruposEnComboBox();
+    cargarGruposEnTabla();
     cargarEstudiantesSinGrupo();
+    jTableGrupos.getSelectionModel().addListSelectionListener(e -> {
+    int row = jTableGrupos.getSelectedRow();
+    if (row >= 0 && row < mate.getGrupos().size()) {
+        Grupo grupo = mate.getGrupos().get(row);
+        mostrarEstudiantesDelGrupo(grupo);
+    }
+});
 }
    
 //Seccion de Combo box-------------------------------------------------------
 
- private void cargarGruposEnComboBox() {
-    jComboBox1.removeAllItems();
-    
-    for (Grupo g : mate.getGrupos()) {
-        jComboBox1.addItem(g.getNombre());
-    }
+ private void cargarGruposEnTabla() {
+    DefaultTableModel model = (DefaultTableModel) jTableGrupos.getModel();
+    model.setRowCount(0);
 
-    if (jComboBox1.getItemCount() > 0) {
-        jComboBox1.setSelectedIndex(0);
-        jComboBox1ActionPerformed(null);
+    for (Grupo g : mate.getGrupos()) {
+        model.addRow(new Object[]{
+            g.getNombre(),
+            g.getEstudiantes().size()
+        });
     }
 }
  
@@ -111,7 +116,8 @@ public class JGrupo extends javax.swing.JFrame {
         BtnCrear = new javax.swing.JButton();
         TblSingrupo = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        scrollGrupos = new javax.swing.JScrollPane();
+        jTableGrupos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -383,11 +389,18 @@ public class JGrupo extends javax.swing.JFrame {
         });
         TblSingrupo.setViewportView(jTable1);
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        jTableGrupos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Numero del Grupo", "Numero de Integrantes"
             }
-        });
+        ));
+        scrollGrupos.setViewportView(jTableGrupos);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -408,16 +421,15 @@ public class JGrupo extends javax.swing.JFrame {
                             .addGap(41, 41, 41)
                             .addComponent(BtnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(TblSingrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(140, 140, 140)
+                .addComponent(scrollGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(434, 434, 434)
+                        .addGap(37, 37, 37)
                         .addComponent(jButton2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(565, 565, 565)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(168, 168, 168)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,24 +438,26 @@ public class JGrupo extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel1)
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel4))
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel3)
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel4)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(75, 75, 75)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(BtnAgregar)
+                                            .addComponent(BtnCrear))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(TblSingrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(BtnAgregar)
-                                    .addComponent(BtnCrear))
-                                .addGap(18, 18, 18)
-                                .addComponent(TblSingrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(2, 2, 2)
+                                .addComponent(scrollGrupos, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -545,16 +559,8 @@ public class JGrupo extends javax.swing.JFrame {
     private void BtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearActionPerformed
       ClaseAsignarGrupo.mostrarSelectorGrupo(mate);
     cargarEstudiantesSinGrupo(); 
-    cargarGruposEnComboBox();   
+    cargarGruposEnTabla();  
     }//GEN-LAST:event_BtnCrearActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        Object selected = jComboBox1.getSelectedItem();
-
-        if (selected instanceof Grupo grupoSeleccionado) {
-            mostrarEstudiantesDelGrupo(grupoSeleccionado);
-        }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jLabel_AsistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsistenciasMouseClicked
       JAsistencia asistencias = new JAsistencia(mate);
@@ -604,7 +610,6 @@ public class JGrupo extends javax.swing.JFrame {
     private javax.swing.JPanel Menupop;
     private javax.swing.JScrollPane TblSingrupo;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -624,7 +629,10 @@ public class JGrupo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableGrupos;
+    private javax.swing.JScrollPane scrollGrupos;
     // End of variables declaration//GEN-END:variables
 }

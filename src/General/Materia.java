@@ -127,6 +127,15 @@ public class Materia implements Serializable {
  public void agregarAsistencia(Asistencia a) {
     asistencias.add(a);
 }
+ 
+ public boolean contieneEstudiante(String idEstudiante) {
+    for (Estudiante e : getEstudiantes()) {
+        if (e.getId().equals(idEstudiante)) {
+            return true;
+        }
+    }
+    return false;
+}
     // ----------------- Getters y Setters ----------------- //
 
     public String getId() {

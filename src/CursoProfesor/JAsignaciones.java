@@ -29,12 +29,7 @@ public class JAsignaciones extends javax.swing.JFrame {
             cargarTablaAsignaciones(); // solo si la materia es válida
     }
     
-    public JAsignaciones() {
-        initComponents();
-        cargarTablaAsignaciones();
-        this.setLocationRelativeTo(null);
-        mate=null;
-    }
+
     
 public void cargarTablaAsignaciones() {
     if (mate == null) return; // Seguridad por si no está asignada
@@ -666,7 +661,7 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JAsignaciones().setVisible(true);
+             
             }
         });
     }
