@@ -66,6 +66,20 @@ public class Estudiante implements Serializable {
         return cantidadNotas == 0 ? 0.0 : total / cantidadNotas;
     }
 
+    public double calcularNotaFinal(Materia materia) {
+        List<NotaAsignacion> notas = notasPorMateria.get(materia);
+        if (notas == null || notas.isEmpty()) {
+            return 0.0;
+        }
+
+        double suma = 0;
+        for (NotaAsignacion nota : notas) {
+            suma += nota.getNota();
+        }
+
+        return suma / notas.size();
+    }
+
     /**
      * Asigna o actualiza una nota para una asignación en una materia.
      */
