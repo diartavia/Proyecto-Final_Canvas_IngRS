@@ -98,6 +98,13 @@ public class Sistema {
     todosLosProfesores.add(profesorDemo);
     todosLosEstudiantes.add(est1);
     todosLosEstudiantes.add(est2);
+    
+    est1.agregarMateria(materiaDemo);
+    est2.agregarMateria(materiaDemo);
+    
+    est1.asignarNota(materiaDemo, tarea, 95.0);
+    est2.asignarNota(materiaDemo, tarea, 87.0);
+
 }
     
     public static Estudiante buscarEstudiantePorId(String id) {
