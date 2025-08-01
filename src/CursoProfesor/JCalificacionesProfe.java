@@ -373,7 +373,9 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
-        // TODO add your handling code here:
+        ModuloProfesor mp = new ModuloProfesor(mate);
+        mp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked

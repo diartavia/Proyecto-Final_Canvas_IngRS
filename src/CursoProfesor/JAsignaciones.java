@@ -573,7 +573,9 @@ private class EditarTareaDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
-        // TODO add your handling code here:
+        ModuloProfesor mp = new ModuloProfesor(mate);
+        mp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
