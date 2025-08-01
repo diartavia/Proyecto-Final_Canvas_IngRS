@@ -5,6 +5,7 @@ import General.Estudiante;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Materia implements Serializable {
 
@@ -20,7 +21,9 @@ public class Materia implements Serializable {
     private ArrayList<Estudiante> estudiantes;
     private ArrayList<Asignacion> asignaciones;
     private ArrayList<Grupo> grupos; // Lista de grupos asociados a esta materia
+    private List<Modulo> modulos = new ArrayList<>();
 
+    
     /**
      * Constructor completo para una materia.
      */
@@ -164,6 +167,14 @@ public class Materia implements Serializable {
 
     public String getIdProfesor() {
         return idProfesor;
+    }
+
+    public List<Modulo> getModulos() {
+    return modulos;
+    }
+
+    public void agregarModulo(Modulo modulo) {
+        modulos.add(modulo);
     }
 
     // ----------------- Overrides ----------------- //
