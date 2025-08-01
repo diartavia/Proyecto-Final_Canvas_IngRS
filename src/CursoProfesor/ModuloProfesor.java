@@ -30,31 +30,48 @@ public class ModuloProfesor extends javax.swing.JFrame {
     
     //------- Metodos ------///
     // Método auxiliar para crear un panel de módulo
+        // Método auxiliar para crear un panel de módulo
+    // Método auxiliar para crear un panel de módulo que se expande
     private javax.swing.JPanel crearPanelModulo(String nombreModulo) {
         javax.swing.JPanel panelModulo = new javax.swing.JPanel();
         panelModulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelModulo.setBackground(new java.awt.Color(230, 230, 230));
-        panelModulo.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE, 50)); // Altura fija
 
-        javax.swing.JLabel labelNombre = new javax.swing.JLabel(nombreModulo);
+        // Usa BoxLayout para que los componentes se alineen horizontalmente
+        panelModulo.setLayout(new javax.swing.BoxLayout(panelModulo, javax.swing.BoxLayout.X_AXIS));
+
+        // Establece el tamaño máximo para que el panel se estire horizontalmente
+        panelModulo.setMaximumSize(new java.awt.Dimension(Integer.MAX_VALUE, 50)); 
+
+        // Componente con el nombre del módulo
+        javax.swing.JLabel labelNombre = new javax.swing.JLabel("  " + nombreModulo);
         labelNombre.setFont(new java.awt.Font("Dialog", 1, 14));
+
+        // Agrega el nombre del módulo
+        panelModulo.add(labelNombre);
+        panelModulo.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(350, 10)));
+        // Agrega un espacio flexible para empujar los siguientes componentes a la derecha
+        panelModulo.add(javax.swing.Box.createHorizontalGlue());
 
         // Botones de acción
         javax.swing.JButton btnAgregar = new javax.swing.JButton("Agregar");
         javax.swing.JButton btnEditar = new javax.swing.JButton("Editar");
         javax.swing.JButton btnEliminar = new javax.swing.JButton("Eliminar");
 
-        // Configuración del Layout para el panel del módulo
-        panelModulo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10)); // Alineación a la izquierda
-        panelModulo.add(labelNombre);
-        panelModulo.add(javax.swing.Box.createHorizontalGlue()); // Empuja los botones a la derecha
+        // Agrega los botones
         panelModulo.add(btnAgregar);
+        panelModulo.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(15, 0))); // Espacio entre botones
         panelModulo.add(btnEditar);
+        panelModulo.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(15, 0)));
         panelModulo.add(btnEliminar);
+
+        // Agrega un pequeño espacio al final
+        panelModulo.add(javax.swing.Box.createRigidArea(new java.awt.Dimension(10, 0)));
 
         return panelModulo;
     }
     
+
     // Método para cargar y mostrar todos los módulos de la materia actual
     public void cargarModulos() {
         //Limpia el panel para evitar duplicados
@@ -87,6 +104,7 @@ public class ModuloProfesor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Btn_AgregarModulo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         Menupop = new javax.swing.JPanel();
         jLabel_Modulos = new javax.swing.JLabel();
@@ -124,15 +142,23 @@ public class ModuloProfesor extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
+        jLabel3.setText(".");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(482, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap())
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -315,8 +341,8 @@ public class ModuloProfesor extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Btn_AgregarModulo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -370,7 +396,7 @@ public class ModuloProfesor extends javax.swing.JFrame {
                 .addComponent(jLabel_Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(474, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -385,7 +411,7 @@ public class ModuloProfesor extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -492,6 +518,7 @@ public class ModuloProfesor extends javax.swing.JFrame {
     private javax.swing.JPanel Menupop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_Anuncios;
