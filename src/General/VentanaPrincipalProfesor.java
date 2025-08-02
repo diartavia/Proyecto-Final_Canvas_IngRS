@@ -1,6 +1,7 @@
 package General;
 
 import CursoProfesor.CursoProfesor;
+import Pantallas.LogIn.LogIn;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -61,8 +62,9 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel_Cursos = new javax.swing.JLabel();
+        jLabel_Salir = new javax.swing.JLabel();
         jLabel_Tablero = new javax.swing.JLabel();
+        jLabel_Cursos1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel_BotonesEstu = new javax.swing.JPanel();
 
@@ -75,14 +77,14 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo Ulacit_vSmall.png"))); // NOI18N
 
-        jLabel_Cursos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel_Cursos.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Cursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_Cursos.setText("Cursos");
-        jLabel_Cursos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel_Cursos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel_Salir.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Salir.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Salir.setText("Salir");
+        jLabel_Salir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Salir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_CursosMouseClicked(evt);
+                jLabel_SalirMouseClicked(evt);
             }
         });
 
@@ -97,6 +99,17 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
             }
         });
 
+        jLabel_Cursos1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Cursos1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Cursos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Cursos1.setText("Cursos");
+        jLabel_Cursos1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Cursos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_Cursos1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -106,7 +119,8 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel_Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel_Salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Cursos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -116,9 +130,11 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(40, 40, 40)
                 .addComponent(jLabel_Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel_Cursos1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
@@ -169,17 +185,21 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
-        // TODO add your handling code here:
-        
-
-    }//GEN-LAST:event_jLabel_CursosMouseClicked
+    private void jLabel_SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SalirMouseClicked
+        LogIn In = new LogIn();
+        In.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_SalirMouseClicked
 
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
         // TODO add your handling code here:
         this.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_jLabel_TableroMouseClicked
+
+    private void jLabel_Cursos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Cursos1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_Cursos1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -220,7 +240,8 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel_Cursos;
+    private javax.swing.JLabel jLabel_Cursos1;
+    private javax.swing.JLabel jLabel_Salir;
     private javax.swing.JLabel jLabel_Tablero;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

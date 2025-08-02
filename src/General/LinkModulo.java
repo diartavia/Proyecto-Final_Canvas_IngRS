@@ -2,9 +2,11 @@ package General;
 
 public class LinkModulo extends ObjetoModulo {
     private String url;
+    private String Titulo;
 
-    public LinkModulo(String url) {
+    public LinkModulo(String Titulo,String url) {
         this.url = url;
+        this.Titulo = Titulo;
     }
 
     public String getTipo() {
@@ -13,5 +15,9 @@ public class LinkModulo extends ObjetoModulo {
 
     public String getContenido() {
         return url;
+    }
+
+    public String getTitulo() {
+        return Titulo;
     }
 }

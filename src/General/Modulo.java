@@ -18,23 +18,13 @@ public class Modulo implements Serializable {
     public void agregarObjeto(ObjetoModulo objeto) {
         objetos.add(objeto);
     }
-
-    public List<ObjetoModulo> getObjetos() {
+    
+    // Método que devuelve los elementos del módulo (antes `getObjetos`)
+    public List<ObjetoModulo> getElementos() {
         return objetos;
     }
 
-    //Esto permite que tanto el profesor como el estudiante accedan a los mismos módulos del curso.
-    private List<Modulo> modulos = new ArrayList<>();
-
-    public void agregarModulo(Modulo modulo) {
-        modulos.add(modulo);
-    }
-
-    public List<Modulo> getModulos() {
-        return modulos;
-    }
-    // Getters y Setters normales
-
+    // Getters y Setters
     public String getTitulo() {
         return titulo;
     }
@@ -42,6 +32,4 @@ public class Modulo implements Serializable {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-    
 }
-
