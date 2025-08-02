@@ -8,12 +8,12 @@ import javax.swing.JOptionPane;
 public class JAgregarModulo extends javax.swing.JFrame {
 
     private Materia materiaActual;
-    private ModuloProfesor ventanaPrincipal;
+    private JModuloProfesor ventanaPrincipal;
     // Para saber cual hay que editar
     private Modulo moduloAEditar;
 
     // CONSTRUCTOR PARA AGREGAR UN NUEVO MÓDULO
-    public JAgregarModulo(Materia materiaActual, ModuloProfesor ventanaPrincipal) {
+    public JAgregarModulo(Materia materiaActual, JModuloProfesor ventanaPrincipal) {
         this.materiaActual = materiaActual;
         this.ventanaPrincipal = ventanaPrincipal;
         this.moduloAEditar = null; // En este no hay modulo actual
@@ -24,7 +24,7 @@ public class JAgregarModulo extends javax.swing.JFrame {
     }
     
     // NUEVO CONSTRUCTOR PARA EDITAR UN MÓDULO QUE YA EXISTE
-    public JAgregarModulo(Modulo modulo, ModuloProfesor ventanaPrincipal) {
+    public JAgregarModulo(Modulo modulo, JModuloProfesor ventanaPrincipal) {
         this.ventanaPrincipal = ventanaPrincipal;
         this.moduloAEditar = modulo; // Guarda el módulo a editar
         this.materiaActual = null;

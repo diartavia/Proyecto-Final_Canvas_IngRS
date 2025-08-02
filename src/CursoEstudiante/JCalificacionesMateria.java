@@ -405,7 +405,9 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_Tareas2MouseClicked
 
     private void jLabel_Modulos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Modulos2MouseClicked
-        // TODO add your handling code here:
+        JModuloEstudiante JME = new JModuloEstudiante();
+        JME.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_Modulos2MouseClicked
 
     private void jLabel_Anuncios2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Anuncios2MouseClicked
