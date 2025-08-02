@@ -329,7 +329,9 @@ public class CursoEstudiante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
-        // TODO add your handling code here:
+        JModuloEstudiante JME = new JModuloEstudiante(mate);
+        JME.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked

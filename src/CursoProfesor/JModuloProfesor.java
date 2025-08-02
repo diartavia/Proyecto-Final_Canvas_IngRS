@@ -5,13 +5,13 @@ import General.VentanaPrincipalProfesor;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-public class ModuloProfesor extends javax.swing.JFrame {
+public class JModuloProfesor extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ModuloProfesor.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JModuloProfesor.class.getName());
     Materia mate;
     
     
-    public ModuloProfesor(Materia mater) {
+    public JModuloProfesor(Materia mater) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.mate = mater;
@@ -19,7 +19,7 @@ public class ModuloProfesor extends javax.swing.JFrame {
         cargarModulos();
     }
     
-    public ModuloProfesor() {
+    public JModuloProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.mate = null;
@@ -487,7 +487,7 @@ public class ModuloProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_Btn_AgregarModuloActionPerformed
 
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
-        ModuloProfesor mp = new ModuloProfesor(mate);
+        JModuloProfesor mp = new JModuloProfesor(mate);
         mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
@@ -562,7 +562,7 @@ public class ModuloProfesor extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ModuloProfesor().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new JModuloProfesor().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

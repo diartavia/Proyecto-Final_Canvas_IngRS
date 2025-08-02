@@ -7,9 +7,9 @@ public class JAgregarElementoModulo extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JAgregarElementoModulo.class.getName());
     private Modulo moduloActual;
-    private ModuloProfesor ventanaPrincipal;
+    private JModuloProfesor ventanaPrincipal;
 
-    public JAgregarElementoModulo(Modulo modulo, ModuloProfesor ventanaPrincipal) {
+    public JAgregarElementoModulo(Modulo modulo, JModuloProfesor ventanaPrincipal) {
         this.moduloActual = modulo;
         this.ventanaPrincipal = ventanaPrincipal;
         initComponents();

@@ -497,7 +497,7 @@ public class JGrupo extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
-        ModuloProfesor mp = new ModuloProfesor(mate);
+        JModuloProfesor mp = new JModuloProfesor(mate);
         mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
