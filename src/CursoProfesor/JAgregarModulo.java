@@ -6,17 +6,35 @@ import General.Sistema;
 import javax.swing.JOptionPane;
 
 public class JAgregarModulo extends javax.swing.JFrame {
-    
+
     private Materia materiaActual;
     private ModuloProfesor ventanaPrincipal;
+    // Para saber cual hay que editar
+    private Modulo moduloAEditar;
 
+    // CONSTRUCTOR PARA AGREGAR UN NUEVO MÓDULO
     public JAgregarModulo(Materia materiaActual, ModuloProfesor ventanaPrincipal) {
         this.materiaActual = materiaActual;
-        this.ventanaPrincipal = ventanaPrincipal; // Guarda la referencia
+        this.ventanaPrincipal = ventanaPrincipal;
+        this.moduloAEditar = null; // En este no hay modulo actual
         initComponents();
         this.setLocationRelativeTo(null);
+        // paraque salga como si fuera a crear uno
+        jButton1.setText("Agregar");
     }
-
+    
+    // NUEVO CONSTRUCTOR PARA EDITAR UN MÓDULO QUE YA EXISTE
+    public JAgregarModulo(Modulo modulo, ModuloProfesor ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
+        this.moduloAEditar = modulo; // Guarda el módulo a editar
+        this.materiaActual = null;
+        initComponents();
+        this.setLocationRelativeTo(null);
+        // llena el campo con el nombre anterior
+        JTF_NombreModulo.setText(modulo.getTitulo());
+        // Para que salga como si fuera a editar
+        jButton1.setText("Guardar Cambios");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,13 +56,13 @@ public class JAgregarModulo extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 0, 102));
-        jLabel1.setText("AGREGAR MODULO");
+        jLabel1.setText("AGREGAR MODULO O EDITAR");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre:");
 
-        jButton1.setText("Agregar");
+        jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -103,15 +121,24 @@ public class JAgregarModulo extends javax.swing.JFrame {
         String nombreModulo = JTF_NombreModulo.getText().trim();
         if (nombreModulo.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El nombre del módulo no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            Modulo nuevoModulo = new Modulo(nombreModulo); // Usa la clase Modulo
-            materiaActual.agregarModulo(nuevoModulo);
-
-            // Llama al método de la ventana principal para que se actualice
-            ventanaPrincipal.cargarModulos();
-
-            this.dispose();
+            return;
         }
+
+        // Logica para EDITAR un módulo
+        if (this.moduloAEditar != null) {
+            this.moduloAEditar.setTitulo(nombreModulo);
+            JOptionPane.showMessageDialog(this, "Módulo editado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } 
+        // Logica para AGREGAR un nuevo módulo
+        else {
+            Modulo nuevoModulo = new Modulo(nombreModulo);
+            materiaActual.agregarModulo(nuevoModulo);
+            JOptionPane.showMessageDialog(this, "Módulo agregado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        // Llama al metodo de la ventana principal para que se actualice y luego cierra la ventana
+        ventanaPrincipal.cargarModulos();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

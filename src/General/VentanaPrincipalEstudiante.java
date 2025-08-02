@@ -6,6 +6,7 @@ package General;
 
 import CursoEstudiante.CursoEstudiante;
 import CursoEstudiante.JCalificaciones;
+import Pantallas.LogIn.LogIn;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -89,8 +90,9 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel_Cursos = new javax.swing.JLabel();
-        jLabel_Grupos = new javax.swing.JLabel();
+        jLabel_Salir = new javax.swing.JLabel();
         jLabel_Tablero = new javax.swing.JLabel();
+        jLabel_Grupos1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         JPanel_botones = new javax.swing.JPanel();
@@ -125,14 +127,14 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
             }
         });
 
-        jLabel_Grupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel_Grupos.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Grupos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_Grupos.setText("Grupos");
-        jLabel_Grupos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel_Grupos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel_Salir.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Salir.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Salir.setText("Salir");
+        jLabel_Salir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Salir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_GruposMouseClicked(evt);
+                jLabel_SalirMouseClicked(evt);
             }
         });
 
@@ -147,6 +149,17 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
             }
         });
 
+        jLabel_Grupos1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel_Grupos1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Grupos1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_Grupos1.setText("Grupos");
+        jLabel_Grupos1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel_Grupos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_Grupos1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -156,8 +169,9 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel_Cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_Grupos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel_Salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Grupos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -169,9 +183,11 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
                 .addComponent(jLabel_Tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel_Cursos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel_Grupos, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel_Grupos1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                .addComponent(jLabel_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
@@ -246,15 +262,22 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
-    private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
+    private void jLabel_SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SalirMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel_GruposMouseClicked
+        LogIn In = new LogIn();
+        In.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_SalirMouseClicked
 
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
         // TODO add your handling code here:
         this.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_jLabel_TableroMouseClicked
+
+    private void jLabel_Grupos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Grupos1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel_Grupos1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -297,7 +320,8 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_Cursos;
-    private javax.swing.JLabel jLabel_Grupos;
+    private javax.swing.JLabel jLabel_Grupos1;
+    private javax.swing.JLabel jLabel_Salir;
     private javax.swing.JLabel jLabel_Tablero;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
