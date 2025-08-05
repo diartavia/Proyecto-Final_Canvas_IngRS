@@ -71,9 +71,9 @@ Diego Artavia
 
 Jose Dias
 
-Melanie Barrantes
+Melany  Barrantes
 
-Liam Paul
+Liam Carrillo 
 
 Fabricio Sanchez
 
