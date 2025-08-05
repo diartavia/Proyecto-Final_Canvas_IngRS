@@ -25,8 +25,11 @@ Implementar una solución de software funcional basada en los requerimientos lev
 ## 📂 Estructura del proyecto
 
 Proyecto-Final_Canvas_IngRS/
+
 │
+
 ├── src/
+
 │ ├── CursoEstudiante/ # Interfaces y clases para vista del estudiante
 │ ├── CursoProfesor/ # Funcionalidades y vistas para el profesor
 │ └── BaseDatos/ # Manejo de persistencia y archivos
