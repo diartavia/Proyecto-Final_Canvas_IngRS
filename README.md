@@ -34,7 +34,9 @@ Proyecto-Final_Canvas_IngRS/
 
 │ ├── CursoProfesor/ # Funcionalidades y vistas para el profesor
 
-│ └── BaseDatos/ # Manejo de persistencia y archivos
+│ └── General/ # Clases que se usan en toda parte del codigo
+
+│ └── LogIn/ # Clases que sirven para el inicio de sesion
 
 │
 
