@@ -66,10 +66,15 @@ No se requiere configuración adicional, pero se recomienda ejecutarlo desde un 
 
 👥 Autores
 Diego Artavia
+
 Jose Dias
+
 Melanie Barrantes
+
 Liam Paul
+
 Fabricio Sanchez
+
 
 🏫 Universidad
 Proyecto desarrollado para el curso Requerimientos de Software
