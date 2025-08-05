@@ -31,13 +31,21 @@ Proyecto-Final_Canvas_IngRS/
 ├── src/
 
 │ ├── CursoEstudiante/ # Interfaces y clases para vista del estudiante
+
 │ ├── CursoProfesor/ # Funcionalidades y vistas para el profesor
+
 │ └── BaseDatos/ # Manejo de persistencia y archivos
+
 │
+
 ├── *.dat # Archivos de datos usados como base de datos
+
 ├── *.txt # Registros auxiliares (ej. asistencia.txt)
+
 ├── build.xml # Script para compilar el proyecto (Apache Ant)
+
 ├── manifest.mf # Manifest para empaquetado
+
 └── .gitignore # Archivos excluidos del control de versiones
 
 
