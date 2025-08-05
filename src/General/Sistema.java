@@ -89,6 +89,10 @@ public class Sistema {
     // 5. Agregar asignación de ejemplo
     Asignacion tarea = new Asignacion("Tarea 1", "01-08-2025", "08-08-2025", 100, "Implementar clase Sistema");
     materiaDemo.agregarAsignaciones(tarea);
+    
+    Grupo grupo1 = new Grupo("g001", "Grupo 1", materiaDemo.getId());
+    grupo1.agregarEstudiante(est1); // ✅ María agregada por defecto
+    materiaDemo.getGrupos().add(grupo1);
 
     // 6. Asociar la materia al profesor
     profesorDemo.agregarMateria(materiaDemo);
