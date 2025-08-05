@@ -21,6 +21,8 @@ public class JCalificaciones extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JCalificaciones.class.getName());
 
+  Materia mate;
+    
     public JCalificaciones() {
         initComponents();
         cargarNotasGenerales();
@@ -141,7 +143,6 @@ public class JCalificaciones extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cursos que estoy tomando");
 
         JLabel_Nombre.setText("Nombre Estudiante");
@@ -149,8 +150,6 @@ public class JCalificaciones extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
         jSeparator1.setForeground(new java.awt.Color(153, 153, 153));
 
-        TablasNota.setBackground(new java.awt.Color(255, 255, 255));
-        TablasNota.setForeground(new java.awt.Color(0, 0, 0));
         TablasNota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}
@@ -231,7 +230,14 @@ public class JCalificaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
-        // TODO add your handling code here:
+       if (Sistema.getEstudianteActual() == null) {
+            JOptionPane.showMessageDialog(this, "Debe iniciar sesión para acceder a Grupos.");
+            return;
+        }
+    
+        JGruposEstudiante ventana = new JGruposEstudiante(mate);
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
@@ -240,7 +246,7 @@ public class JCalificaciones extends javax.swing.JFrame {
 
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
         // TODO add your handling code here:
-        VentanaPrincipalEstudiante VPE = new VentanaPrincipalEstudiante();
+        VentanaPrincipalEstudiante VPE = new VentanaPrincipalEstudiante(Sistema.getEstudianteActual());
         VPE.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_TableroMouseClicked
@@ -262,30 +268,7 @@ public class JCalificaciones extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TablasNotaMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new JCalificaciones().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabel_Nombre;

@@ -12,6 +12,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class JModuloEstudiante extends javax.swing.JFrame {
@@ -125,6 +126,7 @@ public class JModuloEstudiante extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel_Asignaciones = new javax.swing.JLabel();
         jLabel_Calificaciones = new javax.swing.JLabel();
+        jLabel_Asignaciones1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -254,6 +256,11 @@ public class JModuloEstudiante extends javax.swing.JFrame {
         jLabel_Asignaciones.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Asignaciones.setText("Asignaciones");
         jLabel_Asignaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Asignaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_AsignacionesMouseClicked(evt);
+            }
+        });
 
         jLabel_Calificaciones.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel_Calificaciones.setForeground(new java.awt.Color(153, 153, 153));
@@ -262,6 +269,16 @@ public class JModuloEstudiante extends javax.swing.JFrame {
         jLabel_Calificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel_CalificacionesMouseClicked(evt);
+            }
+        });
+
+        jLabel_Asignaciones1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel_Asignaciones1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Asignaciones1.setText("Asistencias");
+        jLabel_Asignaciones1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Asignaciones1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_Asignaciones1MouseClicked(evt);
             }
         });
 
@@ -279,7 +296,8 @@ public class JModuloEstudiante extends javax.swing.JFrame {
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
                         .addComponent(jLabel_Modulos))
-                    .addComponent(jLabel_PagInicio))
+                    .addComponent(jLabel_PagInicio)
+                    .addComponent(jLabel_Asignaciones1))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         MenupopLayout.setVerticalGroup(
@@ -300,7 +318,9 @@ public class JModuloEstudiante extends javax.swing.JFrame {
                 .addComponent(jLabel_Asignaciones)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_Calificaciones)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel_Asignaciones1)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -316,7 +336,6 @@ public class JModuloEstudiante extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Modulos");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -435,17 +454,14 @@ public class JModuloEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-        this.setVisible(true);
-
-        //Redirigir a otra pantalla
-        //JOptionPane.showMessageDialog(null, "Si sirve");
+      CursoEstudiante curso = new CursoEstudiante(materiaActual);
+curso.setVisible(true);
+this.dispose();
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
         // TODO add your handling code here:
-        JCalificacionesMateria cali = new JCalificacionesMateria();
+        JCalificacionesMateria cali = new JCalificacionesMateria(materiaActual);
         cali.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
@@ -459,30 +475,23 @@ public class JModuloEstudiante extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel7MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new JModuloEstudiante().setVisible(true));
+    private void jLabel_Asignaciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Asignaciones1MouseClicked
+       if (materiaActual != null) {
+        JAsistenciaEstudiante asistencia = new JAsistenciaEstudiante(materiaActual);
+        asistencia.setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "No hay materia seleccionada.");
     }
+    }//GEN-LAST:event_jLabel_Asignaciones1MouseClicked
+
+    private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
+        // TODO add your handling code here:
+        JAsignacionesEstudiante asignacionesEst = new JAsignacionesEstudiante(materiaActual);
+        asignacionesEst.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Menupop;
@@ -492,6 +501,7 @@ public class JModuloEstudiante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_Anuncios;
     private javax.swing.JLabel jLabel_Asignaciones;
+    private javax.swing.JLabel jLabel_Asignaciones1;
     private javax.swing.JLabel jLabel_Calificaciones;
     private javax.swing.JLabel jLabel_Cursos;
     private javax.swing.JLabel jLabel_Grupos;

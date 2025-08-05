@@ -15,22 +15,22 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
     Calificaciones calificacion;
     Estudiante estudiante;
     Materia mate;
-    //constructores
-    public JCalificacionesMateria() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        estudiante = Sistema.getEstudianteActual();
-    }
+//    //constructores
+//    public JCalificacionesMateria() {
+//        initComponents();
+//        this.setLocationRelativeTo(null);
+//        estudiante = Sistema.getEstudianteActual();
+//    }
     public JCalificacionesMateria(Calificaciones calificaciones) {
         initComponents();
         calificacion = calificaciones;
         this.setLocationRelativeTo(null);
     }
-    public JCalificacionesMateria(Calificaciones calificaciones, Materia Mate) {
-        initComponents();
-        calificacion = calificaciones;
-        this.setLocationRelativeTo(null);
-    }
+//    public JCalificacionesMateria(Calificaciones calificaciones, Materia Mate) {
+//        initComponents();
+//        calificacion = calificaciones;
+//        this.setLocationRelativeTo(null);
+//    }
     public JCalificacionesMateria( Materia Mate) {
         initComponents();
         mate =Mate;
@@ -85,6 +85,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         jLabel_Anuncios2 = new javax.swing.JLabel();
         jLabel_PagInicio2 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        jLabel_Asignaciones1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -229,6 +230,16 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        jLabel_Asignaciones1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel_Asignaciones1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Asignaciones1.setText("Asistencias");
+        jLabel_Asignaciones1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel_Asignaciones1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_Asignaciones1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout Menupop2Layout = new javax.swing.GroupLayout(Menupop2);
         Menupop2.setLayout(Menupop2Layout);
         Menupop2Layout.setHorizontalGroup(
@@ -244,7 +255,8 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
                     .addGroup(Menupop2Layout.createSequentialGroup()
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel_Calificaciones2)))
+                        .addComponent(jLabel_Calificaciones2))
+                    .addComponent(jLabel_Asignaciones1))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         Menupop2Layout.setVerticalGroup(
@@ -264,7 +276,9 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
                     .addGroup(Menupop2Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel_Calificaciones2)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_Asignaciones1)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -303,7 +317,6 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
             }
         });
 
-        TablaNotas.setBackground(new java.awt.Color(255, 255, 255));
         TablaNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -389,7 +402,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 634, Short.MAX_VALUE)
         );
 
         pack();
@@ -401,7 +414,9 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_Calificaciones2MouseClicked
 
     private void jLabel_Tareas2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Tareas2MouseClicked
-        // TODO add your handling code here:
+        JAsignacionesEstudiante asignacionesEst = new JAsignacionesEstudiante(mate);
+        asignacionesEst.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_Tareas2MouseClicked
 
     private void jLabel_Modulos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Modulos2MouseClicked
@@ -416,8 +431,8 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
 
     private void jLabel_PagInicio2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicio2MouseClicked
         // TODO add your handling code here:
-        CursoEstudiante CE = new CursoEstudiante();
-        CE.setVisible(true);
+        CursoEstudiante curso = new CursoEstudiante(mate);
+        curso.setVisible(true);
         this.dispose();
         //Redirigir a otra pantalla
     }//GEN-LAST:event_jLabel_PagInicio2MouseClicked
@@ -450,30 +465,17 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
 
     }//GEN-LAST:event_TablaNotasMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new JCalificacionesMateria().setVisible(true));
+    private void jLabel_Asignaciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Asignaciones1MouseClicked
+        if (mate != null) {
+        JAsistenciaEstudiante asistencia = new JAsistenciaEstudiante(mate);
+        asistencia.setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "No hay materia seleccionada.");
     }
+    }//GEN-LAST:event_jLabel_Asignaciones1MouseClicked
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabel_Nota;
@@ -485,6 +487,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Anuncios2;
+    private javax.swing.JLabel jLabel_Asignaciones1;
     private javax.swing.JLabel jLabel_Calificaciones2;
     private javax.swing.JLabel jLabel_Cursos;
     private javax.swing.JLabel jLabel_Grupos;
