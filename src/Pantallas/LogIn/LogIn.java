@@ -5,11 +5,16 @@ import java.util.ArrayList;
 
 public class LogIn extends javax.swing.JFrame {
 
-
+    /*
+            - Nota Developer 1:
+        Constructor, en este frame se inicia el programa, se inicia el sistema con Sistema.cargarDatosIniciales() el cual es una funcion de la clase Sistema para inicializar datos
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+        
+        Despues hay botones que permiten moverse a otros frames de la parte LogIn
+    */
     public LogIn() {
         initComponents();
         this.setLocationRelativeTo(null);
-
         Sistema.cargarDatosIniciales();
     }
 
@@ -146,6 +151,11 @@ public class LogIn extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /*
+            - Botones que llevan a otros frames -
+        hay dos botones ya que uno es para la imagen y otro es del texto
+     */
     private void btn_EstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EstudianteActionPerformed
         // TODO add your handling code here:
         LoginEstudiante loginest = new LoginEstudiante(Sistema.getEstudiantes());
@@ -199,6 +209,7 @@ public class LogIn extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

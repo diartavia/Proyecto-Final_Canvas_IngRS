@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Pantallas.LogIn;
 
 import General.Estudiante;
@@ -12,6 +8,14 @@ import javax.swing.JOptionPane;
 
 
 public class LoginEstudiante extends javax.swing.JFrame {
+    /*
+            - Nota Developer 1:
+        Constructor, este frame valida si el esudiante existe dentro de los creados, 
+        Se pide un ArrayList de esudiantes que se envia desde el frame LogIn
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+        
+        Despues hay dos botones, uno para validar si existe el estudiante y otro para volver al frame LogIn
+    */
     private ArrayList<Estudiante> listaEstudiantes; 
 
     public LoginEstudiante(ArrayList<Estudiante> Estudiantes) {
@@ -19,11 +23,7 @@ public class LoginEstudiante extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         listaEstudiantes= Estudiantes;
     }
-    public LoginEstudiante() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        listaEstudiantes= null;
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -161,19 +161,27 @@ public class LoginEstudiante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IngresarActionPerformed
+        //Se guardan los datos en variables para despues validarlos
         String correo = tf_correo.getText().trim().toLowerCase();
         String passw = new String(JPsswF_passwEstudiante.getPassword()).trim();
 
+        /*
+            Se verifica si el correo o la contraseña estan vacios
+        */
         if (correo.isEmpty() || passw.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe llenar ambos campos.");
             return;
         }
-
+        /*
+            Se verifica si el correo termina con @ulacit.ed.cr
+        */
         if (!correo.endsWith("@ulacit.ed.cr")) {
             JOptionPane.showMessageDialog(null, "El correo debe terminar en @ulacit.ed.cr");
             return;
         }
-
+        /*
+            Se verifica si las credenciales ingresadas coinciden con algun esudiante en el ArrayList
+        */
         for (Estudiante est : listaEstudiantes) {
             if (est.getCorreo().equalsIgnoreCase(correo) && est.getContra().equals(passw)) {
                 Sistema.setEstudianteActual(est);
@@ -187,6 +195,9 @@ public class LoginEstudiante extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Credenciales incorrectas.");
     }//GEN-LAST:event_btn_IngresarActionPerformed
 
+    /*
+        Boton para volver al frame de LogIn
+    */
     private void btn_VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_VolverActionPerformed
         // TODO add your handling code here:
         LogIn login = new LogIn();
@@ -195,40 +206,6 @@ public class LoginEstudiante extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_VolverActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginEstudiante().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField JPsswF_passwEstudiante;

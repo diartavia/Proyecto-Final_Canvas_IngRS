@@ -7,7 +7,14 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class LoginProfesor extends javax.swing.JFrame {
-
+    /*
+            - Nota Developer 1:
+        Constructor, este frame valida si el profesor existe dentro de los creados, 
+        Se pide un ArrayList de esudiantes que se envia desde el frame LogIn
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+        
+        Despues hay dos botones, uno para validar si existe el profesor y otro para volver al frame LogIn
+    */
     public LoginProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -139,6 +146,9 @@ public class LoginProfesor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+        Boton para volver al frame de LogIn
+    */
     private void btn_atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atrasActionPerformed
         // TODO add your handling code here:
         LogIn login = new LogIn();
@@ -147,19 +157,26 @@ public class LoginProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_atrasActionPerformed
     
     private void btn_Ingresar_ProfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ingresar_ProfeActionPerformed
+        //Se guardan los datos en variables para despues validarlos
         String correo = tf_correo_profe.getText().trim().toLowerCase();
         String passw = new String(JPsswF_passwProfe.getPassword()).trim();
-
+        /*
+            Se verifica si el correo o la contraseña estan vacios
+        */
         if (correo.isEmpty() || passw.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe llenar ambos campos.");
             return;
         }
-
+        /*
+            Se verifica si el correo termina con @ulacit.ed.cr
+        */
         if (!correo.endsWith("@ulacit.ed.cr")) {
             JOptionPane.showMessageDialog(null, "El correo debe terminar en @ulacit.ed.cr");
             return;
         }
-
+        /*
+            Se verifica si las credenciales ingresadas coinciden con algun esudiante en el ArrayList que esta en la clase @Sistema
+        */
         for (Profesor profe : Sistema.getProfesores()) {
             if (profe.getCorreo().equalsIgnoreCase(correo) && profe.getContra().equals(passw)) {
                 Sistema.setProfesorActual(profe);
@@ -173,40 +190,7 @@ public class LoginProfesor extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Credenciales incorrectas.");   
     }//GEN-LAST:event_btn_Ingresar_ProfeActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginProfesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginProfesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginProfesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginProfesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginProfesor().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabel_Correo_Profe;
