@@ -18,16 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-/**
- *
- * @author jadia
- */
 public class JAsistenciaEstudiante extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JAsistenciaEstudiante
-     */
-    
     private Materia materia;
   
     

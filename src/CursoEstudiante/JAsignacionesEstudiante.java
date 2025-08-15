@@ -8,10 +8,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jadia
- */
 public class JAsignacionesEstudiante extends javax.swing.JFrame {
 
     private Materia mate;

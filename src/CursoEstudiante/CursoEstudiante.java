@@ -11,16 +11,24 @@ import General.VentanaPrincipalEstudiante;
 import javax.swing.JOptionPane;
 
 public class CursoEstudiante extends javax.swing.JFrame {
-    
+
+   /*
+            - Nota Developer 1:
+        Constructor, en este frame se ve la base del curso del estudiante, se ve la informacion basica segun el profesor haya escrito (Funcionalidad por hacer)
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+
+        Despues hay botones/labels que permiten moverse a otros frames de la parte de CursoEstudiante
+        se debe de pasar siempre la materia por el constructor de cada frame
+    */
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CursoEstudiante.class.getName());
-    Materia mate;
-    Estudiante estudiante;
+    Materia mate; //para mantener en la clase cual maeria es la actual del curso
+    Estudiante estudiante; //para saber cual es el estudiante que esta en el curso
 
     public CursoEstudiante(Materia materia) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.mate = materia;
-        this.estudiante = estudiante;
+        //this.estudiante = estudiante;
        
     }
 
@@ -344,22 +352,34 @@ public class CursoEstudiante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    /*
+        -------                                                                     ----------
+        Labels que sirven como botones, los cuales  llevan a otras "pestañas" de CursoEstudiante
+        En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+        -------                                                                     ----------
+     */
+
+    //Para ir al frame Modulos
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
         JModuloEstudiante JME = new JModuloEstudiante(mate);
         JME.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
+    //Todavia no esta hecho
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
+    //Para ir a la pagina de inicio de estudiante
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
         // TODO add your handling code here:
         this.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
+    //Para ir a calificaciones de estudiante
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
         // TODO add your handling code here:
         JCalificacionesMateria cali = new JCalificacionesMateria(mate);
@@ -367,8 +387,10 @@ public class CursoEstudiante extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
+    //para que el estudiante vea los grupos
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
-    if (Sistema.getEstudianteActual() == null) {
+    //verifica si el esudiante actual es diferente de null para evitar errores
+        if (Sistema.getEstudianteActual() == null) {
         JOptionPane.showMessageDialog(this, "Debe iniciar sesión para acceder a Grupos.");
         return;
     }
@@ -378,11 +400,13 @@ public class CursoEstudiante extends javax.swing.JFrame {
     this.dispose();
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
+    //Para ver los cursos que tiene el estudiante
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
+    //Para ver el tablero donde salen todos los cursos
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
         // TODO add your handling code here:
         VentanaPrincipalEstudiante VPE = new VentanaPrincipalEstudiante();
@@ -390,6 +414,7 @@ public class CursoEstudiante extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
+    //para el menu retraible donde se ven los links a otras partes de CursoEstudiante
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         if (!Menupop.isVisible()) {
@@ -399,6 +424,7 @@ public class CursoEstudiante extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    //Para ver las asisencias del estudiante
     private void jLabel_Asignaciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Asignaciones1MouseClicked
          if (mate != null) {
         JAsistenciaEstudiante asistencia = new JAsistenciaEstudiante(mate);
@@ -409,10 +435,11 @@ public class CursoEstudiante extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jLabel_Asignaciones1MouseClicked
 
+    //Para ver las asignaciones del estuiante
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
-      JAsignacionesEstudiante asignacionesEst = new JAsignacionesEstudiante(mate);
-asignacionesEst.setVisible(true);
-this.dispose();
+        JAsignacionesEstudiante asignacionesEst = new JAsignacionesEstudiante(mate);
+        asignacionesEst.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
 
