@@ -10,25 +10,38 @@ import javax.swing.table.DefaultTableModel;
 
 public class JAsignacionesEstudiante extends javax.swing.JFrame {
 
+
+    /*
+            - Nota Developer 1:
+        Constructor, en este frame se ve las asignaciones del curso
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+
+        Despues hay botones/labels que permiten moverse a otros frames de la parte del curso como tal del estudiante
+        se debe de pasar siempre la materia por el constructor de cada frame
+    */
     private Materia mate;
-    
+    //Constructor
     public JAsignacionesEstudiante(Materia materia) {
         initComponents();
         this.mate = materia;
+        //verifica si se paso una materia real por el constructor
         if (mate == null) {
             JOptionPane.showMessageDialog(this, "No hay materia seleccionada.");
             dispose();
             return;
         }
-
         setLocationRelativeTo(null);
+        //se carga la tabla de datos
         cargarTablaAsignaciones();
     }
 
+    //Metodo para cargar la tabla con asignaciones
     private void cargarTablaAsignaciones() {
+        //crea un objeto de tipo tabla
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
+        model.setRowCount(0); //lo deja sin filas para evitar datos erroneos
 
+        //Recorre una Lista de asignaciones y rellena la tabla
         List<Asignacion> asignaciones = mate.getAsignaciones();
         for (Asignacion tarea : asignaciones) {
             model.addRow(new Object[]{
@@ -373,6 +386,12 @@ public class JAsignacionesEstudiante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+        -------                                                                     ----------
+        Labels que sirven como botones, los cuales  llevan a otras "pestañas" del curso del estudiante
+        En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+        -------                                                                     ----------
+     */
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
         JModuloEstudiante JME = new JModuloEstudiante(mate);
         JME.setVisible(true);

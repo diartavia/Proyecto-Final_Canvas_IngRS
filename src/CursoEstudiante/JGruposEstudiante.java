@@ -12,73 +12,94 @@ import General.Sistema;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jadia
- */
 public class JGruposEstudiante extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JGruposEstudiante
+
+    /*
+     - Nota Developer 1:
+        Clase para la interfaz gráfica que muestra los grupos de un estudiante dentro de una materia específica.
+        En este frame, un estudiante puede ver a qué grupos pertenece en una materia y los integrantes de cada uno.
+        Se le pasa la "Materia" por el constructor. Es crucial para filtrar los grupos
+        correctos.
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
      */
     private Materia mate;
-      
+
     public JGruposEstudiante(Materia materia) {
-          initComponents();
+        initComponents();
         this.setLocationRelativeTo(null);
+        // Guarda el objeto 'Materia' pasado en el constructor en la variable de instancia.
         this.mate = materia;
+        // Llama al método para llenar la tabla con los grupos a los que pertenece el estudiante.
         cargarGruposDelEstudiante();
     }
 
-     private void cargarGruposDelEstudiante() {
+    /**
+        Método para cargar y mostrar los grupos de la materia actual a los que
+        pertenece el estudiante que ha iniciado sesión.
+     */
+    private void cargarGruposDelEstudiante() {
+        // Obtiene el objeto del estudiante que ha iniciado sesión.
         Estudiante estActual = Sistema.getEstudianteActual();
+        // Verifica si el estudiante actual existe. Si no, muestra un mensaje de error.
         if (estActual == null) {
             JOptionPane.showMessageDialog(this, "Debe iniciar sesión para ver sus grupos.");
-            return;
+            return; // Detiene la ejecución del método.
         }
 
+        // Obtiene el modelo de la tabla para poder manipular sus filas y columnas.
         DefaultTableModel model = (DefaultTableModel) tblGrupos.getModel();
+        // Limpia todas las filas existentes en la tabla para evitar datos duplicados.
         model.setRowCount(0);
 
+        // Itera sobre todos los grupos de la materia.
         for (Grupo g : mate.getGrupos()) {
+            // Comprueba si la lista de estudiantes del grupo contiene al estudiante actual.
             if (g.getEstudiantes().contains(estActual)) {
+                // Si el estudiante está en el grupo, añade una nueva fila a la tabla con el nombre del grupo
+                // y el nombre de la materia.
                 model.addRow(new Object[]{
-                    g.getNombre(),
-                    mate.getNombre()
+                        g.getNombre(),
+                        mate.getNombre()
                 });
             }
         }
     }
 
-
-    
- 
+    /**
+     * Método para cargar los integrantes de un grupo seleccionado en una tabla
+     * secundaria.
+     *
+     * @param grupo El objeto 'Grupo' cuyos integrantes se mostrarán.
+     */
     private void mostrarIntegrantes(Grupo grupo) {
+        // Obtiene el modelo de la tabla de integrantes.
         DefaultTableModel model = (DefaultTableModel) tblIntegrantes.getModel();
+        // Limpia la tabla para evitar datos de grupos anteriores.
         model.setRowCount(0);
 
+        // Itera sobre cada estudiante en el grupo y añade sus nombres a la tabla.
         for (Estudiante e : grupo.getEstudiantes()) {
             model.addRow(new Object[]{e.getNombre() + " " + e.getApellido()});
         }
 
+        // Lógica para buscar el profesor de la materia.
         Profesor profEncontrado = null;
+        // Itera sobre la lista global de profesores.
         for (Profesor p : Sistema.getProfesores()) {
+            // Compara el ID del profesor con el ID del profesor asignado a la materia.
             if (p.getId().equals(mate.getIdProfesor())) {
                 profEncontrado = p;
-                break;
+                break; // Si se encuentra, sale del bucle para optimizar.
             }
         }
 
+        // Actualiza el JLabel 'lblProfesor' con el nombre del profesor.
+        // Utiliza un operador ternario: si se encontró el profesor, muestra su nombre;
+        // de lo contrario, muestra "No asignado".
         lblProfesor.setText(profEncontrado != null ? profEncontrado.getNombre() : "No asignado");
     }
 
-
-    
-
-    
-    
-    
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -444,22 +465,33 @@ public class JGruposEstudiante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+       -------                                                                     ----------
+       Labels que sirven como botones, los cuales llevan a otras "pestañas" del curso del estudiante
+       En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+       -------                                                                     ----------
+    */
+
+    //Para ir a Modulos
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
         JModuloEstudiante JME = new JModuloEstudiante(mate);
         JME.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
+    //Para ir a Anuncios (No esta hecho)
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
+    //Para ir a la pagina de inicio del curso
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
-     CursoEstudiante curso = new CursoEstudiante(mate);
-curso.setVisible(true);
-this.dispose();
+        CursoEstudiante curso = new CursoEstudiante(mate);
+        curso.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
+    //Para ir a calificaciones
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
         // TODO add your handling code here:
         JCalificacionesMateria cali = new JCalificacionesMateria(mate);
@@ -467,6 +499,7 @@ this.dispose();
         this.dispose();
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
+    //para el menu retraible
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         if (!Menupop.isVisible()) {
@@ -476,32 +509,34 @@ this.dispose();
         }
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    //Este no se ocupa por ahora
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
     
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
+    //Es para ir a Cursos(Este todavia no esta)
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
+    //Para ir al curso estudiante
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
-        // TODO add your handling code here:
-      CursoEstudiante cursoEst = new CursoEstudiante(mate);
-    cursoEst.setVisible(true);
-    this.dispose();
+        CursoEstudiante cursoEst = new CursoEstudiante(mate);
+        cursoEst.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
     private void tblGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGruposMouseClicked
-  int row = tblGrupos.getSelectedRow();
-        if (row >= 0) {
-            String nombreGrupo = tblGrupos.getValueAt(row, 0).toString();
-            for (Grupo g : mate.getGrupos()) {
-                if (g.getNombre().equals(nombreGrupo)) {
-                    mostrarIntegrantes(g);
-                    break;
+        int row = tblGrupos.getSelectedRow();
+            if (row >= 0) {
+                String nombreGrupo = tblGrupos.getValueAt(row, 0).toString();
+                for (Grupo g : mate.getGrupos()) {
+                    if (g.getNombre().equals(nombreGrupo)) {
+                        mostrarIntegrantes(g);
+                        break;
+                    }
                 }
             }
-        }
     }//GEN-LAST:event_tblGruposMouseClicked
 
     private void jLabel_Asignaciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Asignaciones1MouseClicked

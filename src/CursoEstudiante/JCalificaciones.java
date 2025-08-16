@@ -13,31 +13,39 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Diego
- */
 public class JCalificaciones extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JCalificaciones.class.getName());
 
-  Materia mate;
-    
+    /*
+            - Nota Developer 1:
+        Constructor, en este frame se ven las notas de cada curso de un estudiante en el curso
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+
+        Después hay botones/labels que permiten moverse a otros frames de la parte del curso como tal del estudiante
+        se debe de pasar siempre la materia por el constructor de cada frame con algunas posibles excepciones
+    */
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JCalificaciones.class.getName());
+    Materia mate;
+    //Constructor
     public JCalificaciones() {
         initComponents();
-        cargarNotasGenerales();
-        Estudiante estudianteact = Sistema.getEstudianteActual();
-        JLabel_Nombre.setText(estudianteact.getNombre()+" "+estudianteact.getApellido());
+        cargarNotasGenerales(); //Metodo para cargar generales
+        Estudiante estudianteact = Sistema.getEstudianteActual(); //para guardar el estudiante actual
+        JLabel_Nombre.setText(estudianteact.getNombre()+" "+estudianteact.getApellido()); //para poner el nombre en el frame
         this.setLocationRelativeTo(null);
     }
 
-    
+    /*
+        -----------Metodo para cargar las notas
+     */
     private void cargarNotasGenerales() {
+        //la tabla creada se asigna a un objeto de tabla
         DefaultTableModel model = (DefaultTableModel) TablasNota.getModel();
         model.setRowCount(0); // Limpiar tabla
 
+        //Para saber el estudiante actual
         Estudiante estudiante = Sistema.getEstudianteActual();
 
+        //para cargar la tabla de los cursos y las notas de cada asignación
         for (Materia materia : estudiante.getMaterias()) {
             List<NotaAsignacion> notas = estudiante.getNotasPorMateria().get(materia);
             if (notas != null && !notas.isEmpty()) {
@@ -229,6 +237,14 @@ public class JCalificaciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    /*
+       -------                                                                     ----------
+       Labels que sirven como botones, los cuales llevan a otras "pestañas" del curso del estudiante
+       En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+       -------                                                                     ----------
+    */
+    //Este lleva a poder ver los grupos del estudiante
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
        if (Sistema.getEstudianteActual() == null) {
             JOptionPane.showMessageDialog(this, "Debe iniciar sesión para acceder a Grupos.");
@@ -240,10 +256,12 @@ public class JCalificaciones extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
+    //Este lleva a poder ver los cursos del estudiante
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
+    //Este lleva a poder ver el tablero del estudiante donde sale cada curso
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
         // TODO add your handling code here:
         VentanaPrincipalEstudiante VPE = new VentanaPrincipalEstudiante(Sistema.getEstudianteActual());
@@ -251,6 +269,9 @@ public class JCalificaciones extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
+    /*
+        Es para que cuando se seleccione un objeto de la tabla se redirija al frame de cursos donde se ven las notas más especificas
+    */
     private void TablasNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablasNotaMouseClicked
         if (evt.getClickCount() == 2) { 
             int fila = TablasNota.rowAtPoint(evt.getPoint());

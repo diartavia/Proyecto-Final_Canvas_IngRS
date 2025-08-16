@@ -16,55 +16,81 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class JModuloEstudiante extends javax.swing.JFrame {
-    
+
+    /*
+        - Nota Developer 1:
+        Clase para la interfaz gráfica que muestra los módulos de una materia para un estudiante.
+        Esta clase construye dinámicamente la interfaz de usuario con paneles anidados.
+        En este frame, el estudiante ve el contenido de la materia organizado en módulos.
+        Se usa **BoxLayout** para una alineación vertical, y **Box.createRigidArea**
+        para agregar espaciado entre los componentes, lo que ayuda a organizar la UI.
+     */
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JModuloEstudiante.class.getName());
+    private Materia materiaActual;
 
-    private Materia materiaActual; // Variable para almacenar la materia
-
+    // Constructor principal
     public JModuloEstudiante(Materia materia) {
-        this.materiaActual = materia; // Guarda la materia
+        // Asigna el objeto 'materia' pasado al constructor a la variable de instancia.
+        this.materiaActual = materia;
+        // Inicializa los componentes de la interfaz de usuario creados por el diseñador.
         initComponents();
-        this.setLocationRelativeTo(null); // Centra la ventana
-        this.cargarModulos(); // Llama a este nuevo método para mostrar los módulos
-    }
-    
-    public JModuloEstudiante() {
-        initComponents();
+        // Centra la ventana en la pantalla.
+        this.setLocationRelativeTo(null);
+        // Llama al método para cargar los módulos de la materia.
+        this.cargarModulos();
     }
 
-    
+
+    /*
+        Método para cargar dinámicamente los módulos de la materia en el panel
+     */
     public void cargarModulos() {
-    jPanel5.removeAll(); 
-    // Usa un layout con alineación horizontal para que los componentes se estiren
-    jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
+        // Elimina todos los componentes existentes en el panel, asegurando que no haya duplicados.
+        jPanel5.removeAll();
+        // Establece el gestor de diseño para que los componentes se apilen verticalmente.
+        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
 
-    if (materiaActual != null && materiaActual.getModulos() != null) {
-        for (Modulo modulo : materiaActual.getModulos()) {
-            JPanel panelModulo = crearPanelModulo(modulo);
-            // Agrega el panel del módulo con un componente "glue" para que se estire
-            panelModulo.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinea a la izquierda
-            jPanel5.add(panelModulo);
-            jPanel5.add(Box.createRigidArea(new java.awt.Dimension(0, 15))); // Espacio entre módulos
+        // Verifica que la materia y sus módulos no sean nulos antes de intentar iterar.
+        if (materiaActual != null && materiaActual.getModulos() != null) {
+            // Itera sobre cada 'Modulo' en la lista de módulos de la materia.
+            for (Modulo modulo : materiaActual.getModulos()) {
+                // Llama al método auxiliar para crear un panel para cada módulo.
+                JPanel panelModulo = crearPanelModulo(modulo);
+                // Alinea el panel del módulo a la izquierda dentro del BoxLayout.
+                panelModulo.setAlignmentX(Component.LEFT_ALIGNMENT);
+                // Agrega el panel del módulo al panel principal.
+                jPanel5.add(panelModulo);
+                // Agrega un espacio rígido de 15 píxeles de altura para separar los módulos.
+                jPanel5.add(Box.createRigidArea(new java.awt.Dimension(0, 15)));
+            }
         }
+
+        // Vuelve a calcular el diseño del panel para que los nuevos componentes sean visibles.
+        jPanel5.revalidate();
+        // Vuelve a pintar el panel para actualizar la interfaz gráfica.
+        jPanel5.repaint();
     }
-    
-    jPanel5.revalidate();
-    jPanel5.repaint();
-}  
-    
+
+    /*
+        Método auxiliar para crear un panel visual para un 'Modulo' específico.
+     */
     private JPanel crearPanelModulo(Modulo modulo) {
         JPanel panelPrincipal = new JPanel();
+        // Usa BoxLayout vertical para apilar los elementos del módulo.
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
+        // Agrega un borde para delimitar visualmente el panel del módulo.
         panelPrincipal.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        // Etiqueta para el título del módulo.
         JLabel labelNombre = new JLabel("  " + modulo.getTitulo());
         labelNombre.setFont(new java.awt.Font("Dialog", 1, 14));
         panelPrincipal.add(Box.createRigidArea(new java.awt.Dimension(0, 5)));
         panelPrincipal.add(labelNombre);
         panelPrincipal.add(Box.createRigidArea(new java.awt.Dimension(400, 5)));
 
-        // Recorre los elementos del módulo
+        // Recorre la lista de elementos (Texto, Link, etc.) dentro del módulo.
         for (ObjetoModulo elemento : modulo.getElementos()) {
+            // Llama a otro método auxiliar para crear el panel de cada elemento.
             panelPrincipal.add(crearPanelElemento(elemento));
             panelPrincipal.add(Box.createRigidArea(new java.awt.Dimension(0, 5)));
         }
@@ -72,30 +98,39 @@ public class JModuloEstudiante extends javax.swing.JFrame {
         return panelPrincipal;
     }
 
+    /*
+     Método auxiliar para crear un panel visual para un 'ObjetoModulo' específico.
+     */
     private JPanel crearPanelElemento(ObjetoModulo elemento) {
         JPanel panelElemento = new JPanel();
+        // Usa BoxLayout horizontal para colocar el ícono y el texto en la misma línea.
         panelElemento.setLayout(new BoxLayout(panelElemento, BoxLayout.X_AXIS));
         panelElemento.setBackground(new java.awt.Color(245, 245, 245));
+        // Establece un borde vacío para crear espacio interno.
         panelElemento.setBorder(BorderFactory.createEmptyBorder(5, 20, 5, 5));
 
         JLabel labelIcono = new JLabel();
         JLabel labelTexto = new JLabel(elemento.getTitulo());
         labelTexto.setFont(new java.awt.Font("Dialog", 0, 12));
 
+        // Comprueba el tipo de objeto para asignar el ícono y el comportamiento correctos.
         if (elemento instanceof TextoModulo) {
+            // Si es un objeto de texto, carga el ícono de texto.
             labelIcono.setIcon(new ImageIcon(getClass().getResource("/Imagenes/texto.png")));
-            // Aquí podrías agregar un MouseListener para mostrar el contenido
+            // Aquí se debería añadir la lógica para mostrar el contenido del texto.
         } else if (elemento instanceof LinkModulo) {
+            // Si es un objeto de enlace, carga el ícono de enlace.
             labelIcono.setIcon(new ImageIcon(getClass().getResource("/Imagenes/link.png")));
+            // Cambia el color del texto a azul y el cursor a una mano para indicar que es un enlace.
             labelTexto.setForeground(java.awt.Color.BLUE);
             labelTexto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            // Aquí podrías agregar un MouseListener para abrir el link
+            // Aquí se debería añadir la lógica para abrir el enlace.
         }
 
         panelElemento.add(labelIcono);
-        panelElemento.add(Box.createRigidArea(new java.awt.Dimension(10, 0)));
+        panelElemento.add(Box.createRigidArea(new java.awt.Dimension(10, 0))); // Espacio entre ícono y texto.
         panelElemento.add(labelTexto);
-        panelElemento.add(Box.createHorizontalGlue()); // Para alinear el texto a la izquierda
+        panelElemento.add(Box.createHorizontalGlue()); // Empuja los componentes a la izquierda, llenando el espacio restante.
 
         return panelElemento;
     }
@@ -430,14 +465,24 @@ public class JModuloEstudiante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+       -------                                                                     ----------
+       Labels que sirven como botones, los cuales llevan a otras "pestañas" del curso del estudiante
+       En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+       -------                                                                     ----------
+    */
+
+    //Para ir a grupos estudiante (no esta todavia)
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
+    //Para ir a cursos estudiante (no esta todavia)
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
+    //Para ir a la ventana principal
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
         // TODO add your handling code here:
         VentanaPrincipalEstudiante VPE = new VentanaPrincipalEstudiante();
@@ -445,20 +490,25 @@ public class JModuloEstudiante extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
+    //Para ir a modulos estudiante (no esta todavia)
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
-        // TODO add your handling code here:
+        JModuloEstudiante modulo = new JModuloEstudiante(materiaActual);
+        this.dispose();
+        modulo.setVisible(true);
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
+    //Para ir a la pagina de inicio del curso
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
-      CursoEstudiante curso = new CursoEstudiante(materiaActual);
-curso.setVisible(true);
-this.dispose();
+        CursoEstudiante curso = new CursoEstudiante(materiaActual);
+        curso.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
+    //Para ir a calificaciones estudiante
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
         // TODO add your handling code here:
         JCalificacionesMateria cali = new JCalificacionesMateria(materiaActual);
@@ -466,6 +516,7 @@ this.dispose();
         this.dispose();
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
+    //para el menu desplegable
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         if (!Menupop.isVisible()) {
@@ -475,6 +526,7 @@ this.dispose();
         }
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    //Para ir a las asistencias
     private void jLabel_Asignaciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Asignaciones1MouseClicked
        if (materiaActual != null) {
         JAsistenciaEstudiante asistencia = new JAsistenciaEstudiante(materiaActual);
@@ -485,6 +537,7 @@ this.dispose();
     }
     }//GEN-LAST:event_jLabel_Asignaciones1MouseClicked
 
+    //para ver las asignaciones
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
         // TODO add your handling code here:
         JAsignacionesEstudiante asignacionesEst = new JAsignacionesEstudiante(materiaActual);

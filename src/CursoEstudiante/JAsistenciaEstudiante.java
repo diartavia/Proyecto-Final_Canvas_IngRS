@@ -20,9 +20,16 @@ import javax.swing.SwingConstants;
 
 public class JAsistenciaEstudiante extends javax.swing.JFrame {
 
+    /*
+            - Nota Developer 1:
+        Constructor, en este frame se ve la asisencia de un estudiante en el curso
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+
+        Después hay botones/labels que permiten moverse a otros frames de la parte del curso como tal del estudiante
+        se debe de pasar siempre la materia por el constructor de cada frame con algunas posibles excepciones
+    */
     private Materia materia;
-  
-    
+    //Constructor
     public JAsistenciaEstudiante(Materia materia) {
           initComponents();
         this.setLocationRelativeTo(null);
@@ -30,13 +37,19 @@ public class JAsistenciaEstudiante extends javax.swing.JFrame {
         calcularAsistencia();
     }
 
-       private void calcularAsistencia() {
+    /*
+        ------------- Metodo para calcular la asistencia del estudiante
+     */
+    private void calcularAsistencia() {
+        //obtiene el estudiante actual
         Estudiante estudiante = Sistema.getEstudianteActual();
+        //Verifica si el estudiante es un null
         if (estudiante == null) {
             JOptionPane.showMessageDialog(this, "Debe iniciar sesión.");
             return;
         }
 
+        // Guarda en un arraylist las asistencias del estudiante
         ArrayList<Asistencia> lista = ArchivoAsistencias.cargar();
         if (lista.isEmpty()) {
             lblPorcentaje.setText("0%");
@@ -45,10 +58,13 @@ public class JAsistenciaEstudiante extends javax.swing.JFrame {
             return;
         }
 
+        //Inicializa estas variables que se usan al mostrar la asisencia
         int total = 0;
         int presentes = 0;
         int ausentes = 0;
 
+        //Recorre la lista de asistencia de un estudiante y va agregando 1s a cada una de las variables anteriores
+        // segun lo que sea el estado de la asistencia, siempre se suma 1 al total.
         for (Asistencia a : lista) {
             if (a.getIdEstudiante().equals(estudiante.getId()) &&
                 materia.contieneEstudiante(estudiante.getId())) {
@@ -61,6 +77,7 @@ public class JAsistenciaEstudiante extends javax.swing.JFrame {
             }
         }
 
+        //calcula para saber que poner en el label
         if (total == 0) {
             lblPorcentaje.setText("0%");
             lblEstado.setText("Sin registros de asistencia");
@@ -68,9 +85,11 @@ public class JAsistenciaEstudiante extends javax.swing.JFrame {
             return;
         }
 
+        //Para poner el porcenaje de asistencia
         double porcentaje = (presentes * 100.0) / total;
         lblPorcentaje.setText(String.format("%.1f%%", porcentaje));
 
+        //Si tiene 3 ausencias se pone en el label que perdio la materia, si no no se cambia esta parte del estado
         if (ausentes > 3) {
             lblEstado.setForeground(Color.RED);
             lblEstado.setText("Perdió la materia");
@@ -78,13 +97,8 @@ public class JAsistenciaEstudiante extends javax.swing.JFrame {
             lblEstado.setForeground(Color.BLACK);
             lblEstado.setText("");
         }
-    }
+    }//Fin metodo
 
-
-    
-    
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -423,22 +437,33 @@ public class JAsistenciaEstudiante extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+       -------                                                                     ----------
+       Labels que sirven como botones, los cuales llevan a otras "pestañas" del curso del estudiante
+       En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+       -------                                                                     ----------
+    */
+
+    //Este lleva a poder ver los modulos del estudiante
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
         JModuloEstudiante JME = new JModuloEstudiante(materia);
         JME.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
+    //Este lleva a poder ver los anuncios del estudiante (por hacer)
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
+    //Este lleva a poder ver la página de inicio donde están todos los cursos
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
-      CursoEstudiante curso = new CursoEstudiante(materia);
-curso.setVisible(true);
-this.dispose();
+        CursoEstudiante curso = new CursoEstudiante(materia);
+        curso.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
+    //Este lleva a poder ver las calificaciones del estudiante
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
         // TODO add your handling code here:
         JCalificacionesMateria cali = new JCalificacionesMateria(materia);
@@ -446,6 +471,7 @@ this.dispose();
         this.dispose();
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
+    //Este es para el boton del menu desplegable
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         if (!Menupop.isVisible()) {
@@ -455,27 +481,31 @@ this.dispose();
         }
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    //Este lleva a poder ver los grupos del estudiante (No está hecho aún)
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
 
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
+    //Este lleva a poder ver los cursos del estudiante (No está hecho aún)
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
+    //Este lleva a poder ver los modulos del estudiante
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
-          if (materia == null) {
-        materia = Sistema.getMateriaDemoPublica(); // o la materia actual del estudiante
-    }
-    CursoEstudiante cursoEst = new CursoEstudiante(materia);
-    cursoEst.setVisible(true);
-    this.dispose();
+        if (materia == null) {
+            materia = Sistema.getMateriaDemoPublica(); // o la materia actual del estudiante
+        }
+        CursoEstudiante cursoEst = new CursoEstudiante(materia);
+        cursoEst.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
+    //Este lleva a poder ver las asignaciones del estudiante
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
-       JAsignacionesEstudiante asignacionesEst = new JAsignacionesEstudiante(materia);
-asignacionesEst.setVisible(true);
-this.dispose();
+        JAsignacionesEstudiante asignacionesEst = new JAsignacionesEstudiante(materia);
+        asignacionesEst.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
         /* Create and display the form */
