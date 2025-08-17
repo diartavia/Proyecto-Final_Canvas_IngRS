@@ -7,10 +7,18 @@ import javax.swing.JOptionPane;
 
 
 public class CursoProfesor extends javax.swing.JFrame {
-    
+
+    /*
+            - Nota Developer 1:
+        Constructor, en este frame se ve la base del curso del profesor, se ve la información basica según el profesor haya escrito (Funcionalidad por hacer)
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+
+        Despues hay botones/labels que permiten moverse a otros frames de la parte de CursoProfesor
+        se debe de pasar siempre la materia por el constructor de cada frame
+    */
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CursoProfesor.class.getName());
     Materia mate;
-
+    //Constructor
     public CursoProfesor(Materia mate) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -343,71 +351,89 @@ public class CursoProfesor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    /*
+        -------                                                                     ----------
+        Labels que sirven como botones, los cuales llevan a otras "pestañas" de CursoEstudiante
+        En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+        -------                                                                     ----------
+     */
+    // Para ir a la página de inicio (Frame actual)
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
+        // Crea una nueva ventana del curso del profesor con la materia actual
         CursoProfesor cursoP = new CursoProfesor(mate); // ✅ materia actual
-        cursoP.setVisible(true);
-        this.dispose();
+        cursoP.setVisible(true); // Muestra la nueva ventana
+        this.dispose(); // Cierra la ventana actual
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
+    // Para ir a anuncios (todavía no implementado)
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
-        // TODO add your handling code here:
+        // TODO: Aquí se agregará la lógica para abrir los anuncios
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
+    // Para ir a la sección de módulos
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
-        JModuloProfesor mp = new JModuloProfesor(mate);
-        mp.setVisible(true);
-        this.dispose();
+        JModuloProfesor mp = new JModuloProfesor(mate); // Se crea ventana de módulos con la materia actual
+        mp.setVisible(true); // Se abre la ventana
+        this.dispose(); // Se cierra la ventana actual
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
+    // Para ir a la sección de calificaciones
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
-        if (mate != null) {
-            JCalificacionesProfe califica = new JCalificacionesProfe(mate);
-            califica.setVisible(true);
-            this.dispose();
+        if (mate != null) { // Verifica que haya una materia seleccionada
+            JCalificacionesProfe califica = new JCalificacionesProfe(mate); // Nueva ventana de calificaciones
+            califica.setVisible(true); // Se abre
+            this.dispose(); // Se cierra la actual
         } else {
+            // Si no hay materia, muestra un error al usuario
             JOptionPane.showMessageDialog(this, "Error: No hay materia seleccionada.\n"
                     + " vuelva al panel de inicio");
         }
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
+    // Para ir a la sección de asignaciones
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
-        JAsignaciones asignaciones = new JAsignaciones(mate);
-        asignaciones.setVisible(true);
-        this.dispose();
+        JAsignaciones asignaciones = new JAsignaciones(mate); // Ventana de asignaciones con la materia actual
+        asignaciones.setVisible(true); // Se abre
+        this.dispose(); // Se cierra la actual
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
+    // Para volver al tablero principal
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
-        // TODO add your handling code here:
-        VentanaPrincipalProfesor VPE = new VentanaPrincipalProfesor();
-        VPE.setVisible(true);
-        this.dispose();
+        // TODO: Aquí se podría agregar lógica adicional si es necesario
+        VentanaPrincipalProfesor VPE = new VentanaPrincipalProfesor(); // Nueva ventana del tablero
+        VPE.setVisible(true); // Se abre
+        this.dispose(); // Se cierra la actual
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
+    // Para ir a cursos (todavía no implementado)
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
-        // TODO add your handling code here:
+        // TODO: Aquí se agregará la lógica para abrir la vista de cursos
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
+    // Para abrir o cerrar el menú emergente (Menupop)
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        // TODO add your handling code here:
+        // Si el menú no es visible, se abre; si ya lo está, se oculta
         if (!Menupop.isVisible()) {
             this.Menupop.setVisible(true);
-        }else{
+        } else {
             this.Menupop.setVisible(false);
         }
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    // Para ir a la sección de grupos
     private void jLabel_Grupos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Grupos1MouseClicked
-        JGrupo grupo = new JGrupo(mate);
-        grupo.setVisible(true);
-        this.dispose();
+        JGrupo grupo = new JGrupo(mate); // Nueva ventana de grupos con la materia actual
+        grupo.setVisible(true); // Se abre
+        this.dispose(); // Se cierra la actual
     }//GEN-LAST:event_jLabel_Grupos1MouseClicked
 
+    // Para ir a la sección de asistencias
     private void jLabel_AsistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsistenciasMouseClicked
-        JAsistencia asistencias = new JAsistencia(mate);
-        asistencias.setVisible(true);
-        this.dispose();
+        JAsistencia asistencias = new JAsistencia(mate); // Nueva ventana de asistencias con la materia actual
+        asistencias.setVisible(true); // Se abre
+        this.dispose(); // Se cierra la actual
     }//GEN-LAST:event_jLabel_AsistenciasMouseClicked
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

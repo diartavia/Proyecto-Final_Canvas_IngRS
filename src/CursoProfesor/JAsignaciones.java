@@ -13,164 +13,200 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class JAsignaciones extends javax.swing.JFrame {
-    Materia mate;
+    /*
+            - Nota Developer 1:
+        Frame para ver las asignaciones
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
 
+        Después hay botones/labels que permiten moverse a otros frames de la parte de CursoProfesor
+        se debe de pasar siempre la materia por el constructor de cada frame
+    */
+    Materia mate;
     public JAsignaciones(Materia mate) {
         initComponents();
         this.setLocationRelativeTo(null);
 
+        //Se verifica si se paso una materia que sirva
         if (mate == null) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: No se asignó una materia.");
             dispose();
             return;
         }
 
-            this.mate = mate;
-            cargarTablaAsignaciones(); // solo si la materia es válida
-    }
-    
-
-    
-public void cargarTablaAsignaciones() {
-    if (mate == null) return; // Seguridad por si no está asignada
-
-    List<Asignacion> listaTareas = mate.getAsignaciones(); // ✅ Usa las tareas de la materia actual
-
-    DefaultTableModel model = (DefaultTableModel) AsignacionesCreadasTable.getModel();
-    model.setRowCount(0); // Limpiar tabla
-
-    for (Asignacion tarea : listaTareas) {
-        Object[] fila = {
-            tarea.getNombre(),
-            tarea.getFechaFinal(),
-            tarea.getPuntos()
-        };
-        model.addRow(fila);
-    }
-}
-
-private class EditarTareaDialog extends javax.swing.JDialog {
-    private boolean confirmado = false;
-    private Asignacion tareaEditada;
-
-    private javax.swing.JTextField campoNombre, campoInicio, campoFinal, campoPuntos;
-    private javax.swing.JTextArea campoDescripcion;
-    private javax.swing.JButton btnConfirmar;
-
-    public EditarTareaDialog(java.awt.Frame parent, Asignacion tarea, int index) {
-        super(parent, "Editar Tarea", true);
-        setSize(450, 400);
-        setLocationRelativeTo(parent);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        getContentPane().setBackground(java.awt.Color.WHITE);
-        setLayout(new java.awt.GridBagLayout());
-
-        java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
-        gbc.insets = new java.awt.Insets(10, 10, 5, 10);
-        gbc.anchor = java.awt.GridBagConstraints.WEST;
-        gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-
-        java.awt.Font labelFont = new java.awt.Font("Dialog", java.awt.Font.BOLD, 14);
-        java.awt.Font inputFont = new java.awt.Font("Dialog", java.awt.Font.PLAIN, 13);
-
-        // Campos
-        add(new JLabel("Nombre:", JLabel.LEFT) {{
-            setFont(labelFont);
-        }}, gbc);
-
-        campoNombre = new JTextField(tarea.getNombre());
-        campoNombre.setFont(inputFont);
-        gbc.gridy++;
-        add(campoNombre, gbc);
-
-        gbc.gridy++;
-        add(new JLabel("Fecha Inicio:", JLabel.LEFT) {{
-            setFont(labelFont);
-        }}, gbc);
-
-        campoInicio = new JTextField(tarea.getFechaInicio());
-        campoInicio.setFont(inputFont);
-        gbc.gridy++;
-        add(campoInicio, gbc);
-
-        gbc.gridy++;
-        add(new JLabel("Fecha Final:", JLabel.LEFT) {{
-            setFont(labelFont);
-        }}, gbc);
-
-        campoFinal = new JTextField(tarea.getFechaFinal());
-        campoFinal.setFont(inputFont);
-        gbc.gridy++;
-        add(campoFinal, gbc);
-
-        gbc.gridy++;
-        add(new JLabel("Puntos:", JLabel.LEFT) {{
-            setFont(labelFont);
-        }}, gbc);
-
-        campoPuntos = new JTextField(String.valueOf(tarea.getPuntos()));
-        campoPuntos.setFont(inputFont);
-        gbc.gridy++;
-        add(campoPuntos, gbc);
-
-        gbc.gridy++;
-        add(new JLabel("Descripción:", JLabel.LEFT) {{
-            setFont(labelFont);
-        }}, gbc);
-
-        campoDescripcion = new JTextArea(tarea.getDescripcion(), 4, 20);
-        campoDescripcion.setFont(inputFont);
-        campoDescripcion.setLineWrap(true);
-        campoDescripcion.setWrapStyleWord(true);
-
-        gbc.gridy++;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = java.awt.GridBagConstraints.BOTH;
-        add(new JScrollPane(campoDescripcion), gbc);
-
-        // Botón confirmar
-        btnConfirmar = new JButton("Confirmar");
-        btnConfirmar.setBackground(new java.awt.Color(63, 42, 85));
-        btnConfirmar.setForeground(java.awt.Color.WHITE);
-        btnConfirmar.setFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 13));
-        btnConfirmar.setFocusPainted(false);
-        btnConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        gbc.gridy++;
-        gbc.fill = java.awt.GridBagConstraints.NONE;
-        gbc.anchor = java.awt.GridBagConstraints.CENTER;
-        gbc.weighty = 0;
-        add(btnConfirmar, gbc);
-
-        btnConfirmar.addActionListener(e -> {
-            try {
-                int puntos = Integer.parseInt(campoPuntos.getText());
-                tareaEditada = new Asignacion(
-                    campoNombre.getText(),
-                    campoInicio.getText(),
-                    campoFinal.getText(),
-                    puntos,
-                    campoDescripcion.getText()
-                );
-                confirmado = true;
-                dispose();
-            } catch (NumberFormatException ex) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Los puntos deben ser un número entero.");
-            }
-        });
+        this.mate = mate;
+        cargarTablaAsignaciones(); // solo si la materia es válida
     }
 
-    public boolean fueConfirmado() {
-        return confirmado;
+
+
+    public void cargarTablaAsignaciones() {
+        // Si por alguna razón no hay materia asignada, se detiene la ejecución del método.
+        if (mate == null) return; // Seguridad por si no está asignada
+
+        // Obtiene la lista de asignaciones (tareas) desde la materia actual.
+        List<Asignacion> listaTareas = mate.getAsignaciones(); // ✅ Usa las tareas de la materia actual
+
+        // Se obtiene el modelo de la tabla donde se mostrarán los datos.
+        DefaultTableModel model = (DefaultTableModel) AsignacionesCreadasTable.getModel();
+
+        // Limpia todas las filas de la tabla antes de cargar nuevas (para evitar duplicados).
+        model.setRowCount(0); // Limpiar tabla
+
+        // Recorre cada tarea de la lista y la inserta como una nueva fila en la tabla.
+        for (Asignacion tarea : listaTareas) {
+            Object[] fila = {
+                    tarea.getNombre(),      // Nombre de la asignación
+                    tarea.getFechaFinal(),  // Fecha límite de entrega
+                    tarea.getPuntos()       // Puntos que vale la tarea
+            };
+            model.addRow(fila); // Agrega la fila a la tabla
+        }
     }
 
-    public Asignacion getTareaEditada() {
-        return tareaEditada;
+
+    // Clase interna que representa un cuadro de diálogo para editar una tarea (Asignacion)
+    private class EditarTareaDialog extends javax.swing.JDialog {
+        // Bandera para saber si el usuario confirmó la edición
+        private boolean confirmado = false;
+
+        // Objeto que contendrá la tarea editada
+        private Asignacion tareaEditada;
+
+        // Campos de entrada para editar los datos de la tarea
+        private javax.swing.JTextField campoNombre, campoInicio, campoFinal, campoPuntos;
+        private javax.swing.JTextArea campoDescripcion;
+        private javax.swing.JButton btnConfirmar;
+
+        // Constructor del diálogo, recibe el padre (ventana), la tarea a editar y un índice
+        public EditarTareaDialog(java.awt.Frame parent, Asignacion tarea, int index) {
+            super(parent, "Editar Tarea", true); // Llama al constructor de JDialog con título y modalidad
+            setSize(450, 400); // Tamaño de la ventana
+            setLocationRelativeTo(parent); // Centrar respecto a la ventana padre
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Cerrar el diálogo al salir
+            getContentPane().setBackground(java.awt.Color.WHITE); // Fondo blanco
+            setLayout(new java.awt.GridBagLayout()); // Layout con GridBag para organizar los componentes
+
+            // Configuración general de GridBagConstraints
+            java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+            gbc.insets = new java.awt.Insets(10, 10, 5, 10); // Márgenes
+            gbc.anchor = java.awt.GridBagConstraints.WEST;   // Alinear a la izquierda
+            gbc.fill = java.awt.GridBagConstraints.HORIZONTAL; // Expandir en horizontal
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+
+            // Fuentes para etiquetas y campos
+            java.awt.Font labelFont = new java.awt.Font("Dialog", java.awt.Font.BOLD, 14);
+            java.awt.Font inputFont = new java.awt.Font("Dialog", java.awt.Font.PLAIN, 13);
+
+            // ==== Campo Nombre ====
+            add(new JLabel("Nombre:", JLabel.LEFT) {{
+                setFont(labelFont);
+            }}, gbc);
+
+            campoNombre = new JTextField(tarea.getNombre());
+            campoNombre.setFont(inputFont);
+            gbc.gridy++;
+            add(campoNombre, gbc);
+
+            // ==== Campo Fecha Inicio ====
+            gbc.gridy++;
+            add(new JLabel("Fecha Inicio:", JLabel.LEFT) {{
+                setFont(labelFont);
+            }}, gbc);
+
+            campoInicio = new JTextField(tarea.getFechaInicio());
+            campoInicio.setFont(inputFont);
+            gbc.gridy++;
+            add(campoInicio, gbc);
+
+            // ==== Campo Fecha Final ====
+            gbc.gridy++;
+            add(new JLabel("Fecha Final:", JLabel.LEFT) {{
+                setFont(labelFont);
+            }}, gbc);
+
+            campoFinal = new JTextField(tarea.getFechaFinal());
+            campoFinal.setFont(inputFont);
+            gbc.gridy++;
+            add(campoFinal, gbc);
+
+            // ==== Campo Puntos ====
+            gbc.gridy++;
+            add(new JLabel("Puntos:", JLabel.LEFT) {{
+                setFont(labelFont);
+            }}, gbc);
+
+            campoPuntos = new JTextField(String.valueOf(tarea.getPuntos()));
+            campoPuntos.setFont(inputFont);
+            gbc.gridy++;
+            add(campoPuntos, gbc);
+
+            // ==== Campo Descripción ====
+            gbc.gridy++;
+            add(new JLabel("Descripción:", JLabel.LEFT) {{
+                setFont(labelFont);
+            }}, gbc);
+
+            campoDescripcion = new JTextArea(tarea.getDescripcion(), 4, 20);
+            campoDescripcion.setFont(inputFont);
+            campoDescripcion.setLineWrap(true);      // Permite salto de línea automático
+            campoDescripcion.setWrapStyleWord(true); // Evita cortar palabras
+
+            gbc.gridy++;
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            gbc.fill = java.awt.GridBagConstraints.BOTH; // Expandir en ambas direcciones
+            add(new JScrollPane(campoDescripcion), gbc);
+
+            // ==== Botón Confirmar ====
+            btnConfirmar = new JButton("Confirmar");
+            btnConfirmar.setBackground(new java.awt.Color(63, 42, 85));
+            btnConfirmar.setForeground(java.awt.Color.WHITE);
+            btnConfirmar.setFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 13));
+            btnConfirmar.setFocusPainted(false); // Quitar borde al hacer foco
+            btnConfirmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+            gbc.gridy++;
+            gbc.fill = java.awt.GridBagConstraints.NONE;
+            gbc.anchor = java.awt.GridBagConstraints.CENTER;
+            gbc.weighty = 0;
+            add(btnConfirmar, gbc);
+
+            // Acción del botón Confirmar
+            btnConfirmar.addActionListener(e -> {
+                try {
+                    // Convierte el texto de puntos en número
+                    int puntos = Integer.parseInt(campoPuntos.getText());
+
+                    // Crea una nueva Asignacion con los datos ingresados
+                    tareaEditada = new Asignacion(
+                            campoNombre.getText(),
+                            campoInicio.getText(),
+                            campoFinal.getText(),
+                            puntos,
+                            campoDescripcion.getText()
+                    );
+
+                    confirmado = true; // Marca que se confirmó
+                    dispose(); // Cierra el diálogo
+                } catch (NumberFormatException ex) {
+                    // Si los puntos no son un número entero, muestra error
+                    javax.swing.JOptionPane.showMessageDialog(this, "Los puntos deben ser un número entero.");
+                }
+            });
+        }
+
+        // Método para saber si el usuario confirmó la edición
+        public boolean fueConfirmado() {
+            return confirmado;
+        }
+
+        // Devuelve la tarea editada con los nuevos valores
+        public Asignacion getTareaEditada() {
+            return tareaEditada;
+        }
     }
-}
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -547,91 +583,116 @@ private class EditarTareaDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+        -------                                                                     ----------
+        Labels que sirven como botones, los cuales llevan a otras "pestañas" de CursoEstudiante
+        En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+        -------                                                                     ----------
+     */
+
+    // Evento al hacer clic en la etiqueta "Calificaciones"
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
+        // Abre la ventana de calificaciones del profesor
         JCalificacionesProfe califica = new JCalificacionesProfe(mate);
         califica.setVisible(true);
-        this.dispose();
+        this.dispose(); // Cierra la ventana actual
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
+    // Evento al hacer clic en la etiqueta "Asignaciones"
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
-        // TODO add your handling code here:
+        // Abre la ventana para crear asignaciones
         JCreaAsignaciones CA = new JCreaAsignaciones(mate);
         CA.setVisible(true);
-        this.dispose();
+        this.dispose(); // Cierra la ventana actual
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
+    // Evento al hacer clic en la etiqueta "Página de Inicio"
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
-        // TODO add your handling code here:
+        // Abre la pantalla del curso del profesor
         CursoProfesor CursoP = new CursoProfesor(mate);
         CursoP.setVisible(true);
-        this.dispose();
-        //Redirigir a otra pantalla
+        this.dispose(); // Cierra la ventana actual
+        // Redirigir a otra pantalla
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
+    // Evento al hacer clic en la etiqueta "Anuncios"
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
-        // TODO add your handling code here:
+        // TODO: Aquí debería abrirse una ventana para gestionar anuncios
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
+    // Evento al hacer clic en la etiqueta "Módulos"
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
+        // Abre la ventana de módulos del profesor
         JModuloProfesor mp = new JModuloProfesor(mate);
         mp.setVisible(true);
-        this.dispose();
+        this.dispose(); // Cierra la ventana actual
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
+    // Evento del botón "Editar" (editar una asignación seleccionada en la tabla)
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        // Obtiene la fila seleccionada en la tabla
         int filaSeleccionada = AsignacionesCreadasTable.getSelectedRow();
         if (filaSeleccionada == -1) {
+            // Si no se seleccionó ninguna, mostrar error
             javax.swing.JOptionPane.showMessageDialog(null, "Selecciona una asignación para editar.");
             return;
         }
 
-        // Cargar la lista de tareas
+        // Cargar la lista de tareas asociadas a la materia
         List<Asignacion> listaTareas = mate.getAsignaciones();
         Asignacion tareaSeleccionada = listaTareas.get(filaSeleccionada);
 
-        // Mostrar diálogo para editar
+        // Mostrar el cuadro de diálogo para editar la tarea
         EditarTareaDialog dialogo = new EditarTareaDialog(this, tareaSeleccionada, filaSeleccionada);
         dialogo.setVisible(true);
 
-        // Si se confirmó la edición, recargar archivo y tabla
+        // Si el usuario confirmó los cambios, actualizar lista y tabla
         if (dialogo.fueConfirmado()) {
             listaTareas.set(filaSeleccionada, dialogo.getTareaEditada());
-            Asignacion.guardarTareas(listaTareas);
-            cargarTablaAsignaciones();
+            Asignacion.guardarTareas(listaTareas); // Guardar en archivo o base de datos
+            cargarTablaAsignaciones(); // Refrescar la tabla
         }
     }//GEN-LAST:event_btn_editarActionPerformed
 
+    // Evento al hacer clic en la etiqueta "Tablero"
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
-        // TODO add your handling code here:
+        // Abre la ventana principal del profesor
         VentanaPrincipalProfesor VPE = new VentanaPrincipalProfesor();
         VPE.setVisible(true);
-        this.dispose();
+        this.dispose(); // Cierra la ventana actual
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
+    // Evento al hacer clic en la etiqueta "Cursos"
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
-        // TODO add your handling code here:
+        // TODO: Aquí debería abrirse la gestión de cursos
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
+    // Evento al hacer clic en el icono o etiqueta con menú desplegable
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        // TODO add your handling code here:
+        // Muestra u oculta el menú emergente
         if (!Menupop.isVisible()) {
             this.Menupop.setVisible(true);
-        }else{
+        } else {
             this.Menupop.setVisible(false);
         }
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    // Evento al hacer clic en la etiqueta "Grupos"
     private void jLabel_Grupos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Grupos1MouseClicked
+        // Abre la ventana de grupos
         JGrupo grupo = new JGrupo(mate);
         grupo.setVisible(true);
-        this.dispose();
+        this.dispose(); // Cierra la ventana actual
     }//GEN-LAST:event_jLabel_Grupos1MouseClicked
 
+    // Evento al hacer clic en la etiqueta "Asistencias"
     private void jLabel_AsistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsistenciasMouseClicked
+        // Abre la ventana de asistencias
         JAsistencia asistencias = new JAsistencia(mate);
         asistencias.setVisible(true);
-        this.dispose();
+        this.dispose(); // Cierra la ventana actual
     }//GEN-LAST:event_jLabel_AsistenciasMouseClicked
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

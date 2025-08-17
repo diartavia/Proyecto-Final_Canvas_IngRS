@@ -355,7 +355,7 @@ public class CursoEstudiante extends javax.swing.JFrame {
 
     /*
         -------                                                                     ----------
-        Labels que sirven como botones, los cuales  llevan a otras "pestañas" de CursoEstudiante
+        Labels que sirven como botones, los cuales llevan a otras "pestañas" de CursoEstudiante
         En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
         -------                                                                     ----------
      */
