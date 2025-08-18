@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package CursoProfesor;
 
 import General.ArchivoAsistencias;
@@ -28,14 +24,18 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-/**
- *
- * @author jadia
- */
 public class JAsistencia extends javax.swing.JFrame {
-    private Materia mate;
-    private HashMap<String, String> asistenciaMap = new HashMap<>();
+    /*
+            - Nota Developer 1:
+        Frame para ver las asistencias
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
 
+        Después hay botones/labels que permiten moverse a otros frames de la parte de CursoProfesor
+        se debe de pasar siempre la materia por el constructor de cada frame
+    */
+    private Materia mate; //para manener la materia actual
+    private HashMap<String, String> asistenciaMap = new HashMap<>();
+    //Constructor
     public JAsistencia(Materia mate) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -433,76 +433,86 @@ public class JAsistencia extends javax.swing.JFrame {
 
     // Botnoes-------------------------------------------------------------
 
+    // Método que carga la tabla de asistencia con los estudiantes
     private void cargarTablaAsistencia() {
-           DefaultTableModel modelo = (DefaultTableModel) tablaAsistencia.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tablaAsistencia.getModel();
 
-    // Limpiar filas existentes si se vuelve a cargar
-    modelo.setRowCount(0);
+        // Limpia todas las filas anteriores (para evitar duplicados)
+        modelo.setRowCount(0);
 
-    // Verificación de columnas (deben ser exactamente 5: Nombre, ID, Presente, Ausente, Tarde)
-    if (tablaAsistencia.getColumnCount() < 5) {
-        System.err.println("La tabla no tiene las columnas necesarias para botones.");
-        return;
+        // Verifica que la tabla tenga al menos 5 columnas (Nombre, ID, Presente, Ausente, Tarde)
+        if (tablaAsistencia.getColumnCount() < 5) {
+            System.err.println("La tabla no tiene las columnas necesarias para botones.");
+            return; // Sale del método si no hay columnas suficientes
+        }
+
+        // Crear una lista con todos los estudiantes (con grupo y sin grupo)
+        ArrayList<Estudiante> todos = new ArrayList<>();
+        todos.addAll(mate.getEstudiantes());
+        todos.addAll(mate.getEstudiantesSinGrupo());
+
+        // Agregar una fila por cada estudiante con su nombre, ID y columnas vacías para los botones
+        for (Estudiante est : todos) {
+            modelo.addRow(new Object[]{est.getNombre(), est.getId(), "", "", ""});
+        }
+
+        // Configurar los botones en las columnas de asistencia (Presente, Ausente, Tarde)
+        TableColumnModel columnModel = tablaAsistencia.getColumnModel();
+        for (int i = 2; i <= 4; i++) {
+            BotonRendererEditor editor = new BotonRendererEditor(tablaAsistencia, asistenciaMap);
+            columnModel.getColumn(i).setCellRenderer(editor); // Renderiza el botón en la celda
+            columnModel.getColumn(i).setCellEditor(editor);   // Permite que el botón sea clickeable
+        }
     }
 
-    ArrayList<Estudiante> todos = new ArrayList<>();
-    todos.addAll(mate.getEstudiantes());
-    todos.addAll(mate.getEstudiantesSinGrupo());
-
-    for (Estudiante est : todos) {
-        modelo.addRow(new Object[]{est.getNombre(), est.getId(), "", "", ""});
-    }
-
-    TableColumnModel columnModel = tablaAsistencia.getColumnModel();
-    for (int i = 2; i <= 4; i++) {
-        BotonRendererEditor editor = new BotonRendererEditor(tablaAsistencia, asistenciaMap);
-        columnModel.getColumn(i).setCellRenderer(editor);
-        columnModel.getColumn(i).setCellEditor(editor);
-    }
-    }
-
+    // Método para obtener la fecha que el usuario ingresa
     private Date obtenerFechaSeleccionada() {
+        // Pedir la fecha al usuario
         String textoFecha = JOptionPane.showInputDialog(this, "Ingrese la fecha (dd/MM/yy):");
         if (textoFecha == null || textoFecha.trim().isEmpty()) return null;
 
+        // Configurar el formato de fecha válido
         SimpleDateFormat formatoCR = new SimpleDateFormat("dd/MM/yy");
-        formatoCR.setLenient(false);
+        formatoCR.setLenient(false); // No permite fechas inválidas como 32/01/23
         try {
-            return formatoCR.parse(textoFecha.trim());
+            return formatoCR.parse(textoFecha.trim()); // Convertir el texto a Date
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Formato inválido. Use dd/MM/yy", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }
 
+    // Clase interna que maneja los botones de la tabla
     public class BotonRendererEditor extends AbstractCellEditor implements TableCellRenderer, TableCellEditor, ActionListener {
-        private final JButton button = new JButton();
+        private final JButton button = new JButton(); // Botón que se mostrará en la celda
         private final JTable table;
-        private String estado;
+        private String estado; // Guarda el estado seleccionado (Presente, Ausente, Tarde)
         private int currentColumn;
-        private final HashMap<String, String> asistenciaMap;
+        private final HashMap<String, String> asistenciaMap; // Mapa que guarda asistencia por ID
 
+        // Constructor: recibe la tabla y el mapa de asistencias
         public BotonRendererEditor(JTable table, HashMap<String, String> asistenciaMap) {
             this.table = table;
             this.asistenciaMap = asistenciaMap;
-            button.addActionListener(this);
-            button.setFocusPainted(false);
+            button.addActionListener(this); // Asigna acción al botón
+            button.setFocusPainted(false); // Estilo visual
         }
 
+        // Configura el botón según la columna en la que esté
         private void configurarBoton(int column) {
             currentColumn = column;
             switch (column) {
-                case 2 -> {
+                case 2 -> { // Columna "Presente"
                     button.setText("✔");
                     button.setBackground(Color.GREEN);
                     estado = "Presente";
                 }
-                case 3 -> {
+                case 3 -> { // Columna "Ausente"
                     button.setText("✘");
                     button.setBackground(Color.RED);
                     estado = "Ausente";
                 }
-                case 4 -> {
+                case 4 -> { // Columna "Tarde"
                     button.setText("⏰");
                     button.setBackground(Color.ORANGE);
                     estado = "Tarde";
@@ -531,75 +541,86 @@ public class JAsistencia extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             int row = table.getSelectedRow();
             if (row != -1) {
-                String id = table.getValueAt(row, 1).toString();
-                asistenciaMap.put(id, estado);
+                String id = table.getValueAt(row, 1).toString(); // Obtener ID del estudiante
+                asistenciaMap.put(id, estado); // Guardar su estado en el mapa
             }
-            fireEditingStopped();
+            fireEditingStopped(); // Detener edición en la celda
         }
     }
-    private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
-        // TODO add your handling code here:
+
+    /**
+     -------                                                                     ----------
+     Labels que sirven como botones, los cuales llevan a otras "pestañas" de CursoEstudiante
+     En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+     -------                                                                     ----------
+     */
+    //Para ir a la principal
+    private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {
         VentanaPrincipalProfesor VPE = new VentanaPrincipalProfesor();
         VPE.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel_TableroMouseClicked
+        this.dispose(); // Cierra esta ventana
+    }
+    //No está hecho aún
+    private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {
 
-    private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel_CursosMouseClicked
-
-    private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
+    }
+    //para ir a modulos
+    private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {
         JModuloProfesor mp = new JModuloProfesor(mate);
         mp.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel_ModulosMouseClicked
+    }
+    //Todavia no esta
+    private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {
 
-    private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel_AnunciosMouseClicked
-
-    private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
-        // TODO add your handling code here:
+    }
+    //Para ir a la pagina de inicio del curso
+    private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {
         CursoProfesor CursoP = new CursoProfesor(mate);
         CursoP.setVisible(true);
         this.dispose();
-        //Redirigir a otra pantalla
-    }//GEN-LAST:event_jLabel_PagInicioMouseClicked
+        // Redirige a otra pantalla
+    }
 
-    private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
-        // TODO add your handling code here:
+    //Para ir a asignaciones
+    private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {
         JAsignaciones CA = new JAsignaciones(mate);
         CA.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
+    }
 
-    private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
+    //Para ir a calificaciones
+    private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {
         JCalificacionesProfe califica = new JCalificacionesProfe(mate);
         califica.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
+    }
 
-    private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
+    //para ir a grupos
+    private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {
         JGrupo grupo = new JGrupo(mate);
         grupo.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel_GruposMouseClicked
+    }
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        // TODO add your handling code here:
+    //Para el menu desplegable
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {
+        // Muestra u oculta el menú emergente
         if (!Menupop.isVisible()) {
             this.Menupop.setVisible(true);
-        }else{
+        } else {
             this.Menupop.setVisible(false);
         }
-    }//GEN-LAST:event_jLabel8MouseClicked
+    }
 
-    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-      Date fecha = obtenerFechaSeleccionada();
+    // Botón "Guardar asistencia"
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {
+        Date fecha = obtenerFechaSeleccionada(); // Pedir fecha al usuario
         if (fecha == null) return;
 
         ArrayList<Asistencia> nuevas = new ArrayList<>();
 
+        // Recorre cada fila de la tabla
         for (int i = 0; i < tablaAsistencia.getRowCount(); i++) {
             String id = tablaAsistencia.getValueAt(i, 1).toString();
             String estadoTexto = asistenciaMap.get(id);
@@ -609,6 +630,7 @@ public class JAsistencia extends javax.swing.JFrame {
                 return;
             }
 
+            // Convertir el texto del estado en un valor del enum EstadoAsistencia
             Asistencia.EstadoAsistencia estado;
             switch (estadoTexto) {
                 case "Presente" -> estado = Asistencia.EstadoAsistencia.PRESENTE;
@@ -620,43 +642,51 @@ public class JAsistencia extends javax.swing.JFrame {
                 }
             }
 
+            // Crear nueva asistencia y agregarla a la lista
             nuevas.add(new Asistencia(id, fecha, estado));
         }
 
+        // Guardar asistencias en la materia
         for (Asistencia a : nuevas) {
             mate.agregarAsistencia(a);
         }
 
+        // Persistir los datos en archivo
         ArchivoAsistencias.guardar(mate.getAsistencias());
         JOptionPane.showMessageDialog(this, "Asistencia guardada exitosamente");
-    }//GEN-LAST:event_BtnGuardarActionPerformed
-
-    private void BtnVerAsistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerAsistenciasActionPerformed
-         ArrayList<Asistencia> lista = ArchivoAsistencias.cargar(); // Carga todas las asistencias
-
-    if (lista == null || lista.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "No hay asistencias registradas.");
-        return;
     }
 
-    StringBuilder resumen = new StringBuilder("Asistencias registradas para la materia " + mate.getNombre() + ":\n\n");
+    // Botón "Ver asistencias guardadas"
+    private void BtnVerAsistenciasActionPerformed(java.awt.event.ActionEvent evt) {
+        ArrayList<Asistencia> lista = ArchivoAsistencias.cargar(); // Carga todas las asistencias
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-
-    for (Asistencia a : lista) {
-        if (mate.contieneEstudiante(a.getIdEstudiante())) {
-            resumen.append("Estudiante ID: ").append(a.getIdEstudiante())
-                   .append(" | Fecha: ").append(sdf.format(a.getFecha()))
-                   .append(" | Estado: ").append(a.getEstado()).append("\n");
+        if (lista == null || lista.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay asistencias registradas.");
+            return;
         }
+
+        StringBuilder resumen = new StringBuilder("Asistencias registradas para la materia " + mate.getNombre() + ":\n\n");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+
+        // Recorre asistencias y muestra si corresponden a esta materia
+        for (Asistencia a : lista) {
+            if (mate.contieneEstudiante(a.getIdEstudiante())) {
+                resumen.append("Estudiante ID: ").append(a.getIdEstudiante())
+                        .append(" | Fecha: ").append(sdf.format(a.getFecha()))
+                        .append(" | Estado: ").append(a.getEstado()).append("\n");
+            }
+        }
+
+        // Si no se agregaron registros, mostrar mensaje
+        if (resumen.toString().endsWith(":\n\n")) {
+            resumen.append("No hay asistencias para esta materia.");
+        }
+
+        // Mostrar resumen en un cuadro de diálogo
+        JOptionPane.showMessageDialog(this, resumen.toString(), "Asistencias Guardadas", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    if (resumen.toString().endsWith(":\n\n")) {
-        resumen.append("No hay asistencias para esta materia.");
-    }
-
-    JOptionPane.showMessageDialog(this, resumen.toString(), "Asistencias Guardadas", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_BtnVerAsistenciasActionPerformed
 
 
 

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package CursoProfesor;
 
 import General.VentanaPrincipalProfesor;
@@ -12,75 +8,74 @@ import General.Sistema;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-/**
- *
- * @author jadia
- */
+
 public class JGrupo extends javax.swing.JFrame {
 
+    /*
+            - Nota Developer 1:
+        Frame para crear los grupos de los estudiantes siendo profesor
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+
+        Después hay botones/labels que permiten moverse a otros frames de la parte de CursoProfesor
+        se debe de pasar siempre la materia por el constructor de cada frame
+    */
     private Materia mate;
-    /**
-     * Creates new form JGrupo
-     */
-   public JGrupo(Materia materia) {
-    this.mate = materia;
-    initComponents();
-    cargarGruposEnTabla();
-    cargarEstudiantesSinGrupo();
-    jTableGrupos.getSelectionModel().addListSelectionListener(e -> {
-    int row = jTableGrupos.getSelectedRow();
-    if (row >= 0 && row < mate.getGrupos().size()) {
-        Grupo grupo = mate.getGrupos().get(row);
-        mostrarEstudiantesDelGrupo(grupo);
-    }
-});
-}
-   
-//Seccion de Combo box-------------------------------------------------------
-
- private void cargarGruposEnTabla() {
-    DefaultTableModel model = (DefaultTableModel) jTableGrupos.getModel();
-    model.setRowCount(0);
-
-    for (Grupo g : mate.getGrupos()) {
-        model.addRow(new Object[]{
-            g.getNombre(),
-            g.getEstudiantes().size()
+    //Constructor
+    public JGrupo(Materia materia) {
+        this.mate = materia; //guarda la materia actual
+        initComponents(); //Inicia los componentes
+        cargarGruposEnTabla(); //Metodo para cargar los grupos en la tabla
+        cargarEstudiantesSinGrupo(); //Metodo para cargar los estudiantes sin grupo en otra tabla
+        jTableGrupos.getSelectionModel().addListSelectionListener(e -> {
+        int row = jTableGrupos.getSelectedRow();
+            if (row >= 0 && row < mate.getGrupos().size()) {
+                Grupo grupo = mate.getGrupos().get(row);
+                mostrarEstudiantesDelGrupo(grupo);
+            }
         });
     }
-}
- 
- 
-  
-  private void mostrarEstudiantesDelGrupo(Grupo grupo) {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0);
+   
+    //Seccion de Combo box-------------------------------------------------------
 
-    for (Estudiante e : grupo.getEstudiantes()) {
-        model.addRow(new Object[]{e.getNombre() + " " + e.getApellido(), e.getId()});
+    //Matodo para cargar la tabla
+    private void cargarGruposEnTabla() {
+        DefaultTableModel model = (DefaultTableModel) jTableGrupos.getModel();
+        model.setRowCount(0);
+
+        for (Grupo g : mate.getGrupos()) {
+            model.addRow(new Object[]{
+                g.getNombre(),
+                g.getEstudiantes().size()
+            });
+        }
     }
-}
+
+    //Metodo para mostrar los estudiantes del grupo
+    private void mostrarEstudiantesDelGrupo(Grupo grupo) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        for (Estudiante e : grupo.getEstudiantes()) {
+            model.addRow(new Object[]{e.getNombre() + " " + e.getApellido(), e.getId()});
+        }
+    }
 //-------------------------------------------------------------------------------------
 
- 
- 
- private void cargarEstudiantesSinGrupo() {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0); // Limpia la tabla
+    //Metodo para cargar Estudiantes sin grupo
+    private void cargarEstudiantesSinGrupo() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Limpia la tabla
 
-    ArrayList<Estudiante> sinGrupo = mate.getEstudiantesSinGrupo();
-    
-    System.out.println("Estudiantes sin grupo: " + sinGrupo.size());
+        ArrayList<Estudiante> sinGrupo = mate.getEstudiantesSinGrupo();
 
-    for (Estudiante e : sinGrupo) {
-        System.out.println("🔸 Estudiante: " + e.getNombre() + " " + e.getApellido());
-        model.addRow(new Object[]{e.getNombre() + " " + e.getApellido(), e.getId()});
+        System.out.println("Estudiantes sin grupo: " + sinGrupo.size());
+
+        for (Estudiante e : sinGrupo) {
+            System.out.println("🔸 Estudiante: " + e.getNombre() + " " + e.getApellido());
+            model.addRow(new Object[]{e.getNombre() + " " + e.getApellido(), e.getId()});
+        }
     }
-}
 
-    
-   
-  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -485,6 +480,13 @@ public class JGrupo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     -------                                                                     ----------
+     Labels que sirven como botones, los cuales llevan a otras "pestañas" de CursoEstudiante
+     En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+     -------                                                                     ----------
+     */
+    //Para ir a la ventana principal
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
         // TODO add your handling code here:
         VentanaPrincipalProfesor VPE = new VentanaPrincipalProfesor();
@@ -492,20 +494,24 @@ public class JGrupo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
+    //Para ir a cursos del profesor (no está aún)
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
+    //Para ir a Modulos
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
         JModuloProfesor mp = new JModuloProfesor(mate);
         mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
+    //Para ir a Anuncios (No esta aun)
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
+    //Para ir a Curso profesor
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
         // TODO add your handling code here:
         CursoProfesor CursoP = new CursoProfesor(mate);
@@ -514,6 +520,7 @@ public class JGrupo extends javax.swing.JFrame {
         //Redirigir a otra pantalla
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
+    //Para ir a Asignaciones
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
         // TODO add your handling code here:
         JAsignaciones CA = new JAsignaciones(mate);
@@ -521,16 +528,19 @@ public class JGrupo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
+    //Para ir a Calificaciones
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
         JCalificacionesProfe califica = new JCalificacionesProfe(mate);
         califica.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
+    //Para ir a Grupos (esta no)
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
+    //menu desplegable
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
         if (!Menupop.isVisible()) {
@@ -540,34 +550,35 @@ public class JGrupo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    //Para agregar grupos
     private void BtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarActionPerformed
-      String id = JOptionPane.showInputDialog("Ingrese el ID del estudiante:");
-    if (id == null || id.trim().isEmpty()) return;
+        String id = JOptionPane.showInputDialog("Ingrese el ID del estudiante:");
+        if (id == null || id.trim().isEmpty()) return;
 
-    Estudiante est = Sistema.buscarEstudiantePorId(id);
-    if (est != null) {
-        mate.agregarEstudiante(est);
-        cargarEstudiantesSinGrupo();
-        JOptionPane.showMessageDialog(null, "Estudiante agregado correctamente.");
-    } else {
-        int crear = JOptionPane.showConfirmDialog(null, "Estudiante no encontrado. ¿Desea crearlo?", "Crear Estudiante", JOptionPane.YES_NO_OPTION);
-        if (crear == JOptionPane.YES_OPTION) {
-            ClaseIngresoEstudiante.mostrarFormulario(mate);
+        Estudiante est = Sistema.buscarEstudiantePorId(id);
+        if (est != null) {
+            mate.agregarEstudiante(est);
             cargarEstudiantesSinGrupo();
+            JOptionPane.showMessageDialog(null, "Estudiante agregado correctamente.");
+        } else {
+            int crear = JOptionPane.showConfirmDialog(null, "Estudiante no encontrado. ¿Desea crearlo?", "Crear Estudiante", JOptionPane.YES_NO_OPTION);
+            if (crear == JOptionPane.YES_OPTION) {
+                ClaseIngresoEstudiante.mostrarFormulario(mate);
+                cargarEstudiantesSinGrupo();
+            }
         }
-    }
     }//GEN-LAST:event_BtnAgregarActionPerformed
 
     private void BtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearActionPerformed
-      ClaseAsignarGrupo.mostrarSelectorGrupo(mate);
-    cargarEstudiantesSinGrupo(); 
-    cargarGruposEnTabla();  
+        ClaseAsignarGrupo.mostrarSelectorGrupo(mate);
+        cargarEstudiantesSinGrupo();
+        cargarGruposEnTabla();
     }//GEN-LAST:event_BtnCrearActionPerformed
 
     private void jLabel_AsistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsistenciasMouseClicked
-      JAsistencia asistencias = new JAsistencia(mate);
-    asistencias.setVisible(true);
-    this.dispose();
+        JAsistencia asistencias = new JAsistencia(mate);
+        asistencias.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_AsistenciasMouseClicked
 
 

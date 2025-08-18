@@ -11,34 +11,37 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class JCalificacionesProfe extends javax.swing.JFrame {
-    
+
+    /*
+            - Nota Developer 1:
+        Frame para ver las calificaciones de los estudiantes
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+
+        Después hay botones/labels que permiten moverse a otros frames de la parte de CursoProfesor
+        se debe de pasar siempre la materia por el constructor de cada frame
+    */
     Materia mate;
     ArrayList<Estudiante> listaEstudiantes;
-    
-   public JCalificacionesProfe(Materia materia) {
+    //Constructor
+    public JCalificacionesProfe(Materia materia) {
         initComponents();
 
+        //Para verificar si la materia no es null
         if (materia == null) {
             JOptionPane.showMessageDialog(this, "Error: Materia es null", "Error", JOptionPane.ERROR_MESSAGE);
             dispose();
             return;
         }
-    this.mate = materia;
-        cargarTablaEstudiantes();
+        this.mate = materia;
+        cargarTablaEstudiantes(); //Metodo para cargar la tabla
     }
 
-    public JCalificacionesProfe() {
-        initComponents();
-        mate = null;
-        this.listaEstudiantes = mate.getEstudiantes();
-        //cargarTablaEstudiantes();
-
-    }
-    
+    //Metodo para cargar la tabla de estudiantes
     private void cargarTablaEstudiantes() {
-        listaEstudiantes = mate.getEstudiantes();
-        DefaultTableModel model = (DefaultTableModel) Tablasestudiantes.getModel();
-        model.setRowCount(0);
+        listaEstudiantes = mate.getEstudiantes(); //para obtener los estudiantes que contiene la materia
+        DefaultTableModel model = (DefaultTableModel) Tablasestudiantes.getModel(); //inicia la tabla
+        model.setRowCount(0); //vacia la tabla
+        //For para llenar la tabla
         for (Estudiante e : listaEstudiantes) {
             Object[] fila = {
                 e.getNombre(),
@@ -364,6 +367,13 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    /**
+     -------                                                                     ----------
+     Labels que sirven como botones, los cuales llevan a otras "pestañas" de CursoEstudiante
+     En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+     -------                                                                     ----------
+     */
     private void btn_tableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tableroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_tableroActionPerformed
@@ -391,8 +401,11 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
     private void TablasestudiantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablasestudiantesMouseClicked
-        // TODO add your handling code here:
-            if (evt.getClickCount() == 2) { 
+        /*
+            Para ir a calificar un estudiante de una mejor forma, compara el estudiante en la fila de la tabla con
+            los de la lista de la materia
+         */
+        if (evt.getClickCount() == 2) {
             int fila = Tablasestudiantes.rowAtPoint(evt.getPoint());
             if (fila >= 0) {
                 Estudiante seleccionado = listaEstudiantes.get(fila); // ← ya no por nombre
@@ -407,7 +420,7 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
     }//GEN-LAST:event_TablasestudiantesMouseClicked
 
     private void jLabel_Asignaciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Asignaciones1MouseClicked
-        JCreaAsignaciones VentanaTareas = new JCreaAsignaciones();
+        JCreaAsignaciones VentanaTareas = new JCreaAsignaciones(mate);
         VentanaTareas.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_Asignaciones1MouseClicked

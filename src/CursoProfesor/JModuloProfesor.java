@@ -6,23 +6,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class JModuloProfesor extends javax.swing.JFrame {
-    
+
+    /*
+           - Nota Developer 1:
+       Frame para ver los modulos de curso y poder agregar
+       this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+
+       Después hay botones/labels que permiten moverse a otros frames de la parte de CursoProfesor
+       se debe de pasar siempre la materia por el constructor de cada frame
+   */
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JModuloProfesor.class.getName());
     Materia mate;
-    
-    
+    //Constructor
     public JModuloProfesor(Materia mater) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.mate = mater;
-        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
-        cargarModulos();
-    }
-    
-    public JModuloProfesor() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.mate = null;
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
         cargarModulos();
     }
@@ -469,6 +468,13 @@ public class JModuloProfesor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     -------                                                                     ----------
+     Labels que sirven como botones, los cuales llevan a otras "pestañas" de CursoEstudiante
+     En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
+     -------                                                                     ----------
+     */
+    //Para ir a la ventana principal
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
         // TODO add your handling code here:
         VentanaPrincipalProfesor VPE = new VentanaPrincipalProfesor();
@@ -476,38 +482,45 @@ public class JModuloProfesor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
+    //No esta aun
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
+    //para agregar modulos
     private void Btn_AgregarModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AgregarModuloActionPerformed
         Materia materiaActual = Sistema.getMateriaDemoPublica();
         JAgregarModulo ag = new JAgregarModulo(materiaActual, this); // Pasa 'this'
         ag.setVisible(true);
     }//GEN-LAST:event_Btn_AgregarModuloActionPerformed
 
+    //Para ir a modulos
     private void jLabel_ModulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ModulosMouseClicked
         JModuloProfesor mp = new JModuloProfesor(mate);
         mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_ModulosMouseClicked
 
+    //No esta aun
     private void jLabel_AnunciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AnunciosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_AnunciosMouseClicked
 
+    //Para ir a curso profesor
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
         CursoProfesor cursoP = new CursoProfesor(mate); // ✅ materia actual
         cursoP.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
+    //Para ir a asignaciones
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
         JAsignaciones asignaciones = new JAsignaciones(mate);
         asignaciones.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
+    //Para ir a calificaciones
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked
         if (mate != null) {
             JCalificacionesProfe califica = new JCalificacionesProfe(mate);
@@ -519,18 +532,21 @@ public class JModuloProfesor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel_CalificacionesMouseClicked
 
+    //Para ir a grupo
     private void jLabel_Grupos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Grupos1MouseClicked
         JGrupo grupo = new JGrupo(mate);
         grupo.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_Grupos1MouseClicked
 
+    //Para ir a asistencias
     private void jLabel_AsistenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsistenciasMouseClicked
         JAsistencia asistencias = new JAsistencia(mate);
         asistencias.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_AsistenciasMouseClicked
 
+    //Para el menu desplegable
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
         if (!Menupop.isVisible()) {
@@ -540,9 +556,7 @@ public class JModuloProfesor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel8MouseClicked
 
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
     private javax.swing.JButton Btn_AgregarModulo;
     private javax.swing.JPanel Menupop;
     private javax.swing.JLabel jLabel1;

@@ -6,15 +6,15 @@ import javax.swing.JOptionPane;
 
 public class JCalificacionEspecifica extends javax.swing.JFrame {
 
+    /*
+            - Nota Developer 1:
+        Frame de ayuda para calificar
+        this.setLocationRelativeTo(null); hace que la ventana se inicie en el centro
+
+    */
     private Estudiante estudiante;
     private Materia mate;
-    
-    public JCalificacionEspecifica() {
-        initComponents();
-        this.mate = mate;
-        this.setLocationRelativeTo(null);
-    }
-
+    //Constructor
     public JCalificacionEspecifica(Estudiante estudiante, Materia materia) {
         initComponents();
         this.estudiante = estudiante;
@@ -24,16 +24,12 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
         this.JLNota.setText(String.valueOf(estudiante.getNotaGeneral()));
         
         JCbx_Asignaciones.removeAllItems();
-
+        //Llena el combo box de las asignaciones
         for (Asignacion a : materia.getAsignaciones()) {
             JCbx_Asignaciones.addItem(a.getNombre()); 
         }
     }
-    // Metodos para asignacion
-    
-    Asignacion asigna = new Asignacion();
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -163,53 +159,74 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que se ejecuta cuando el profesor presiona el botón "Calificar".
+     * Se encarga de validar la nota ingresada y asignarla a la asignación
+     * seleccionada por el profesor.
+     */
     private void jBtn_calificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_calificarActionPerformed
         try {
+            // Obtiene el nombre de la asignación seleccionada en el ComboBox
             String nombreAsignacion = JCbx_Asignaciones.getSelectedItem().toString();
+
+            // Obtiene el texto de la caja donde se escribe la nota y le quita espacios
             String notaTexto = JNota.getText().trim();
 
+            // Validación: si no se escribió nada en la caja de texto
             if (notaTexto.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Por favor, escriba una nota.");
-                return;
+                return; // sale del método porque no hay nada que calificar
             }
 
             double nota;
             try {
+                // Convierte el texto ingresado a un número decimal
                 nota = Double.parseDouble(notaTexto);
             } catch (NumberFormatException ex) {
+                // Si el texto no es un número válido, muestra un error
                 JOptionPane.showMessageDialog(this, "La nota debe ser un número válido.");
                 return;
             }
 
+            // Validación: nota debe estar en el rango 0-100
             if (nota < 0 || nota > 100) {
                 JOptionPane.showMessageDialog(this, "La nota debe estar entre 0 y 100.");
                 return;
             }
 
-
+            // Busca en la lista de asignaciones la que coincida con el nombre seleccionado
             Asignacion asignacionSeleccionada = null;
             for (Asignacion a : mate.getAsignaciones()) {
                 if (a.getNombre().equals(nombreAsignacion)) {
                     asignacionSeleccionada = a;
-                    break;
+                    break; // sale del ciclo una vez encontrada
                 }
             }
 
+            // Si no encuentra ninguna asignación con ese nombre, muestra error
             if (asignacionSeleccionada == null) {
                 JOptionPane.showMessageDialog(this, "Asignación no válida");
                 return;
             }
 
-            estudiante.asignarNota(mate, asignacionSeleccionada, nota); // 👈 Aquí usás tu método
+            // Asigna la nota al estudiante en la materia y asignación seleccionada
+            estudiante.asignarNota(mate, asignacionSeleccionada, nota);
 
+            // Muestra mensaje de confirmación
             JOptionPane.showMessageDialog(this, "Nota asignada correctamente.");
+
+            // Cierra la ventana actual
             this.dispose();
+
+            // Abre la ventana de calificaciones del profesor, mostrando la materia actualizada
             new JCalificacionesProfe(mate).setVisible(true);
 
         } catch (NumberFormatException ex) {
+            // Captura adicional por si ocurre un error inesperado al convertir la nota
             JOptionPane.showMessageDialog(this, "La nota debe ser un número válido.");
         }
     }//GEN-LAST:event_jBtn_calificarActionPerformed
+
 
 
 
