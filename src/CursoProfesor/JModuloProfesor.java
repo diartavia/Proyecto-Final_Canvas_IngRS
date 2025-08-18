@@ -515,9 +515,9 @@ public class JModuloProfesor extends javax.swing.JFrame {
 
     //Para ir a asignaciones
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
-        JAsignaciones asignaciones = new JAsignaciones(mate);
-        asignaciones.setVisible(true);
-        this.dispose();
+        JCreaAsignaciones asignaciones = new JCreaAsignaciones(mate); // Ventana de asignaciones con la materia actual
+        asignaciones.setVisible(true); // Se abre
+        this.dispose(); // Se cierra la actual
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
     //Para ir a calificaciones

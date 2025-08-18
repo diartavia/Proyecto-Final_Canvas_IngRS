@@ -186,7 +186,7 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel_SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SalirMouseClicked
-        LogIn In = new LogIn();
+        LogIn In = new LogIn("n");
         In.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_SalirMouseClicked

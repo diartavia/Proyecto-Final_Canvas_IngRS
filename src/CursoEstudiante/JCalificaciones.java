@@ -282,6 +282,7 @@ public class JCalificaciones extends javax.swing.JFrame {
                 for (Materia m : Sistema.getEstudianteActual().getMaterias()) {
                     if (m.getNombre().equals(nombreMateria)) {
                         new JCalificacionesMateria(m).setVisible(true);
+                        this.dispose();
                         break;
                     }
                 }

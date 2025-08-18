@@ -14,10 +14,6 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Diego
- */
 public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
 
     
@@ -264,7 +260,7 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
 
     private void jLabel_SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_SalirMouseClicked
         // TODO add your handling code here:
-        LogIn In = new LogIn();
+        LogIn In = new LogIn("n");
         In.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel_SalirMouseClicked

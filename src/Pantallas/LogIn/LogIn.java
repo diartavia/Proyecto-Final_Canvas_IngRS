@@ -18,6 +18,10 @@ public class LogIn extends javax.swing.JFrame {
         Sistema.cargarDatosIniciales();
     }
 
+    public LogIn(String n) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

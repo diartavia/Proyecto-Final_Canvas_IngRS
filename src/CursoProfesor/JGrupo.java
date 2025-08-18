@@ -522,10 +522,9 @@ public class JGrupo extends javax.swing.JFrame {
 
     //Para ir a Asignaciones
     private void jLabel_AsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_AsignacionesMouseClicked
-        // TODO add your handling code here:
-        JAsignaciones CA = new JAsignaciones(mate);
-        CA.setVisible(true);
-        this.dispose();
+        JCreaAsignaciones asignaciones = new JCreaAsignaciones(mate); // Ventana de asignaciones con la materia actual
+        asignaciones.setVisible(true); // Se abre
+        this.dispose(); // Se cierra la actual
     }//GEN-LAST:event_jLabel_AsignacionesMouseClicked
 
     //Para ir a Calificaciones

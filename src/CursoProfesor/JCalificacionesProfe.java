@@ -420,9 +420,9 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
     }//GEN-LAST:event_TablasestudiantesMouseClicked
 
     private void jLabel_Asignaciones1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Asignaciones1MouseClicked
-        JCreaAsignaciones VentanaTareas = new JCreaAsignaciones(mate);
-        VentanaTareas.setVisible(true);
-        this.dispose();
+        JCreaAsignaciones asignaciones = new JCreaAsignaciones(mate); // Ventana de asignaciones con la materia actual
+        asignaciones.setVisible(true); // Se abre
+        this.dispose(); // Se cierra la actual
     }//GEN-LAST:event_jLabel_Asignaciones1MouseClicked
 
     private void jLabel_Grupos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Grupos1MouseClicked
