@@ -32,6 +32,7 @@ public class JCalificaciones extends javax.swing.JFrame {
         Estudiante estudianteact = Sistema.getEstudianteActual(); //para guardar el estudiante actual
         JLabel_Nombre.setText(estudianteact.getNombre()+" "+estudianteact.getApellido()); //para poner el nombre en el frame
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /*

@@ -20,22 +20,16 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         se debe de pasar siempre la materia por el constructor de cada frame con algunas posibles excepciones
     */
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JCalificacionesMateria.class.getName());
-    Calificaciones calificacion;
     Estudiante estudiante;
     Materia mate;
 
-    //Constructores
-    public JCalificacionesMateria(Calificaciones calificaciones) {
-        initComponents();
-        calificacion = calificaciones;
-        this.setLocationRelativeTo(null);
-    }
     public JCalificacionesMateria( Materia Mate) {
         initComponents();
         mate =Mate;
         this.setLocationRelativeTo(null);
         estudiante = Sistema.getEstudianteActual();
         MostrarNotas();
+        this.setResizable(false);
     }
     
     
@@ -404,7 +398,7 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /*
+    /**
        -------                                                                     ----------
        Labels que sirven como botones, los cuales llevan a otras "pestañas" del curso del estudiante
        En todos se crea un objeto del frame, se pone visible y se cierra la ventana actual
@@ -458,9 +452,17 @@ public class JCalificacionesMateria extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
-    //Para ir a grupos estudiante (No esta hecho)
+    //Para ir a grupos estudiante
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
-        // TODO add your handling code here:
+        //verifica si el esudiante actual es diferente de null para evitar errores
+        if (Sistema.getEstudianteActual() == null) {
+            JOptionPane.showMessageDialog(this, "Debe iniciar sesión para acceder a Grupos.");
+            return;
+        }
+
+        JGruposEstudiante ventana = new JGruposEstudiante(mate);
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
     //Label para el menu desplegable

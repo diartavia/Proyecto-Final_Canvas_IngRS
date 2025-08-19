@@ -4,22 +4,20 @@
  */
 package General;
 
-import CursoEstudiante.CursoEstudiante;
-import CursoEstudiante.JCalificaciones;
+import CursoEstudiante.*;
 import Pantallas.LogIn.LogIn;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
 
     
     public VentanaPrincipalEstudiante(Estudiante est) {
         initComponents();
-        
+        this.setResizable(false);
         JPanel jpanelCursos = this.JPanel_botones;
         
         Estudiante estudiante = Sistema.getEstudianteActual();
@@ -272,7 +270,7 @@ public class VentanaPrincipalEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
     private void jLabel_Grupos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_Grupos1MouseClicked
-        // TODO add your handling code here:
+        //por un error de logica esta parte se deja para después
     }//GEN-LAST:event_jLabel_Grupos1MouseClicked
 
 

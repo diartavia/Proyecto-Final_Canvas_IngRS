@@ -20,6 +20,7 @@ public class JModuloProfesor extends javax.swing.JFrame {
     //Constructor
     public JModuloProfesor(Materia mater) {
         initComponents();
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.mate = mater;
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));

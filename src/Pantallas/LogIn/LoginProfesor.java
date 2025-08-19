@@ -18,9 +18,8 @@ public class LoginProfesor extends javax.swing.JFrame {
     public LoginProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

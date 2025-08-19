@@ -19,7 +19,7 @@ public class JCalificacionEspecifica extends javax.swing.JFrame {
         initComponents();
         this.estudiante = estudiante;
         this.mate = materia;
-
+        this.setResizable(false);
         this.JLEstu.setText(estudiante.getNombre());
         this.JLNota.setText(String.valueOf(estudiante.getNotaGeneral()));
         

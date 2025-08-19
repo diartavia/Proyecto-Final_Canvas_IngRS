@@ -5,6 +5,8 @@ import CursoProfesor.JCalificacionEspecifica;
 import General.Estudiante;
 import General.Materia;
 import General.Sistema;
+import General.VentanaPrincipalProfesor;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +27,8 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
     //Constructor
     public JCalificacionesProfe(Materia materia) {
         initComponents();
-
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         //Para verificar si la materia no es null
         if (materia == null) {
             JOptionPane.showMessageDialog(this, "Error: Materia es null", "Error", JOptionPane.ERROR_MESSAGE);
@@ -428,11 +431,13 @@ public class JCalificacionesProfe extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel_AsistenciasMouseClicked
 
     private void jLabel_TableroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TableroMouseClicked
-        // TODO add your handling code here:
+        VentanaPrincipalProfesor VPE = new VentanaPrincipalProfesor();
+        VPE.setVisible(true);
+        this.dispose(); // Cierra esta ventana
     }//GEN-LAST:event_jLabel_TableroMouseClicked
 
     private void jLabel_CursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CursosMouseClicked
-        // TODO add your handling code here:
+        // TODO: ESTE AUN NO
     }//GEN-LAST:event_jLabel_CursosMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

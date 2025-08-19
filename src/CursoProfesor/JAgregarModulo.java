@@ -21,6 +21,7 @@ public class JAgregarModulo extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         // paraque salga como si fuera a crear uno
         jButton1.setText("Agregar");
+        this.setResizable(false);
     }
     
     // NUEVO CONSTRUCTOR PARA EDITAR UN MÓDULO QUE YA EXISTE
@@ -34,6 +35,7 @@ public class JAgregarModulo extends javax.swing.JFrame {
         JTF_NombreModulo.setText(modulo.getTitulo());
         // Para que salga como si fuera a editar
         jButton1.setText("Guardar Cambios");
+        this.setResizable(false);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

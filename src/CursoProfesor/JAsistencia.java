@@ -41,6 +41,7 @@ public class JAsistencia extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.mate = mate;
         cargarTablaAsistencia();
+        this.setResizable(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.

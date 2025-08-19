@@ -1,11 +1,7 @@
 package CursoEstudiante;
 
-import General.LinkModulo;
-import General.Materia;
-import General.Modulo;
-import General.ObjetoModulo;
-import General.TextoModulo;
-import General.VentanaPrincipalEstudiante;
+import General.*;
+
 import java.awt.Component;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -38,6 +34,7 @@ public class JModuloEstudiante extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         // Llama al método para cargar los módulos de la materia.
         this.cargarModulos();
+        this.setResizable(false);
     }
 
 
@@ -472,9 +469,17 @@ public class JModuloEstudiante extends javax.swing.JFrame {
        -------                                                                     ----------
     */
 
-    //Para ir a grupos estudiante (no esta todavia)
+    //Para ir a grupos estudiante
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
-        // TODO add your handling code here:
+        //verifica si el esudiante actual es diferente de null para evitar errores
+        if (Sistema.getEstudianteActual() == null) {
+            JOptionPane.showMessageDialog(this, "Debe iniciar sesión para acceder a Grupos.");
+            return;
+        }
+
+        JGruposEstudiante ventana = new JGruposEstudiante(materiaActual);
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
     //Para ir a cursos estudiante (no esta todavia)

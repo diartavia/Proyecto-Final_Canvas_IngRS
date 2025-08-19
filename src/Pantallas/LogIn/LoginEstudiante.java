@@ -22,6 +22,7 @@ public class LoginEstudiante extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         listaEstudiantes= Estudiantes;
+        this.setResizable(false);
     }
     
 

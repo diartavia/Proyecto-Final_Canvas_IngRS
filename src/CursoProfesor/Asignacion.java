@@ -123,9 +123,11 @@ import java.util.List;
      * @param lista Lista de asignaciones a guardar.
      */
     public static void guardarTareas(List<Asignacion> lista) {
+        if (lista == null) return;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("tareas.txt"))) {
-            for (Asignacion asignacion : lista) {
-                bw.write(asignacion.toFileString());
+            for (Asignacion a : lista) {
+                if (a == null) continue;      // <- clave
+                bw.write(a.toFileString());
                 bw.newLine();
             }
         } catch (IOException e) {
@@ -161,5 +163,25 @@ import java.util.List;
     public int hashCode() {
         return nombre != null ? nombre.hashCode() : 0;
     }
-}
+
+     public void setNombre(String nombre) {
+         this.nombre = nombre;
+     }
+
+     public void setFechaInicio(String fechaInicio) {
+         this.fechaInicio = fechaInicio;
+     }
+
+     public void setFechaFinal(String fechaFinal) {
+         this.fechaFinal = fechaFinal;
+     }
+
+     public void setPuntos(int puntos) {
+         this.puntos = puntos;
+     }
+
+     public void setDescripcion(String descripcion) {
+         this.descripcion = descripcion;
+     }
+ }
 

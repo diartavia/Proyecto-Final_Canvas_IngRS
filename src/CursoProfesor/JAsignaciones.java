@@ -25,7 +25,7 @@ public class JAsignaciones extends javax.swing.JFrame {
     public JAsignaciones(Materia mate) {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        this.setResizable(false);
         //Se verifica si se paso una materia que sirva
         if (mate == null) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: No se asignó una materia.");
@@ -69,6 +69,7 @@ public class JAsignaciones extends javax.swing.JFrame {
         // Bandera para saber si el usuario confirmó la edición
         private boolean confirmado = false;
 
+        private final Asignacion tarea;     // <- guardamos la referencia original
         // Objeto que contendrá la tarea editada
         private Asignacion tareaEditada;
 
@@ -80,11 +81,13 @@ public class JAsignaciones extends javax.swing.JFrame {
         // Constructor del diálogo, recibe el padre (ventana), la tarea a editar y un índice
         public EditarTareaDialog(java.awt.Frame parent, Asignacion tarea, int index) {
             super(parent, "Editar Tarea", true); // Llama al constructor de JDialog con título y modalidad
+            this.tarea = tarea;
             setSize(450, 400); // Tamaño de la ventana
             setLocationRelativeTo(parent); // Centrar respecto a la ventana padre
             setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Cerrar el diálogo al salir
             getContentPane().setBackground(java.awt.Color.WHITE); // Fondo blanco
             setLayout(new java.awt.GridBagLayout()); // Layout con GridBag para organizar los componentes
+
 
             // Configuración general de GridBagConstraints
             java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
@@ -175,36 +178,26 @@ public class JAsignaciones extends javax.swing.JFrame {
             // Acción del botón Confirmar
             btnConfirmar.addActionListener(e -> {
                 try {
-                    // Convierte el texto de puntos en número
-                    int puntos = Integer.parseInt(campoPuntos.getText());
+                    int puntos = Integer.parseInt(campoPuntos.getText().trim());
 
-                    // Crea una nueva Asignacion con los datos ingresados
-                    tareaEditada = new Asignacion(
-                            campoNombre.getText(),
-                            campoInicio.getText(),
-                            campoFinal.getText(),
-                            puntos,
-                            campoDescripcion.getText()
-                    );
+                    tarea.setNombre(campoNombre.getText().trim());
+                    tarea.setFechaInicio(campoInicio.getText().trim());
+                    tarea.setFechaFinal(campoFinal.getText().trim());
+                    tarea.setPuntos(puntos);
+                    tarea.setDescripcion(campoDescripcion.getText());
 
-                    confirmado = true; // Marca que se confirmó
-                    dispose(); // Cierra el diálogo
+                    confirmado = true;
+                    tareaEditada = tarea;     // <- para que getTareaEditada() no sea null
+                    dispose();
                 } catch (NumberFormatException ex) {
-                    // Si los puntos no son un número entero, muestra error
-                    javax.swing.JOptionPane.showMessageDialog(this, "Los puntos deben ser un número entero.");
+                    javax.swing.JOptionPane.showMessageDialog(
+                            this, "Los puntos deben ser un número entero.");
                 }
             });
         }
 
-        // Método para saber si el usuario confirmó la edición
-        public boolean fueConfirmado() {
-            return confirmado;
-        }
-
-        // Devuelve la tarea editada con los nuevos valores
-        public Asignacion getTareaEditada() {
-            return tareaEditada;
-        }
+        public boolean fueConfirmado() { return confirmado; }
+        public Asignacion getTareaEditada() { return tareaEditada; }
     }
 
     

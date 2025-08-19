@@ -19,7 +19,7 @@ public class JAgregarElementoModulo extends javax.swing.JFrame {
         this.ventanaPrincipal = ventanaPrincipal;
         initComponents();
         this.setLocationRelativeTo(null); // Centra la ventana
-
+        this.setResizable(false);
     }
 
     @SuppressWarnings("unchecked")

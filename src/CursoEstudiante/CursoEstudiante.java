@@ -28,8 +28,7 @@ public class CursoEstudiante extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.mate = materia;
-        //this.estudiante = estudiante;
-       
+        this.setResizable(false);
     }
 
 
@@ -393,11 +392,11 @@ public class CursoEstudiante extends javax.swing.JFrame {
         if (Sistema.getEstudianteActual() == null) {
         JOptionPane.showMessageDialog(this, "Debe iniciar sesión para acceder a Grupos.");
         return;
-    }
+        }
     
-    JGruposEstudiante ventana = new JGruposEstudiante(mate);
-    ventana.setVisible(true);
-    this.dispose();
+        JGruposEstudiante ventana = new JGruposEstudiante(mate);
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
     //Para ver los cursos que tiene el estudiante

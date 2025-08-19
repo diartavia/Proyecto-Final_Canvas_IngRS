@@ -24,10 +24,11 @@ public class JCreaAsignaciones extends javax.swing.JFrame {
     */
     Materia mate;
     public JCreaAsignaciones(Materia mate) {
-          initComponents();
-          cargarTareasDesdeArchivo();
-          this.setLocationRelativeTo(null);
-          this.mate=mate;
+        initComponents();
+        cargarTareasDesdeArchivo();
+        this.setLocationRelativeTo(null);
+        this.mate=mate;
+        this.setResizable(false);
     }
 
     @SuppressWarnings("unchecked")

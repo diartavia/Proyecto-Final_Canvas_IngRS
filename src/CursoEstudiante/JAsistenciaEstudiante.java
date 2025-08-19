@@ -31,10 +31,11 @@ public class JAsistenciaEstudiante extends javax.swing.JFrame {
     private Materia materia;
     //Constructor
     public JAsistenciaEstudiante(Materia materia) {
-          initComponents();
+        initComponents();
         this.setLocationRelativeTo(null);
         this.materia = materia;
         calcularAsistencia();
+        this.setResizable(false);
     }
 
     /*
@@ -483,7 +484,15 @@ public class JAsistenciaEstudiante extends javax.swing.JFrame {
 
     //Este lleva a poder ver los grupos del estudiante (No está hecho aún)
     private void jLabel_GruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GruposMouseClicked
+        //verifica si el esudiante actual es diferente de null para evitar errores
+        if (Sistema.getEstudianteActual() == null) {
+            JOptionPane.showMessageDialog(this, "Debe iniciar sesión para acceder a Grupos.");
+            return;
+        }
 
+        JGruposEstudiante ventana = new JGruposEstudiante(materia);
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_GruposMouseClicked
 
     //Este lleva a poder ver los cursos del estudiante (No está hecho aún)

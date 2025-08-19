@@ -24,7 +24,7 @@ public class Calificaciones {
         this.estudiante = estudiante; // Se asigna el estudiante
         this.asignaciones = new ArrayList<>(); // Se inicializa la lista de asignaciones vacía
         this.ArrayListEstudiantes = estudiantes; // Se asigna la lista de estudiantes recibida
-        JPanelCalificaciones = new JCalificacionesMateria(this); // Se crea el panel de calificaciones
+        //JPanelCalificaciones = new JCalificacionesMateria(this); // Se crea el panel de calificaciones
     }
 
     // Constructor sin grupo, pero con asignación, estudiante y lista de estudiantes
@@ -33,7 +33,7 @@ public class Calificaciones {
         this.estudiante = estudiante; // Se asigna el estudiante
         this.asignaciones = new ArrayList<>(); // Se inicializa la lista de asignaciones vacía
         this.ArrayListEstudiantes = estudiantes; // Se asigna la lista de estudiantes recibida
-        JPanelCalificaciones = new JCalificacionesMateria(this); // Se crea el panel de calificaciones
+        //JPanelCalificaciones = new JCalificacionesMateria(this); // Se crea el panel de calificaciones
     }
 
     // Método para obtener notas de un estudiante por su ID

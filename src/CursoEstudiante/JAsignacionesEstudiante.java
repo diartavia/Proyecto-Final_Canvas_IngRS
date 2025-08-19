@@ -30,6 +30,7 @@ public class JAsignacionesEstudiante extends javax.swing.JFrame {
             dispose();
             return;
         }
+        this.setResizable(false);
         setLocationRelativeTo(null);
         //se carga la tabla de datos
         cargarTablaAsignaciones();
@@ -404,8 +405,8 @@ public class JAsignacionesEstudiante extends javax.swing.JFrame {
 
     private void jLabel_PagInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PagInicioMouseClicked
       CursoEstudiante curso = new CursoEstudiante(mate);
-curso.setVisible(true);
-this.dispose();
+        curso.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel_PagInicioMouseClicked
 
     private void jLabel_CalificacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CalificacionesMouseClicked

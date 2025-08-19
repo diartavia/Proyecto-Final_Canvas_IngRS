@@ -32,6 +32,7 @@ public class JGruposEstudiante extends javax.swing.JFrame {
         this.mate = materia;
         // Llama al método para llenar la tabla con los grupos a los que pertenece el estudiante.
         cargarGruposDelEstudiante();
+        this.setResizable(false);
     }
 
     /**

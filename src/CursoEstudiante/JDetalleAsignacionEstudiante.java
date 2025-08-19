@@ -29,6 +29,7 @@ public class JDetalleAsignacionEstudiante extends javax.swing.JFrame {
         initComponents();
         // Llama al método para cargar los datos de la asignación
         cargarDatos();
+        this.setResizable(false);
     }
 
     /**

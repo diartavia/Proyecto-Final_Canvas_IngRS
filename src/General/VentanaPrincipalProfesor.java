@@ -16,7 +16,7 @@ public class VentanaPrincipalProfesor extends javax.swing.JFrame {
     public VentanaPrincipalProfesor() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        this.setResizable(false);
         
         // Suponé que este es el profesor actual que ingresó al sistema
     Profesor profesorActual = Sistema.getProfesorActual();

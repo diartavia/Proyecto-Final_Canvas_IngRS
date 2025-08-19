@@ -22,6 +22,7 @@ public class JGrupo extends javax.swing.JFrame {
     private Materia mate;
     //Constructor
     public JGrupo(Materia materia) {
+        this.setResizable(false);
         this.mate = materia; //guarda la materia actual
         initComponents(); //Inicia los componentes
         cargarGruposEnTabla(); //Metodo para cargar los grupos en la tabla

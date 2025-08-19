@@ -1,6 +1,10 @@
 package Pantallas.LogIn;
 
 import General.*;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class LogIn extends javax.swing.JFrame {
@@ -12,15 +16,18 @@ public class LogIn extends javax.swing.JFrame {
         
         Despues hay botones que permiten moverse a otros frames de la parte LogIn
     */
+
     public LogIn() {
         initComponents();
         this.setLocationRelativeTo(null);
         Sistema.cargarDatosIniciales();
+        this.setResizable(false);
     }
 
     public LogIn(String n) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
     
     /**
@@ -158,7 +165,7 @@ public class LogIn extends javax.swing.JFrame {
     
     /*
             - Botones que llevan a otros frames -
-        hay dos botones ya que uno es para la imagen y otro es del texto
+        hay dos botones, ya que uno es para la imagen y otro es del texto
      */
     private void btn_EstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EstudianteActionPerformed
         // TODO add your handling code here:
